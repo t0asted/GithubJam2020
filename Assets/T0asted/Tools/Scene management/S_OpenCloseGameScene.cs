@@ -20,8 +20,3 @@ public class S_OpenCloseGameScene : S_UISceneManager
         sceneEnum = scene;
     }
 }
-
-public enum Scenes_Level
-{
-    None
-}

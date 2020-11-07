@@ -31,10 +31,10 @@ public class S_AppSign : MonoBehaviour
             case BuildType.Release:
                 EditorUserBuildSettings.buildAppBundle = true;
                 PlayerSettings.SetScriptingBackend(BuildTargetGroup.Android, ScriptingImplementation.IL2CPP);
-                PlayerSettings.Android.keystoreName = "G:/Projects/Rumba/Key/RumbaKeyStore.keystore";
-                PlayerSettings.Android.keyaliasName = "rumba";
-                PlayerSettings.Android.keystorePass = "J0shua321";
-                PlayerSettings.Android.keyaliasPass = "J0shua321";
+                PlayerSettings.Android.keystoreName = "KeyStorePath";
+                PlayerSettings.Android.keyaliasName = "Escape";
+                PlayerSettings.Android.keystorePass = "";
+                PlayerSettings.Android.keyaliasPass = "";
 
                 PlayerSettings.Android.bundleVersionCode++;
                 PlayerSettings.Android.targetArchitectures = AndroidArchitecture.ARMv7 | AndroidArchitecture.ARM64;

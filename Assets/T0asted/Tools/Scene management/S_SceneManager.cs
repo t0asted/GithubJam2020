@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using SceneUtility;
 
-public class S_UISceneManager : MonoBehaviour
+public class S_UISceneManager : S_Scene
 {
     public static void OpenScene(string sceneName, bool add)
     {
@@ -46,7 +46,7 @@ namespace SceneUtility
         {
             if (scene != "")
             {
-                var name = "S_" + scene.ToString();
+                var name = scene.ToString();
                 for (int i = 0; i < SceneManager.sceneCount; i++)
                 {
                     if (SceneManager.GetSceneAt(i).name == name)
@@ -62,8 +62,7 @@ namespace SceneUtility
 
         public static void Close(string scene)
         {
-            var name = "S_" + scene.Replace("S_", ""); ;
-            SceneManager.UnloadSceneAsync(name);
+            SceneManager.UnloadSceneAsync(scene);
         }
     }
 }

@@ -21,8 +21,3 @@ public class S_OpenCloseUIScene : S_UISceneManager
     }
 
 }
-
-public enum Scenes_UI
-{
-    None
-}
