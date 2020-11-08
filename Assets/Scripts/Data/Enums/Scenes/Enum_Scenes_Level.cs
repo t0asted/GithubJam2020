@@ -8,4 +8,5 @@ public enum Scenes_Level
 	,Debug_Stefan = -2027801055
 	,GameController = 40213808
 	,Main = -756893933
+	,Test = -871204762
 }
