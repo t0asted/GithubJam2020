@@ -32,4 +32,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level/Debug_Matt.unity
     guid: 3d9650e8486e4484facbab0de3f5eb71
+  - enabled: 1
+    path: Assets/Scenes/Level/Game_Lighting.unity
+    guid: f04ab728c4b01bc44a51c62d870e9daf
+  - enabled: 1
+    path: Assets/Scenes/UI/HUD.unity
+    guid: a005dff63619efd42af1bd2b4b757a0d
+  - enabled: 1
+    path: Assets/Scenes/UI/InGameMenu.unity
+    guid: c1973b4328461dc44a937faf50cd4045
   m_configObjects: {}

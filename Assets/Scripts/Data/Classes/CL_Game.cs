@@ -2,6 +2,10 @@
 
 public class CL_Game
 {
+    public GameModes GameMode = GameModes.Normal;
+
+    public bool Paused = false;
+
     public List<CL_Resource> Resources = new List<CL_Resource>() { 
         new CL_Resource(Enum_Resource.Carbon, 0), 
         new CL_Resource(Enum_Resource.Gold, 0), 
