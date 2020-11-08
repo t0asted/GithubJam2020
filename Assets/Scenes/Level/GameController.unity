@@ -152,6 +152,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 122f3dc1a10638546b6f7682d58eb6e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LevelData: {fileID: 11400000, guid: bf5512d5380dde54e89178be43e16346, type: 2}
+  CharacterData: {fileID: 11400000, guid: 05d3f7db66a710840b1189ddae27abee, type: 2}
 --- !u!4 &1817638899
 Transform:
   m_ObjectHideFlags: 0
