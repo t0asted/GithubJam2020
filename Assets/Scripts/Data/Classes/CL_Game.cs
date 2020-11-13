@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using JetBrains.Annotations;
+using System.Collections.Generic;
 
 public class CL_Game
 {
     public GameModes GameMode = GameModes.Normal;
-
     public bool Paused = false;
 
     public List<CL_Resource> Resources = new List<CL_Resource>() { 

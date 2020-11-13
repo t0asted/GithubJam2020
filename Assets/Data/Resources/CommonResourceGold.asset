@@ -9,9 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4426cc97a326d0498d061495e2ffde0, type: 3}
-  m_Name: LevelData
+  m_Script: {fileID: 11500000, guid: 86bfe2258e1a7794a81061f229694873, type: 3}
+  m_Name: CommonResourceGold
   m_EditorClassIdentifier: 
-  size: 100
-  gravity: 1
-  MostCommonResource: {fileID: 11400000, guid: ba58f9645100e9a49a7de0b966c8fe14, type: 2}
+  ResourceList:
+  - ResourceName: 1
+    Quantity: 0
+    rarity: 0
+  - ResourceName: 3
+    Quantity: 0
+    rarity: 0

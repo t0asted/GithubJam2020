@@ -5,5 +5,6 @@ public enum Enum_Resource
     Gold,
     Carbon,
     Nickel,
-    Titanium
+    Titanium,
+    oxygen
 }
