@@ -4,41 +4,5 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes:
-  - enabled: 1
-    path: Assets/Scenes/Boot.unity
-    guid: f0d927e7f7db50b44a39da2443bacfb0
-  - enabled: 1
-    path: Assets/Scenes/Level/GameController.unity
-    guid: d6e357e54e589434296b52ebaa5d92e1
-  - enabled: 1
-    path: Assets/Scenes/Level/Main.unity
-    guid: f7f1711466111a24c8d3539241b53b3b
-  - enabled: 1
-    path: Assets/Scenes/UI/MainMenu.unity
-    guid: c20e95ad646a0884fac16ef62d4db0d7
-  - enabled: 1
-    path: Assets/Scenes/UI/UICamera.unity
-    guid: 7e655581d2938e74e94e32a6540ac476
-  - enabled: 1
-    path: Assets/Scenes/Level/Debug_Stefan.unity
-    guid: 27c0ce6b548058c4d87e6ebcb0820d28
-  - enabled: 1
-    path: Assets/Scenes/Level/Debug_James.unity
-    guid: d8720c6097b1b9e449d5af060adcc4f3
-  - enabled: 1
-    path: Assets/Scenes/Level/Debug_Joshua.unity
-    guid: e0c06aea9926e2144b51ff0cb3b84b1b
-  - enabled: 1
-    path: Assets/Scenes/Level/Debug_Matt.unity
-    guid: 3d9650e8486e4484facbab0de3f5eb71
-  - enabled: 1
-    path: Assets/Scenes/Level/Game_Lighting.unity
-    guid: f04ab728c4b01bc44a51c62d870e9daf
-  - enabled: 1
-    path: Assets/Scenes/UI/HUD.unity
-    guid: a005dff63619efd42af1bd2b4b757a0d
-  - enabled: 1
-    path: Assets/Scenes/UI/InGameMenu.unity
-    guid: c1973b4328461dc44a937faf50cd4045
+  m_Scenes: []
   m_configObjects: {}
