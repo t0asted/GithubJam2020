@@ -2,82 +2,128 @@
 using System.ComponentModel.Design;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Data/Resources")]
-public class CL_Resources : ScriptableObject
+[System.Serializable]
+public class CL_Resources
 {
     public List<CL_Resource> ResourceList = new List<CL_Resource>();
+    public int StorageSize = 0;
+    public bool stack = true;
 
     public CL_Resources()
     {
         ResourceList = new List<CL_Resource>();
+        StorageSize = 0;
+        stack = true;
     }
 
     public CL_Resources(List<CL_Resource> ResourcesPass)
     {
         ResourceList = ResourcesPass;
+        StorageSize = 0;
+        stack = true;
     }
 
-    public void AddResources(CL_Resource ResourceToAdd)
+    public float GetResourcesSize()
+    {
+        float Size = 0;
+        foreach (var item in ResourceList)
+        {
+            Size += item.Quantity;
+        }
+        return Size;
+    }
+
+    public bool IsStorageFull()
+    {
+        return GetResourcesSize() >= StorageSize;
+    }
+
+    public bool AddResources(CL_Resource ResourceToAdd)
     {
         CL_Resource ResourceFound = ResourceList.Find(f => f.ResourceName == ResourceToAdd.ResourceName);
 
-        if (ResourceFound != null)
+        if (IsStorageFull())
         {
-            ResourceFound.AddResource(ResourceToAdd);
+            if (ResourceFound != null)
+            {
+                ResourceFound.AddResource(ResourceToAdd);
+            }
+            else
+            {
+                ResourceList.Add(ResourceToAdd);
+            }
+            return true;
         }
         else
         {
-            ResourceList.Add(ResourceToAdd);
+            return false;
+        }
+
+    }
+
+    public bool AddResources(List<CL_Resource> ResourcesToAdd)
+    {
+        if (IsStorageFull())
+        {
+            if (ResourceList.Count > 0)
+            {
+                foreach (var itemToAdd in ResourcesToAdd)
+                {
+                    CL_Resource ResourceFound = ResourceList.Find(f => f.ResourceName == itemToAdd.ResourceName);
+
+                    if (ResourceFound != null)
+                    {
+                        ResourceFound.AddResource(itemToAdd);
+                        continue;
+                    }
+                    else
+                    {
+                        ResourceList.Add(itemToAdd);
+                    }
+                }
+            }
+            else
+            {
+                ResourceList = ResourcesToAdd;
+            }
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 
-    public void AddResources(List<CL_Resource> ResourcesToAdd)
+    public bool AddResources(CL_Resources ResourcesToAdd)
     {
-        if (ResourceList.Count > 0)
+        if (IsStorageFull())
         {
-            foreach (var itemToAdd in ResourcesToAdd)
+            if (ResourceList.Count > 0)
             {
-                CL_Resource ResourceFound = ResourceList.Find(f => f.ResourceName == itemToAdd.ResourceName);
+                foreach (var itemToAdd in ResourcesToAdd.ResourceList)
+                {
+                    CL_Resource ResourceFound = ResourceList.Find(f => f.ResourceName == itemToAdd.ResourceName);
 
-                if (ResourceFound != null)
-                {
-                    ResourceFound.AddResource(itemToAdd);
-                    continue;
-                }
-                else
-                {
-                    ResourceList.Add(itemToAdd);
+                    if (ResourceFound != null)
+                    {
+                        ResourceFound.AddResource(itemToAdd);
+                        continue;
+                    }
+                    else
+                    {
+                        ResourceList.Add(itemToAdd);
+                    }
                 }
             }
+            else
+            {
+                ResourceList = ResourcesToAdd.ResourceList;
+            }
+            return true;
         }
         else
         {
-            ResourceList = ResourcesToAdd;
-        }
-    }
-
-    public void AddResources(CL_Resources ResourcesToAdd)
-    {
-        if (ResourceList.Count > 0)
-        {
-            foreach (var itemToAdd in ResourcesToAdd.ResourceList)
-            {
-                CL_Resource ResourceFound = ResourceList.Find(f => f.ResourceName == itemToAdd.ResourceName);
-
-                if (ResourceFound != null)
-                {
-                    ResourceFound.AddResource(itemToAdd);
-                    continue;
-                }
-                else
-                {
-                    ResourceList.Add(itemToAdd);
-                }
-            }
-        }
-        else
-        {
-            ResourceList = ResourcesToAdd.ResourceList;
+            return false;
         }
     }
 

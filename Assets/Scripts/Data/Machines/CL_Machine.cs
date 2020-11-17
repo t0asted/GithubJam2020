@@ -1,16 +1,44 @@
-﻿public interface CL_Machine 
-{
-    CL_Resources CostToBuild { get; }
-    int ProcessSpeed { get; }
-    CL_Resources ResourceCanCollect { get; }
-    CL_Resources ResourcesCollected { get; set; }
-}
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Diagnostics;
+using TMPro;
+using UnityEngine;
 
-
-public class Miner : CL_Machine
+[System.Serializable]
+public class CL_Machine
 {
-    public CL_Resources CostToBuild { get { return CostToBuild; } }
-    public int ProcessSpeed { get { return ProcessSpeed; } }
-    public CL_Resources ResourceCanCollect { get { return ResourceCanCollect; } }
-    public CL_Resources ResourcesCollected { get { return ResourcesCollected; } set { } }
+    public CL_ResourcesScriptable CostToBuild { get; }
+    public CL_ResourcesScriptable ResourceCanCollect { get; }
+    public CL_Resources ResourcesCollected { get; }
+    public int ProcessSpeed { get; }
+    public int AmountCanProcess { get; }
+
+    public CL_Machine()
+    {
+        ProcessSpeed = 1;
+        AmountCanProcess = 1;
+    }
+    
+    public void Process()
+    {
+        foreach (var ResourceInList in ResourceCanCollect.ResourceList)
+        {
+            if (ResourceInList.rarity > Random.Range(1, 5)) // Rarity chance that you get this resource
+            {
+                CL_Resource ResourceSetQuantity = new CL_Resource(ResourceInList.ResourceName, Random.Range(1, AmountCanProcess));
+                ResourcesCollected.AddResources(ResourceSetQuantity);
+            }
+        }
+    }
+
+    public string ResourceContent()
+    {
+        string text = "";
+        foreach (var item in ResourcesCollected.ResourceList)
+        {
+            text = text + item.ResourceName + " : " + item.Quantity + "\n";
+        }
+        return text;
+    }
+
 }
