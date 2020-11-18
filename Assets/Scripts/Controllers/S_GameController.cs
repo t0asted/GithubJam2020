@@ -30,6 +30,8 @@ public class S_GameController : MonoBehaviour
 
     public CL_Game GameData = new CL_Game();
 
+    private GameObject ref_Character = null;
+
     private void Start()
     {
         OnStart.Invoke();
@@ -53,6 +55,14 @@ public class S_GameController : MonoBehaviour
         {
             // do shit
         }
+
+        //Debug Respawn
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            Destroy(ref_Character);
+            ref_Character = m_CharacterSpawner.SpawnCharacter(CharacterData);
+        }
+
     }
 
     private void SetupGame()
@@ -60,7 +70,11 @@ public class S_GameController : MonoBehaviour
         LevelSpawned = m_LevelSpawner.SpawnLevel(LevelData);
         if(LevelSpawned)
         {
-            CharacterSpawned = m_CharacterSpawner.SpawnCharacter(CharacterData);
+            ref_Character = m_CharacterSpawner.SpawnCharacter(CharacterData);
+            if (ref_Character != null)
+            {
+                CharacterSpawned = true;
+            }
         }
     }
 
