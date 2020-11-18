@@ -35,31 +35,10 @@ public class S_GravityController : MonoBehaviour
             Vector3 gravityUp = (transform.position - Planet.transform.position).normalized;
             Vector3 localUp = transform.up;
 
-            Debug.Log("Centre of Planet - " + Planet.transform.position);
-
 
             Player.AddForce(-gravityUp * Gravity);
 
             transform.rotation = Quaternion.FromToRotation(localUp, gravityUp) * transform.rotation;
-
-
-
-            //Vector3 gravityUp = Vector3.zero;
-            //
-            //gravityUp = (transform.position - gravityUp).normalized;
-            //
-            //Vector3 local = transform.up;
-            //
-            //Quaternion targetRotation = Quaternion.Euler(gravityUp);//Quaternion.FromToRotation(local, gravityUp) * transform.rotation;
-            //
-            //transform.rotation = targetRotation;
-            //
-            ////transform.up = Vector3.Lerp(transform.up, targetRotation, RotateSpeed * Time.deltaTime);
-            //
-            //Player.AddForce((-gravityUp * Gravity) * Player.mass);
-            //
-            //Debug.Log(targetRotation);
-            ////transform.Translate(-gravityUp);
         }
 
 

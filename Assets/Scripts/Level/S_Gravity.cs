@@ -23,11 +23,9 @@ public class S_Gravity : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Planet - " + other.gameObject.name + " Triggered Gravity");
 
         if (other.GetComponent<S_GravityController>())
         {
-            Debug.Log("Set Gravity Component Planet Value");
 
             other.GetComponent<S_GravityController>().SetPlanet(this.GetComponent<S_Gravity>());
         }
