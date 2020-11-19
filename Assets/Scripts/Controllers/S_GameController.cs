@@ -35,6 +35,8 @@ public class S_GameController : MonoBehaviour
     private void Start()
     {
         OnStart.Invoke();
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void Update()

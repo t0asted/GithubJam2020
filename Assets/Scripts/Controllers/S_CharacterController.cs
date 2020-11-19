@@ -39,7 +39,6 @@ public class S_CharacterController : MonoBehaviour
     {
         PlayerMovement();
         Animation();
-        CameraMovement();
     }
 
 
@@ -88,22 +87,6 @@ public class S_CharacterController : MonoBehaviour
         {
             Animate.SetInteger("AnimationPar", 0);
         }
-    }
-
-
-
-    private void CameraMovement()
-    {
-        float mouseX = 0, mouseY = 0;
-        mouseX += Input.GetAxis("Mouse X") * m_Mouse_Sensititivity;
-        mouseY -= Input.GetAxis("Mouse Y") * m_Mouse_Sensititivity;
-
-        //m_Camera.transform.LookAt(m_Target);
-
-
-        transform.rotation = Quaternion.Euler(0, mouseX, 0) * transform.rotation;
-        //m_Target.localRotation = Quaternion.Euler(mouseY, mouseX, 0) * m_Target.localRotation;
-
     }
 
 }
