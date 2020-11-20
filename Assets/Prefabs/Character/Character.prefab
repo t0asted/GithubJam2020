@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1284979726214294654}
   m_Layer: 0
-  m_Name: Rot
+  m_Name: Camera Arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -23,9 +23,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1829488038721350868}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.10000001, y: 0.1, z: 0.10000001}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.76, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4087713875357921694}
   m_Father: {fileID: 5559986617296508147}
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 5559986617296508147}
   - component: {fileID: 453561076138291636}
   m_Layer: 0
-  m_Name: CameraController
+  m_Name: Camera Controller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -56,7 +56,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3103895552637771379}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.68, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1284979726214294654}
@@ -76,13 +76,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ObjectToFollow: {fileID: 6776188622384219300}
-  speed: 0.5
-  target: {fileID: 6776188622384219300}
+  CameraArm: {fileID: 1284979726214294654}
   Camera: {fileID: 1284979726214294654}
-  distance: 5
-  xSpeed: 120
-  ySpeed: 120
-  yMinLimit: -20
+  distance: 0.5
+  xSpeed: 80
+  ySpeed: 40
+  yMinLimit: -80
   yMaxLimit: 80
   distanceMin: 0.5
   distanceMax: 15
@@ -112,7 +111,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4087713875357921695}
   m_LocalRotation: {x: 0.118491605, y: -0, z: -0, w: 0.9929551}
-  m_LocalPosition: {x: 0, y: 19.1, z: -73.6}
+  m_LocalPosition: {x: -0.694, y: 1.14, z: -3.87}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1284979726214294654}
@@ -169,36 +168,6 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4087713875357921695}
   m_Enabled: 1
---- !u!1 &4684207138346354710
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4410972095134727512}
-  m_Layer: 0
-  m_Name: Target
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4410972095134727512
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4684207138346354710}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.1714, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 6776188622384219300}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6773416015433108440
 GameObject:
   m_ObjectHideFlags: 0
@@ -605,7 +574,6 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children:
-  - {fileID: 4410972095134727512}
   - {fileID: 6779794248118677010}
   m_Father: {fileID: 5694671404412375489}
   m_RootOrder: 1
@@ -642,8 +610,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Player_Movement_Speed: 10
-  m_Player_Sprint_Speed: 10
-  m_Jump_Force: 100
+  m_Player_Sprint_Speed: 20
+  m_Jump_Force: 50
   m_Mouse_Sensititivity: 1
   m_Camera: {fileID: 0}
   m_Target: {fileID: 0}
@@ -663,7 +631,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Planet: {fileID: 0}
-  RotateSpeed: 20
+  RotateSpeed: 5
   Gravity: 20
 --- !u!136 &3986070637888158818
 CapsuleCollider:
@@ -940,7 +908,7 @@ Transform:
   m_Children:
   - {fileID: 6779718266323449824}
   m_Father: {fileID: 6776188622384219300}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &6912522401275867350
 SkinnedMeshRenderer:

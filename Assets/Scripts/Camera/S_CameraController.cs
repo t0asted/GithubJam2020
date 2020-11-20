@@ -7,19 +7,26 @@ public class S_CameraController : MonoBehaviour
     [SerializeField]
     private Transform m_ObjectToFollow;
 
-    public float speed = .5f;
+    [SerializeField]
+    private Transform CameraArm;
+    [SerializeField]
+    private Transform Camera;
+    [SerializeField]
+    private float distance = 5.0f;
+    [SerializeField]
+    private float xSpeed = 80.0f;
+    [SerializeField]
+    private float ySpeed = 80.0f;
 
-    public Transform target;
-    public Transform Camera;
-    public float distance = 5.0f;
-    public float xSpeed = 120.0f;
-    public float ySpeed = 120.0f;
+    [SerializeField]
+    private float yMinLimit = -30f;
+    [SerializeField]
+    private float yMaxLimit = 80f;
 
-    public float yMinLimit = -20f;
-    public float yMaxLimit = 80f;
-
-    public float distanceMin = .5f;
-    public float distanceMax = 15f;
+    [SerializeField]
+    private float distanceMin = .5f;
+    [SerializeField]
+    private float distanceMax = 15f;
 
     float x = 0.0f;
     float y = 0.0f;
@@ -34,38 +41,37 @@ public class S_CameraController : MonoBehaviour
 
     public Vector3 GetForwardCamera()
     {
-        return Camera.forward;
+        return CameraArm.forward;
     }
 
     void LateUpdate()
     {
-
         transform.position = m_ObjectToFollow.position;
 
         transform.rotation = m_ObjectToFollow.rotation;
 
-
-        if (target)
+        if (CameraArm)
         {
-
             x += Input.GetAxis("Mouse X") * xSpeed * distance * 0.02f;
             y -= Input.GetAxis("Mouse Y") * ySpeed * 0.02f;
+            y = ClampAngle(y, yMinLimit, yMaxLimit);
 
             Quaternion rotation = Quaternion.Euler(y, x, 0);
-
-            y = ClampAngle(y, yMinLimit, yMaxLimit);
             
             distance = Mathf.Clamp(distance - Input.GetAxis("Mouse ScrollWheel") * 5, distanceMin, distanceMax);
             
             RaycastHit hit;
-            if (Physics.Linecast(target.position, transform.position, out hit))
+            if (Physics.Linecast(CameraArm.position, transform.position, out hit))
             {
                 distance -= hit.distance;
             }
-            Vector3 negDistance = new Vector3(0.0f, 0.0f, -distance);
-            //Vector3 position = rotation * negDistance + target.position;
 
-            Camera.localRotation = rotation;
+            //Vector3 negDistance = new Vector3(0.0f, 0.0f, -distance);
+            //Vector3 position = rotation * negDistance + Camera.position;
+            //
+            //Camera.position = position;
+
+            CameraArm.localRotation = rotation;
         }
     }
 
