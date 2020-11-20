@@ -2,17 +2,32 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
+[RequireComponent(typeof(SphereCollider))]
 public class S_Gravity : MonoBehaviour
 {
-    // Start is called before the first frame update
+
+    private SphereCollider sc;
+
+    [SerializeField]
+    private float TriggerRadius = 0.7f;
+
     void Start()
     {
-        
+        sc = this.GetComponent<SphereCollider>();
+        sc.isTrigger = true;
+        sc.radius = TriggerRadius;
     }
 
-    // Update is called once per frame
-    void Update()
+
+    private void OnTriggerEnter(Collider other)
     {
-        
+
+        if (other.GetComponent<S_GravityController>())
+        {
+
+            other.GetComponent<S_GravityController>().SetPlanet(this.GetComponent<S_Gravity>());
+        }
     }
 }

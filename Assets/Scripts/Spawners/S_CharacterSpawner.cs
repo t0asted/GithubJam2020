@@ -22,7 +22,7 @@ public class S_CharacterSpawner : MonoBehaviour
     }
 
 
-    public bool SpawnCharacter(CL_Character CharacterDataPass)
+    public GameObject SpawnCharacter(CL_Character CharacterDataPass)
     {
         CharacterData = CharacterDataPass;
 
@@ -32,13 +32,15 @@ public class S_CharacterSpawner : MonoBehaviour
 
         // This is just getting first spawn point it finds for now. Might add multiple
 
+        GameObject CharacterGO = null;
+
         if (CharacterToSpawn != null && spawnPoints.Length > 0)
         {
-            GameObject CharacterGO = Instantiate(CharacterToSpawn);
+            CharacterGO = Instantiate(CharacterToSpawn);
             CharacterGO.transform.position = spawnPoints[0].transform.position;
             CharacterGO.transform.SetParent(this.transform);
         }
 
-        return true;
+        return CharacterGO;
     }
 }
