@@ -5,20 +5,23 @@ using UnityEngine;
 public class S_GravityController : MonoBehaviour
 {
     [SerializeField]
-    private S_Gravity Planet;
+    private S_Gravity m_Planet;
+    [SerializeField]
+    private Transform m_Target;
+    
+    [SerializeField] 
+    private float m_TargetOffset = 2;
+    [SerializeField]
+    private float m_RotateSpeed = 20;
+    [SerializeField]
+    private float m_Gravity = 7;
 
     private Rigidbody Player;
-
-    [SerializeField]
-    private float RotateSpeed = 20;
-
-    [SerializeField]
-    private float Gravity = 7;
+    private Vector3 gravityDirection;
 
     public void SetPlanet(S_Gravity planet)
     {
-        Planet = planet;
-        Debug.Log("Planet value set to " + planet.gameObject.name);
+        m_Planet = planet;
     }
 
     // Start is called before the first frame update
@@ -27,22 +30,36 @@ public class S_GravityController : MonoBehaviour
         Player = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
+    // Fixed Update 
     void Update()
     {
-        if (Planet)
+        if (m_Planet)
         {
-            Vector3 gravityUp = (transform.position - Planet.transform.position).normalized;
-            Vector3 localUp = transform.up;
+            // Calculate Vector for gravity direction
+            gravityDirection = (transform.position - m_Planet.transform.position).normalized;
+            transform.rotation = Quaternion.FromToRotation(transform.up, gravityDirection) * transform.rotation;
+            
 
-            Quaternion target = Quaternion.FromToRotation(localUp, gravityUp) * transform.rotation;
+            // Move Target with Character
+            m_Target.transform.position = transform.position;
+            m_Target.transform.position += m_Target.up * m_TargetOffset;
+            m_Target.transform.rotation = Quaternion.FromToRotation(m_Target.transform.up, gravityDirection) * m_Target.transform.rotation;
 
-            transform.up = Vector3.Lerp(transform.up, gravityUp, RotateSpeed * Time.deltaTime);
 
-            //transform.rotation = Quaternion.FromToRotation(localUp, gravityUp) * transform.rotation;
-            Player.AddForce(-gravityUp * Gravity);
+
+            // IDONTKNOWITWORKPLSHELPIAMGOINGINSANE
+            // Lerp to new 
+            //transform.up = Vector3.Lerp(transform.up, gravityDirection, m_RotateSpeed * Time.deltaTime);
+            //m_Target.transform.rotation = transform.rotation;
+            //transform.rotation = Quaternion.FromToRotation(transform.up, gravityDirection) * transform.rotation;
+            //m_Target.transform.up = gravityDirection;
+
         }
+    }
 
-
+    void FixedUpdate()
+    {
+        // Add Gravity
+        Player.AddForce(-gravityDirection * m_Gravity);
     }
 }
