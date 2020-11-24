@@ -12,7 +12,7 @@ public class S_GravityController : MonoBehaviour
     [SerializeField] 
     private float m_TargetOffset = 2;
     [SerializeField]
-    private float m_RotateSpeed = 20;
+    private float m_RotateSpeed = 5;
     [SerializeField]
     private float m_Gravity = 7;
 
@@ -37,13 +37,15 @@ public class S_GravityController : MonoBehaviour
         {
             // Calculate Vector for gravity direction
             gravityDirection = (transform.position - m_Planet.transform.position).normalized;
-            transform.rotation = Quaternion.FromToRotation(transform.up, gravityDirection) * transform.rotation;
-            
+            //transform.rotation = Quaternion.FromToRotation(transform.up, gravityDirection) * transform.rotation;
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.FromToRotation(transform.up, gravityDirection) * transform.rotation, m_RotateSpeed * Time.deltaTime);
+
 
             // Move Target with Character
             m_Target.transform.position = transform.position;
             m_Target.transform.position += m_Target.up * m_TargetOffset;
-            m_Target.transform.rotation = Quaternion.FromToRotation(m_Target.transform.up, gravityDirection) * m_Target.transform.rotation;
+            m_Target.transform.rotation = Quaternion.Slerp(m_Target.transform.rotation, Quaternion.FromToRotation(m_Target.transform.up, gravityDirection) * m_Target.transform.rotation, m_RotateSpeed * Time.deltaTime);
+            //m_Target.transform.rotation = Quaternion.FromToRotation(m_Target.transform.up, gravityDirection) * m_Target.transform.rotation;
 
 
 

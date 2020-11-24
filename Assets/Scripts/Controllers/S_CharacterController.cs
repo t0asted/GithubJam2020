@@ -72,7 +72,7 @@ public class S_CharacterController : MonoBehaviour
     private void CalculateRotation()
     {
 
-        if (m_CameraControllerScript)
+        if (m_CameraControllerScript) 
         {
             if (Input.GetKey("w"))
             {
@@ -93,7 +93,7 @@ public class S_CharacterController : MonoBehaviour
     {
         // Check if player is on the ground
         if (IsGrounded())
-        {
+        {   
             rb.velocity = transform.TransformDirection(MoveDirection);
         }
 
@@ -125,7 +125,7 @@ public class S_CharacterController : MonoBehaviour
         Ray ray = new Ray(transform.position, -transform.up);
         RaycastHit hit;
 
-        if (Physics.Raycast(transform.position, -transform.up, out hit, 1, m_GroundMask)) {
+        if (Physics.Raycast(transform.position, -transform.up, out hit, .3f, m_GroundMask)) {
             return true;
         }
         return false;
