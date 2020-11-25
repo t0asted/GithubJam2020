@@ -3,20 +3,20 @@ using System.ComponentModel.Design;
 using UnityEngine;
 
 [System.Serializable]
-public class CL_Resources
+public class CL_Storage
 {
     public List<CL_Resource> ResourceList = new List<CL_Resource>();
     public int StorageSize = 0;
     public bool stack = true;
 
-    public CL_Resources()
+    public CL_Storage()
     {
         ResourceList = new List<CL_Resource>();
         StorageSize = 0;
         stack = true;
     }
 
-    public CL_Resources(List<CL_Resource> ResourcesPass)
+    public CL_Storage(List<CL_Resource> ResourcesPass)
     {
         ResourceList = ResourcesPass;
         StorageSize = 0;
@@ -94,7 +94,7 @@ public class CL_Resources
         }
     }
 
-    public bool AddResources(CL_Resources ResourcesToAdd)
+    public bool AddResources(CL_Storage ResourcesToAdd)
     {
         if (IsStorageFull())
         {

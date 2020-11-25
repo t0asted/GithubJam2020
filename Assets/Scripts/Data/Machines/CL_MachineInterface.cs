@@ -1,8 +1,10 @@
-﻿public interface CL_MachineInterface
+﻿using System.Collections.Generic;
+
+public interface CL_MachineInterface
 {
-    CL_ResourcesScriptable CostToBuild { get; }
-    CL_ResourcesScriptable ResourceCanCollect { get; }
-    CL_Resources ResourcesCollected { get; }
+    List<SO_Item> CostToBuild { get; }
+    List<SO_Item> ResourceCanCollect { get; }
+    CL_Storage ResourcesCollected { get; }
     int ProcessSpeed { get; }
     int AmountCanProcess { get; }
 

@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc881c2fe139eaf44b9c9e181e6e309a, type: 3}
-  m_Name: Resource Gold Data
+  m_Script: {fileID: 11500000, guid: 98f59ab51ecf10b4aa39afdcf9c087c1, type: 3}
+  m_Name: Copper
   m_EditorClassIdentifier: 
-  ResourceName: 0
-  Quantity: 0
-  rarity: 0
+  ResourceName: 7
+  Quantity: 1
+  Rarity: 2

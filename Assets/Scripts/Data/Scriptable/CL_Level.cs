@@ -7,6 +7,6 @@ public class CL_Level : ScriptableObject
 {
     public int size = 10;
     public int gravity = 1;
-    public CL_Resources MostCommonResource = new CL_Resources();
+    public CL_Storage MostCommonResource = new CL_Storage();
 
 }

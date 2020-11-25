@@ -1,43 +1,35 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
-using TMPro;
 using UnityEngine;
 
 [System.Serializable]
-public class CL_Machine
+public class CL_Machine 
 {
-    public CL_ResourcesScriptable CostToBuild { get; }
-    public CL_ResourcesScriptable ResourceCanCollect { get; }
-    public CL_Resources ResourcesCollected { get; }
-    public int ProcessSpeed { get; }
-    public int AmountCanProcess { get; }
+    [SerializeField]
+    public SO_ItemList ItemsCanProcess = new SO_ItemList();
+    [SerializeField]
+    public int ProcessSpeed = 1;
+    [SerializeField]
+    public int AmountCanProcess = 1;
+
+    private CL_Storage ResourcesCollected;
+
 
     public CL_Machine()
     {
+        ResourcesCollected = new CL_Storage();
         ProcessSpeed = 1;
         AmountCanProcess = 1;
     }
     
-    public void Process()
-    {
-        foreach (var ResourceInList in ResourceCanCollect.ResourceList)
-        {
-            if (ResourceInList.rarity > Random.Range(1, 5)) // Rarity chance that you get this resource
-            {
-                CL_Resource ResourceSetQuantity = new CL_Resource(ResourceInList.ResourceName, Random.Range(1, AmountCanProcess));
-                ResourcesCollected.AddResources(ResourceSetQuantity);
-            }
-        }
-    }
+    
 
     public string ResourceContent()
     {
-        string text = "";
-        foreach (var item in ResourcesCollected.ResourceList)
-        {
-            text = text + item.ResourceName + " : " + item.Quantity + "\n";
-        }
+        string text = "Hello!";
+        if(ResourcesCollected != null)
+            foreach (var item in ResourcesCollected.ResourceList)
+                text = text + item.ResourceName + " : " + item.Quantity + "\n";
         return text;
     }
 

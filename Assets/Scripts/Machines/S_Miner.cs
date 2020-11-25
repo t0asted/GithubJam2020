@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class S_Miner : S_MachineBase
+public class S_Miner : S_MachineGatherer
 {
-
+    private void Start()
+    {
+        Interact();
+    }
 }
