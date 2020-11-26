@@ -40,58 +40,14 @@ public class CL_Storage
 
     public bool AddResources(CL_Resource ResourceToAdd)
     {
-        CL_Resource ResourceFound = ResourceList.Find(f => f.ResourceName == ResourceToAdd.ResourceName);
-
-        if (IsStorageFull())
-        {
-            if (ResourceFound != null)
-            {
-                ResourceFound.AddResource(ResourceToAdd);
-            }
-            else
-            {
-                ResourceList.Add(ResourceToAdd);
-            }
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-
+        CL_Storage NewStorage = new CL_Storage(new List<CL_Resource>() { ResourceToAdd });
+        return AddResources(NewStorage);
     }
 
     public bool AddResources(List<CL_Resource> ResourcesToAdd)
     {
-        if (IsStorageFull())
-        {
-            if (ResourceList.Count > 0)
-            {
-                foreach (var itemToAdd in ResourcesToAdd)
-                {
-                    CL_Resource ResourceFound = ResourceList.Find(f => f.ResourceName == itemToAdd.ResourceName);
-
-                    if (ResourceFound != null)
-                    {
-                        ResourceFound.AddResource(itemToAdd);
-                        continue;
-                    }
-                    else
-                    {
-                        ResourceList.Add(itemToAdd);
-                    }
-                }
-            }
-            else
-            {
-                ResourceList = ResourcesToAdd;
-            }
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        CL_Storage NewStorage = new CL_Storage(ResourcesToAdd);
+        return AddResources(NewStorage);
     }
 
     public bool AddResources(CL_Storage ResourcesToAdd)
@@ -123,6 +79,45 @@ public class CL_Storage
         }
         else
         {
+            return false;
+        }
+    }
+
+    public bool TakeResources(CL_Resource ResourceToAdd)
+    {
+        CL_Storage newStorage = new CL_Storage(new List<CL_Resource>() { ResourceToAdd });
+        return TakeResources(newStorage);
+    }
+
+    public bool TakeResources(List<CL_Resource> ResourcesToTake)
+    {
+        CL_Storage newStorage = new CL_Storage(ResourcesToTake);
+        return TakeResources(newStorage);
+    }
+
+    public bool TakeResources(CL_Storage ResourceToTake)
+    {
+        if(ResourceList.Count > 0)
+        {
+            foreach (var itemToTake in ResourceToTake.ResourceList)
+            {
+                CL_Resource ResourceFound = ResourceList.Find(f => f.ResourceName == itemToTake.ResourceName);
+
+                if (ResourceFound != null)
+                {
+                    ResourceFound.TakeResource(itemToTake);
+                    continue;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+        else
+        {
+            Debug.Log("This is Empty!");
             return false;
         }
     }

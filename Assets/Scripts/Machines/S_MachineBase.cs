@@ -14,4 +14,6 @@ public class S_MachineBase : MonoBehaviour
         MachineRunning = !MachineRunning;
     }
 
+
+
 }

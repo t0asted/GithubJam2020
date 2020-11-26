@@ -7,11 +7,11 @@ public class CL_Game
     public GameModes GameMode = GameModes.Normal;
     public bool Paused = false;
 
-    public List<CL_Resource> Resources = new List<CL_Resource>();
+    public CL_Storage Storage = new CL_Storage();
 
     public void AddResource(CL_Resource ResourcePass)
     {
-        CL_Resource ItemFound = Resources.Find(f => f.ResourceName == ResourcePass.ResourceName);
+        CL_Resource ItemFound = Storage.ResourceList.Find(f => f.ResourceName == ResourcePass.ResourceName);
         if (ItemFound != null)
         {
             ItemFound.AddResource(ResourcePass);
@@ -19,7 +19,7 @@ public class CL_Game
         }
         else
         {
-            Resources.Add(ResourcePass);
+            Storage.ResourceList.Add(ResourcePass);
         }
 
     }

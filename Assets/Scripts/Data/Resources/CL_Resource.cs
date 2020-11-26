@@ -24,4 +24,15 @@ public class CL_Resource : CL_ResourceBase
         }
         return false;
     }
+
+    public bool TakeResource(CL_Resource resourcePass)
+    {
+        if(resourcePass.Quantity < Quantity)
+        {
+            Quantity -= resourcePass.Quantity;
+            return true;
+        }
+        return false;
+    }
+
 }

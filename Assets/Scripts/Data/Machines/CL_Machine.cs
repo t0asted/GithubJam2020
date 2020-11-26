@@ -14,7 +14,6 @@ public class CL_Machine
 
     private CL_Storage ResourcesCollected;
 
-
     public CL_Machine()
     {
         ResourcesCollected = new CL_Storage();
@@ -22,15 +21,15 @@ public class CL_Machine
         AmountCanProcess = 1;
     }
     
-    
-
     public string ResourceContent()
     {
-        string text = "Hello!";
+        string text = "";
         if(ResourcesCollected != null)
             foreach (var item in ResourcesCollected.ResourceList)
                 text = text + item.ResourceName + " : " + item.Quantity + "\n";
         return text;
     }
+
+
 
 }
