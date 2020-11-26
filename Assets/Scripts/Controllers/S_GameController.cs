@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class S_GameController : MonoBehaviour
 {
@@ -13,11 +14,30 @@ public class S_GameController : MonoBehaviour
     private bool LevelSpawned = false;
 
     [SerializeField]
+    private UnityEvent OnStart;
+    [SerializeField]
+    private UnityEvent OnStartDebugJoshua;
+    [SerializeField]
+    private UnityEvent OnStartDebugStefan;
+    [SerializeField]
+    private UnityEvent OnStartDebugMatt;
+    [SerializeField]
+    private UnityEvent OnStartDebugJames;
+    [SerializeField]
     private CL_Level LevelData = null;
     [SerializeField]
     private CL_Character CharacterData = null;
 
     public CL_Game GameData = new CL_Game();
+
+    private GameObject ref_Character = null;
+
+    private void Start()
+    {
+        OnStart.Invoke();
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+    }
 
     private void Update()
     {
@@ -37,12 +57,32 @@ public class S_GameController : MonoBehaviour
         {
             // do shit
         }
+
+        //Debug Respawn
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            Destroy(ref_Character);
+            ref_Character = m_CharacterSpawner.SpawnCharacter(CharacterData);
+        }
+
     }
 
     private void SetupGame()
     {
-        CharacterSpawned = m_CharacterSpawner.SpawnCharacter(CharacterData);
         LevelSpawned = m_LevelSpawner.SpawnLevel(LevelData);
+        if(LevelSpawned)
+        {
+            ref_Character = m_CharacterSpawner.SpawnCharacter(CharacterData);
+            if (ref_Character != null)
+            {
+                CharacterSpawned = true;
+            }
+        }
+    }
+
+    public void TogglePauseGame()
+    {
+        GameData.Paused = !GameData.Paused;
     }
 
     public void SetCharacterSpawner(S_CharacterSpawner CharacterSpawnerPass)
@@ -62,4 +102,13 @@ public enum LoadingStages
     NotLoaded,
     Loading,
     Loaded
+}
+
+public enum GameModes
+{ 
+    Normal,
+    DebugJoshua,
+    DebugStefan,
+    DebugMatt,
+    DebugJames
 }
