@@ -78,12 +78,18 @@ public class S_CharacterController : MonoBehaviour
             {
                 Vector3 cameraDirection = m_CameraControllerScript.GetForwardCamera();
                 transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.FromToRotation(transform.forward, cameraDirection) * transform.rotation, m_PlayerRotateSpeed * Time.deltaTime);
-            }
-            if (Input.GetKey("s"))
+            } 
+            else if (Input.GetKey("s"))
             {
                 Vector3 cameraDirection = -m_CameraControllerScript.GetForwardCamera();
                 transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.FromToRotation(transform.forward, cameraDirection) * transform.rotation, m_PlayerRotateSpeed * Time.deltaTime);
+            } 
+            else if (Input.GetKey("a") || Input.GetKey("d")) {
+                Vector3 cameraDirection = m_CameraControllerScript.GetForwardCamera();
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.FromToRotation(transform.forward, cameraDirection) * transform.rotation, m_PlayerRotateSpeed * Time.deltaTime);
             }
+
+
         }
     }
 
