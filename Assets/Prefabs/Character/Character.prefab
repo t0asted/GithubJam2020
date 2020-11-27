@@ -650,6 +650,7 @@ MonoBehaviour:
     m_Bits: 256
   m_MovementSmoothing: 0.15
   m_CameraControllerScript: {fileID: 453561076138291636}
+  m_Target: {fileID: 8110434497249194704}
 --- !u!114 &2980376257890017760
 MonoBehaviour:
   m_ObjectHideFlags: 0
