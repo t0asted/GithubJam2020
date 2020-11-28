@@ -107,7 +107,15 @@ public class S_CharacterController : MonoBehaviour
     // Calculates player movement whilst in space
     private void CalculateSpaceMovement()
     {
-        Vector3 targetMove = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")).normalized;
+        Vector3 targetMove;
+        if (Input.GetAxis("Vertical") < 0)
+        {
+            targetMove = new Vector3(-Input.GetAxisRaw("Horizontal"), 0, Mathf.Abs(Input.GetAxisRaw("Vertical"))).normalized;
+        }
+        else
+        {
+            targetMove = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Mathf.Abs(Input.GetAxisRaw("Vertical"))).normalized;
+        }
         MoveDirection = Vector3.SmoothDamp(MoveDirection, targetMove * m_PlayerThrusterSpeed, ref SmoothVelocity, m_MovementSmoothing);
     }
 
