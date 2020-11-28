@@ -14,12 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ref_GameController: {fileID: 0}
   MachineData:
-    ItemsCanProcessLevel1: {fileID: 11400000, guid: ad9f175980b0a924abaad9986bde6791,
-      type: 2}
-    ItemsCanProcessLevel2: {fileID: 11400000, guid: d1563bb585dafc949b10638b28fa279f,
-      type: 2}
-    ItemsCanProcessLevel3: {fileID: 11400000, guid: ab9a3b78dfc7dd849b8ddec0fdbc6ef5,
-      type: 2}
+    ItemsCanProcess:
+    - {fileID: 11400000, guid: 01efa3eb211f54f4ca4c32d06b899837, type: 2}
+    - {fileID: 11400000, guid: 18a1d05d36b53b942b7fb3afa2313e72, type: 2}
+    - {fileID: 11400000, guid: 190a110353d3921478c142891559e59d, type: 2}
     ProcessSpeed: 1
     AmountCanProcess: 1
     Level: 0

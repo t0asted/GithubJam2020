@@ -4,39 +4,55 @@ using UnityEngine;
 
 public class S_PlaceMachine : MonoBehaviour
 {
-    // get sent which prefab is going to be instantiated
-    // cast from character in direction of camera X distance
-    // on hit transform posistion show ghost machine of placing
-    // detect if colliding with anything
-    // on click place machine
-
     [SerializeField]
-    private GameObject MachineToSpawn;
+    private S_CameraController Camera;
+    [SerializeField]
+    private S_GravityController m_GravityController;
+    [SerializeField]
+    private Transform characterDirection;
 
-    private GameObject MachineRef;
+    private GameObject MachineToSpawn;
+    private GameObject NewMachine = null;
+    public bool HasItemToPlace = false;
+
+    public void NewMachineToPlace(GameObject NewMachinePass)
+    {
+        NewMachine = NewMachinePass;
+    }
 
     private void Update()
     {
-        if(Input.GetKey("j") && MachineToSpawn != null)
+        if (MachineToSpawn != null)
         {
-            RaycastHit hit;
-            Debug.DrawRay(transform.position, transform.forward, Color.red);
-            if (Physics.Linecast(transform.position, transform.forward, out hit))
+            PlaceMachine();
+            if (Input.GetKey("j") && MachineToSpawn != null)
             {
-                if (hit.transform.gameObject.tag == "Astroid")
-                {
-                    MachineRef = Instantiate(MachineToSpawn, hit.point, new Quaternion());
-                    MachineToSpawn = null;
-                }
+                MachineToSpawn = null;
+                NewMachine = null;
             }
-            else
-            {
-                Debug.Log("No hit!");
-            }
+        }
+    }
+
+    public void PlaceMachine()
+    {
+
+        if (NewMachine == null)
+        {
+            NewMachine = Instantiate(MachineToSpawn);
         }
         else
         {
-            Debug.Log("No J!");
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, Camera.GetForwardCamera() * 5, out hit))
+            {
+                if (hit.transform.gameObject.tag == "Astroid")
+                {
+                    NewMachine.transform.position = hit.point;
+                    NewMachine.transform.up = m_GravityController.GetGravityDirection(NewMachine.transform);
+                    NewMachine.transform.rotation = characterDirection.rotation;
+                }
+            }
         }
+
     }
 }
