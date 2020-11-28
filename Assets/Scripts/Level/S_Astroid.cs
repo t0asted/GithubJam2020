@@ -11,4 +11,11 @@ public class S_Astroid : MonoBehaviour
         LevelData = LevelDataPass;
         this.transform.localScale = new Vector3(LevelData.size, LevelData.size, LevelData.size);
     }
+
+    public bool CheckLocationToSpawn(Vector3 spawn)
+    {
+        
+        
+        return false;
+    }
 }
