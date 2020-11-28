@@ -8,7 +8,7 @@ public class S_LevelSpawner : MonoBehaviour
     private GameObject m_astroid;
 
     private S_GameController ref_GameController;
-    private List<CL_Level> LevelData;
+    private List<SO_Planet> LevelData;
 
     private void Start()
     {
@@ -21,7 +21,7 @@ public class S_LevelSpawner : MonoBehaviour
             Debug.Log("Level spawner : Did not find gamecontroller");
     }
 
-    public bool SpawnLevel(List<CL_Level> LevelToLoad)
+    public bool SpawnLevel(List<SO_Planet> LevelToLoad)
     {
         LevelData = LevelToLoad;
 

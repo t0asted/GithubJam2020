@@ -21,24 +21,28 @@ public class SO_ItemList : ScriptableObject
 [System.Serializable]
 public class RawList
 {
+    public int Rarity;
     public int Quantity;
     public SO_Raw ItemData;
 }
 [System.Serializable]
 public class ItemList
 {
+    public int Rarity;
     public int Quantity;
     public SO_Item ItemData;
 }
 [System.Serializable]
 public class PartList
 {
+    public int Rarity;
     public int Quantity;
     public SO_Part ItemData;
 }
 [System.Serializable]
 public class MachineList
 {
+    public int Rarity;
     public int Quantity;
     public SO_Machine ItemData;
 }
