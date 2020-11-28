@@ -8,7 +8,7 @@ public class S_LevelSpawner : MonoBehaviour
     private GameObject m_astroid;
 
     private S_GameController ref_GameController;
-    private CL_Level LevelData;
+    private List<CL_Level> LevelData;
 
     private void Start()
     {
@@ -21,17 +21,21 @@ public class S_LevelSpawner : MonoBehaviour
             Debug.Log("Level spawner : Did not find gamecontroller");
     }
 
-    public bool SpawnLevel(CL_Level LevelToLoad)
+    public bool SpawnLevel(List<CL_Level> LevelToLoad)
     {
         LevelData = LevelToLoad;
 
-        if (m_astroid != null)
+        foreach (var Astroid in LevelData)
         {
-            GameObject astroidGO = Instantiate(m_astroid, this.transform);
-            astroidGO.GetComponent<S_Astroid>().SetSizeOfAstroid(LevelData);
-            astroidGO.transform.SetParent(this.transform);
+            if (m_astroid != null)
+            {
+                GameObject astroidGO = Instantiate(m_astroid, this.transform);
+                astroidGO.GetComponent<S_Astroid>().SetSizeOfAstroid(Astroid);
+                astroidGO.transform.SetParent(this.transform);
+            }
         }
 
         return true;
     }
+
 }

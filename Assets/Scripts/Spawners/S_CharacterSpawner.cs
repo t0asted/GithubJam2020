@@ -7,6 +7,9 @@ public class S_CharacterSpawner : MonoBehaviour
     [SerializeField]
     private GameObject CharacterToSpawn = null;
 
+    [SerializeField]
+    private GameObject m_Rocket = null;
+
     private CL_Character CharacterData;
     private S_GameController ref_GameController;
 
@@ -39,7 +42,18 @@ public class S_CharacterSpawner : MonoBehaviour
             CharacterGO = Instantiate(CharacterToSpawn);
             CharacterGO.transform.position = spawnPoints[0].transform.position;
             CharacterGO.transform.SetParent(this.transform);
+
+            //Temp
+            if (m_Rocket != null)
+            {
+                Vector3 SpawnLocation = GameObject.FindGameObjectsWithTag("SpawnPoint")[0].transform.position + new Vector3(5, 0, 0);
+                GameObject rocketGO = Instantiate(m_Rocket, SpawnLocation, new Quaternion());
+                rocketGO.transform.SetParent(this.transform);
+            }
+
         }
+
+
 
         return CharacterGO;
     }

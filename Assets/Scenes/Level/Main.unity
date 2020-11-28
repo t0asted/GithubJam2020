@@ -245,6 +245,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CharacterToSpawn: {fileID: 8661605527402529604, guid: bba3d511ac307254bafaefb53761b4a5,
     type: 3}
+  m_Rocket: {fileID: 3380782748330829523, guid: 52f1d02e71f9a5943bf75167523023f6,
+    type: 3}
 --- !u!4 &1647838973
 Transform:
   m_ObjectHideFlags: 0

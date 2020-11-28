@@ -1,22 +1,26 @@
-﻿using System.Collections.Generic;
+﻿using JetBrains.Annotations;
+using System.Collections.Generic;
 
+[System.Serializable]
 public class CL_Game
 {
     public GameModes GameMode = GameModes.Normal;
-
     public bool Paused = false;
 
-    public List<CL_Resource> Resources = new List<CL_Resource>() { 
-        new CL_Resource(Enum_Resource.Carbon, 0), 
-        new CL_Resource(Enum_Resource.Gold, 0), 
-        new CL_Resource(Enum_Resource.Nickel, 0), 
-        new CL_Resource(Enum_Resource.Titanium, 0)
-    };
+    public CL_Storage Storage = new CL_Storage();
 
     public void AddResource(CL_Resource ResourcePass)
     {
-        CL_Resource ItemFound = Resources.Find(f => f.ResourceName == ResourcePass.ResourceName);
+        CL_Resource ItemFound = Storage.ResourceList.Find(f => f.ResourceName == ResourcePass.ResourceName);
         if (ItemFound != null)
+        {
             ItemFound.AddResource(ResourcePass);
+            return;
+        }
+        else
+        {
+            Storage.ResourceList.Add(ResourcePass);
+        }
+
     }
 }

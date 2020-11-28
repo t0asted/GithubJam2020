@@ -43,7 +43,7 @@ RenderSettings:
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 12
+  serializedVersion: 11
   m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 0}
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -118,8 +118,6 @@ NavMeshSettings:
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
-    maxJobWorkers: 0
-    preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
@@ -509,7 +507,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1172334669}
-        m_TargetAssemblyTypeName: S_OpenCloseGameScene, Assembly-CSharp
         m_MethodName: OpenScene
         m_Mode: 1
         m_Arguments:
@@ -521,7 +518,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 516124646}
-        m_TargetAssemblyTypeName: S_OpenCloseUIScene, Assembly-CSharp
         m_MethodName: OpenScene
         m_Mode: 1
         m_Arguments:
@@ -533,7 +529,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 91567900}
-        m_TargetAssemblyTypeName: S_OpenCloseGameScene, Assembly-CSharp
         m_MethodName: OpenScene
         m_Mode: 1
         m_Arguments:
@@ -548,7 +543,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1624864236}
-        m_TargetAssemblyTypeName: S_OpenCloseGameScene, Assembly-CSharp
         m_MethodName: OpenScene
         m_Mode: 1
         m_Arguments:
@@ -560,7 +554,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 91567900}
-        m_TargetAssemblyTypeName: S_OpenCloseGameScene, Assembly-CSharp
         m_MethodName: OpenScene
         m_Mode: 1
         m_Arguments:
@@ -572,7 +565,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 516124646}
-        m_TargetAssemblyTypeName: S_OpenCloseUIScene, Assembly-CSharp
         m_MethodName: OpenScene
         m_Mode: 1
         m_Arguments:
@@ -587,7 +579,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 104522275}
-        m_TargetAssemblyTypeName: S_OpenCloseGameScene, Assembly-CSharp
         m_MethodName: OpenScene
         m_Mode: 1
         m_Arguments:
@@ -599,7 +590,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 91567900}
-        m_TargetAssemblyTypeName: S_OpenCloseGameScene, Assembly-CSharp
         m_MethodName: OpenScene
         m_Mode: 1
         m_Arguments:
@@ -611,7 +601,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 516124646}
-        m_TargetAssemblyTypeName: S_OpenCloseUIScene, Assembly-CSharp
         m_MethodName: OpenScene
         m_Mode: 1
         m_Arguments:
@@ -626,7 +615,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 257916703}
-        m_TargetAssemblyTypeName: S_OpenCloseGameScene, Assembly-CSharp
         m_MethodName: OpenScene
         m_Mode: 1
         m_Arguments:
@@ -638,7 +626,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 91567900}
-        m_TargetAssemblyTypeName: S_OpenCloseGameScene, Assembly-CSharp
         m_MethodName: OpenScene
         m_Mode: 1
         m_Arguments:
@@ -650,7 +637,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 516124646}
-        m_TargetAssemblyTypeName: S_OpenCloseUIScene, Assembly-CSharp
         m_MethodName: OpenScene
         m_Mode: 1
         m_Arguments:
@@ -665,7 +651,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 40467619}
-        m_TargetAssemblyTypeName: S_OpenCloseGameScene, Assembly-CSharp
         m_MethodName: OpenScene
         m_Mode: 1
         m_Arguments:
@@ -677,7 +662,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 91567900}
-        m_TargetAssemblyTypeName: S_OpenCloseGameScene, Assembly-CSharp
         m_MethodName: OpenScene
         m_Mode: 1
         m_Arguments:
@@ -689,7 +673,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 516124646}
-        m_TargetAssemblyTypeName: S_OpenCloseUIScene, Assembly-CSharp
         m_MethodName: OpenScene
         m_Mode: 1
         m_Arguments:
@@ -700,8 +683,16 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  LevelData: {fileID: 11400000, guid: bf5512d5380dde54e89178be43e16346, type: 2}
+  Planets:
+  - {fileID: 11400000, guid: bf5512d5380dde54e89178be43e16346, type: 2}
   CharacterData: {fileID: 11400000, guid: 05d3f7db66a710840b1189ddae27abee, type: 2}
+  GameData:
+    GameMode: 0
+    Paused: 0
+    Storage:
+      ResourceList: []
+      StorageSize: 0
+      stack: 1
 --- !u!4 &1817638899
 Transform:
   m_ObjectHideFlags: 0

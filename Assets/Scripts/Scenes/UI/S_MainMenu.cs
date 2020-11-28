@@ -11,7 +11,7 @@ public class S_MainMenu : S_SceneUIMain
 
     private void Start()
     {
-        ref_GameController = GameObject.Find("_GameController").GetComponent<S_GameController>();
+        //ref_GameController = GameObject.Find("_GameController").GetComponent<S_GameController>();
     }
 
     public void Btn_Play()
