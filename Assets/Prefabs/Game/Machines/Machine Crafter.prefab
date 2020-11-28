@@ -15,9 +15,9 @@ MonoBehaviour:
   ref_GameController: {fileID: 0}
   MachineData:
     ItemsCanProcess:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
+    - {fileID: 11400000, guid: 21d3b7830ad3ea44bbf73bdb4ddcbfac, type: 2}
+    - {fileID: 11400000, guid: 0f7dd35d0f61cca458324ff096193ad5, type: 2}
+    - {fileID: 11400000, guid: b933ec51301cda240a51e942b8511c7d, type: 2}
     ProcessSpeed: 1
     AmountCanProcess: 1
     Level: 1
