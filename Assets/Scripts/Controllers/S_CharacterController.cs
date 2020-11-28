@@ -23,6 +23,8 @@ public class S_CharacterController : MonoBehaviour
     private float m_MovementSmoothing = .15f;
     [SerializeField]
     private S_CameraController m_CameraControllerScript;
+    [SerializeField]
+    private Transform m_Target;
 
 
     private Animator Animate;
@@ -71,19 +73,28 @@ public class S_CharacterController : MonoBehaviour
 
     private void CalculateRotation()
     {
+        Quaternion aim = new Quaternion(0, 0, 0, 0);
+        Vector3 cameraDirection = m_CameraControllerScript.GetForwardCamera();
+        //Vector3 cameraDirection = m_Target.forward;
 
-        if (m_CameraControllerScript) 
+        if (m_CameraControllerScript && m_Target) 
         {
             if (Input.GetKey("w"))
             {
-                Vector3 cameraDirection = m_CameraControllerScript.GetForwardCamera();
                 transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.FromToRotation(transform.forward, cameraDirection) * transform.rotation, m_PlayerRotateSpeed * Time.deltaTime);
-            }
-            if (Input.GetKey("s"))
+                transform.rotation = Quaternion.FromToRotation(transform.up, m_Target.up) * transform.rotation;
+            } 
+            else if (Input.GetKey("s"))
             {
-                Vector3 cameraDirection = -m_CameraControllerScript.GetForwardCamera();
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.FromToRotation(transform.forward, -cameraDirection) * transform.rotation, m_PlayerRotateSpeed * Time.deltaTime);
+                transform.rotation = Quaternion.FromToRotation(transform.up, m_Target.up) * transform.rotation;
+            } 
+            else if (Input.GetKey("a") || Input.GetKey("d")) {
                 transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.FromToRotation(transform.forward, cameraDirection) * transform.rotation, m_PlayerRotateSpeed * Time.deltaTime);
+                transform.rotation = Quaternion.FromToRotation(transform.up, m_Target.up) * transform.rotation;
             }
+
+
         }
     }
 
@@ -93,7 +104,7 @@ public class S_CharacterController : MonoBehaviour
     {
         // Check if player is on the ground
         if (IsGrounded())
-        {   
+        {
             rb.velocity = transform.TransformDirection(MoveDirection);
         }
 
