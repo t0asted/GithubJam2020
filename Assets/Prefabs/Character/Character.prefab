@@ -100,6 +100,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MachineToSpawn: {fileID: 9062922836090830848, guid: 3bdaf2830e1971b49ab7a30fa4910a43,
     type: 3}
+  Camera: {fileID: 453561076138291636}
+  m_GravityController: {fileID: 2980376257890017760}
+  characterDirection: {fileID: 6776188622384219300}
 --- !u!1 &3707881807200291868
 GameObject:
   m_ObjectHideFlags: 0
