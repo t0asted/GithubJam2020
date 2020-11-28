@@ -46,9 +46,9 @@ public class S_MachineGatherer : S_MachineBase
 
     public void Process()
     {
-        if (MachineData.ItemsCanProcess[0].itemList.RawList.Count > 0)
+        if (MachineData.ItemsCanProcess[0].RawList.Count > 0)
         {
-            foreach (var ResourceInList in MachineData.ItemsCanProcess[0].itemList.RawList)
+            foreach (var ResourceInList in MachineData.ItemsCanProcess[0].RawList)
             {
                 // TODO: Get items that can be harvested off planet
                 if (ResourceInList.ItemData.Rarity > Random.Range(1, 5)) // Rarity chance that you get this resource

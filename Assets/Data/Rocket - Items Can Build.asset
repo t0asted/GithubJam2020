@@ -9,8 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: Miner 1 CL_Machine Level
-  m_EditorClassIdentifier: Assembly-CSharp::CL_MachineLevel
-  Level: 1
-  itemList: {fileID: 11400000, guid: efd1b192f0fb9934d9ed6b2aa0c34111, type: 2}
+  m_Script: {fileID: 11500000, guid: b475f6faa59f8d4449c09bbb48142be0, type: 3}
+  m_Name: Rocket - Items Can Build
+  m_EditorClassIdentifier: 
+  RawList: []
+  ItemList: []
+  PartList: []
+  MachineList: []

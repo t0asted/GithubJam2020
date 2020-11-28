@@ -12,6 +12,11 @@ public class S_MachineBase : MonoBehaviour
     [SerializeField]
     public TextMeshProUGUI TextToShowContent;
 
+    [SerializeField]
+    private GameObject UIAboveMachine;
+
+    private bool Interacting;
+
     private void Start()
     {
         if (GameObject.Find("_GameController") != null)
@@ -35,7 +40,17 @@ public class S_MachineBase : MonoBehaviour
 
     public void Interact()
     {
-        // Open interface
+        Interacting = !Interacting;
+        OpenCloseUI();
+    }
+
+    public void OpenCloseUI()
+    {
+        UIAboveMachine.SetActive(Interacting);
+    }
+
+    public void ToggleRunning()
+    {
         MachineRunning = !MachineRunning;
     }
 

@@ -6,7 +6,7 @@ using UnityEngine;
 public class CL_Machine 
 {
     [SerializeField]
-    public List<CL_MachineLevel> ItemsCanProcess = new List<CL_MachineLevel>();
+    public List<SO_ItemList> ItemsCanProcess = new List<SO_ItemList>();
 
     [SerializeField]
     public int ProcessSpeed = 1;
