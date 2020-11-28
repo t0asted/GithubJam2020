@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface S_TestImplementation
+public class S_Crafter : S_MachineGenerator
 {
-    int thing { get; }
 
-    void Funtion();
 }

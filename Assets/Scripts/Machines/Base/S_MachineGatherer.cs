@@ -5,23 +5,6 @@ using TMPro;
 
 public class S_MachineGatherer : S_MachineBase
 {
-    [SerializeField]
-    public TextMeshProUGUI TextToShowContent;
-
-    private void Start()
-    {
-        ToggleMachineOnOff(true);
-        if (GameObject.Find("_GameController") != null)
-        {
-            ref_GameController = GameObject.Find("_GameController").GetComponent<S_GameController>();
-            ref_GameController.GameData.GameMode = GameModes.DebugJoshua;
-        }
-    }
-
-    private void Update()
-    {
-        TextToShowContent.text = MachineRunning ? "Machine running" : "Machine is off";
-    }
 
     private void ToggleMachineOnOff()
     {
@@ -63,14 +46,14 @@ public class S_MachineGatherer : S_MachineBase
 
     public void Process()
     {
-        if (MachineData.ItemsCanProcess.RawList.Count > 0)
+        if (MachineData.ItemsCanProcess[0].itemList.RawList.Count > 0)
         {
-            foreach (var ResourceInList in MachineData.ItemsCanProcess.RawList)
+            foreach (var ResourceInList in MachineData.ItemsCanProcess[0].itemList.RawList)
             {
                 // TODO: Get items that can be harvested off planet
-                if (ResourceInList.Rarity > Random.Range(1, 5)) // Rarity chance that you get this resource
+                if (ResourceInList.ItemData.Rarity > Random.Range(1, 5)) // Rarity chance that you get this resource
                 {
-                    CL_Resource ResourceToAdd = new CL_Resource(ResourceInList.ResourceName, MachineData.AmountCanProcess);
+                    CL_Resource ResourceToAdd = new CL_Resource(ResourceInList.ItemData.ResourceName, MachineData.AmountCanProcess);
                     ref_GameController.GameData.AddResource(ResourceToAdd);
                 }
             }

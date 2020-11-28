@@ -10,12 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b475f6faa59f8d4449c09bbb48142be0, type: 3}
-  m_Name: Miner - Resources Can Gather
+  m_Name: Crafter - Items Can Build Level 2
   m_EditorClassIdentifier: 
-  RawList:
-  - {fileID: 11400000, guid: 6328b5122c14cba448dda783d54380ef, type: 2}
-  - {fileID: 11400000, guid: e1e90e561916f30469eb3d39c82f9f76, type: 2}
-  - {fileID: 11400000, guid: f1a095a71dedb2c4aa924b143f329466, type: 2}
-  - {fileID: 11400000, guid: 881d0f04e84ee8b4481e8cd7deee0b82, type: 2}
+  RawList: []
   ItemList: []
   PartList: []
+  MachineList: []

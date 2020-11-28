@@ -6,11 +6,14 @@ using UnityEngine;
 public class CL_Machine 
 {
     [SerializeField]
-    public SO_ItemList ItemsCanProcess = new SO_ItemList();
+    public List<CL_MachineLevel> ItemsCanProcess = new List<CL_MachineLevel>();
+
     [SerializeField]
     public int ProcessSpeed = 1;
     [SerializeField]
     public int AmountCanProcess = 1;
+
+    public int Level = 1;
 
     private CL_Storage ResourcesCollected;
 
@@ -30,6 +33,9 @@ public class CL_Machine
         return text;
     }
 
-
+    public void LevelUp()
+    {
+        Level += 1;
+    }
 
 }

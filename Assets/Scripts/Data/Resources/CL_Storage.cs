@@ -97,7 +97,43 @@ public class CL_Storage
 
     public bool TakeResources(CL_Storage ResourceToTake)
     {
-        if(ResourceList.Count > 0)
+        if (HasResource(ResourceToTake))
+        {
+            if (ResourceList.Count > 0)
+            {
+                foreach (var itemToTake in ResourceToTake.ResourceList)
+                {
+                    CL_Resource ResourceFound = ResourceList.Find(f => f.ResourceName == itemToTake.ResourceName);
+
+                    if (ResourceFound != null)
+                    {
+                        ResourceFound.TakeResource(itemToTake);
+                        continue;
+                    }
+                    else
+                        return false;
+                }
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public bool HasResource(CL_Resource ResourceToAdd)
+    {
+        CL_Storage newStorage = new CL_Storage(new List<CL_Resource>() { ResourceToAdd });
+        return HasResource(newStorage);
+    }
+
+    public bool HasResource(List<CL_Resource> ResourcesToTake)
+    {
+        CL_Storage newStorage = new CL_Storage(ResourcesToTake);
+        return HasResource(newStorage);
+    }
+
+    public bool HasResource(CL_Storage ResourceToTake)
+    {
+        if (ResourceList.Count > 0)
         {
             foreach (var itemToTake in ResourceToTake.ResourceList)
             {
@@ -105,13 +141,12 @@ public class CL_Storage
 
                 if (ResourceFound != null)
                 {
-                    ResourceFound.TakeResource(itemToTake);
-                    continue;
+                    if (ResourceFound.Quantity > itemToTake.Quantity)
+                    {
+                        continue;
+                    }
                 }
-                else
-                {
-                    return false;
-                }
+                return false;
             }
             return true;
         }
@@ -121,5 +156,6 @@ public class CL_Storage
             return false;
         }
     }
+
 
 }

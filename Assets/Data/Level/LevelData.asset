@@ -14,4 +14,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   size: 100
   gravity: 1
-  MostCommonResource: {fileID: 11400000, guid: ba58f9645100e9a49a7de0b966c8fe14, type: 2}
+  MostCommonResource:
+    ResourceList:
+    - ResourceName: 3
+      Quantity: 0
+      Rarity: 0
+    - ResourceName: 7
+      Quantity: 0
+      Rarity: 0
+    - ResourceName: 1
+      Quantity: 0
+      Rarity: 0
+    - ResourceName: 0
+      Quantity: 0
+      Rarity: 0
+    - ResourceName: 0
+      Quantity: 0
+      Rarity: 0
+    StorageSize: 0
+    stack: 1

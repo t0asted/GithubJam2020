@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class S_MachinePartBuilder : S_MachineBase
 {
+    /*
     public List<SO_Part> PartsCanBuild = new List<SO_Part>();
     public List<SO_Item> ItemsCanBuild = new List<SO_Item>();
 
@@ -17,9 +18,9 @@ public class S_MachinePartBuilder : S_MachineBase
 
     public void Process()
     {
-        if (MachineData.ItemsCanProcess.RawList.Count > 0)
+        if (MachineData.ItemsCanProcess[0].ItemList.RawList.Count > 0)
         {
-            foreach (var ResourceInList in MachineData.ItemsCanProcess.RawList)
+            foreach (var ResourceInList in MachineData.ItemsCanProcess[0].ItemList.RawList)
             {
                 // TODO: Get items that can be harvested off planet
                 if (ResourceInList.Rarity > Random.Range(1, 5)) // Rarity chance that you get this resource
@@ -34,5 +35,5 @@ public class S_MachinePartBuilder : S_MachineBase
             Debug.Log("Resources Can Collect Are Empty!");
         }
     }
-
+    */
 }

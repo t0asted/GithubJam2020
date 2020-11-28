@@ -10,8 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b475f6faa59f8d4449c09bbb48142be0, type: 3}
-  m_Name: Oxygeniser - Items Gatherable
+  m_Name: Crafter - Items Can Build Level 3
   m_EditorClassIdentifier: 
   RawList: []
   ItemList: []
   PartList: []
+  MachineList: []
