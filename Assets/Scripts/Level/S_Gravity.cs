@@ -21,13 +21,21 @@ public class S_Gravity : MonoBehaviour
     }
 
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
 
         if (other.GetComponent<S_GravityController>())
         {
 
             other.GetComponent<S_GravityController>().SetPlanet(this.GetComponent<S_Gravity>());
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.GetComponent<S_GravityController>())
+        {
+            other.GetComponent<S_GravityController>().ClearPlanet();
         }
     }
 }
