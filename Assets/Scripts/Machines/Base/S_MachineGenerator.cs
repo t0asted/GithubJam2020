@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class S_MachineGenerator : S_MachineBase
 {
-    public SO_ItemList ItemsCanGenerate;
-
     private SO_Part PartToBuild;
     private SO_Item ItemToBuild;
 

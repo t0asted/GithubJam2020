@@ -1,7 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
+
 public class S_MachineBase : MonoBehaviour
 {
     public S_GameController ref_GameController = null;
@@ -11,11 +11,12 @@ public class S_MachineBase : MonoBehaviour
     public bool MachineRunning = true;
     [SerializeField]
     public TextMeshProUGUI TextToShowContent;
-
     [SerializeField]
-    private GameObject UIAboveMachine;
+    private GameObject UIToolTip;
+    [SerializeField]
+    private UnityEvent OnInteract;
 
-    private bool Interacting;
+    private bool Interactable;
 
     private void Start()
     {
@@ -36,17 +37,16 @@ public class S_MachineBase : MonoBehaviour
         {
             TextToShowContent.text = MachineRunning ? "Machine running" : "Machine is off";
         }
+
+        if(UIToolTip.activeInHierarchy != Interactable)
+        {
+            UIToolTip.SetActive(Interactable);
+        }
     }
 
     public void Interact()
     {
-        Interacting = !Interacting;
-        OpenCloseUI();
-    }
-
-    public void OpenCloseUI()
-    {
-        UIAboveMachine.SetActive(Interacting);
+        OnInteract.Invoke();
     }
 
     public void ToggleRunning()
