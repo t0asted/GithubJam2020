@@ -19,9 +19,20 @@ public class S_GravityController : MonoBehaviour
     private Rigidbody Player;
     private Vector3 gravityDirection;
 
+
     public void SetPlanet(S_Gravity planet)
     {
         m_Planet = planet;
+    }
+
+    public void ClearPlanet()
+    {
+        m_Planet = null;
+    }
+
+    public bool HasPlanet()
+    {
+        return m_Planet;
     }
 
     // Start is called before the first frame update
@@ -33,6 +44,8 @@ public class S_GravityController : MonoBehaviour
     // Fixed Update 
     void Update()
     {
+        m_Target.transform.position = transform.position;
+        m_Target.transform.position += m_Target.up * m_TargetOffset;
         if (m_Planet)
         {
             // Calculate Vector for gravity direction
@@ -42,8 +55,6 @@ public class S_GravityController : MonoBehaviour
 
 
             // Move Target with Character
-            m_Target.transform.position = transform.position;
-            m_Target.transform.position += m_Target.up * m_TargetOffset;
             m_Target.transform.rotation = Quaternion.Slerp(m_Target.transform.rotation, Quaternion.FromToRotation(m_Target.transform.up, gravityDirection) * m_Target.transform.rotation, m_RotateSpeed * Time.deltaTime);
             //m_Target.transform.rotation = Quaternion.FromToRotation(m_Target.transform.up, gravityDirection) * m_Target.transform.rotation;
 
@@ -57,11 +68,18 @@ public class S_GravityController : MonoBehaviour
             //m_Target.transform.up = gravityDirection;
 
         }
+        else
+        {
+            //m_Target.transform.rotation = Quaternion.Slerp(m_Target.transform.rotation, Quaternion.FromToRotation(m_Target.transform.right, transform.right) * m_Target.transform.rotation, m_RotateSpeed * Time.deltaTime);
+        }
     }
 
     void FixedUpdate()
     {
-        // Add Gravity
-        Player.AddForce(-gravityDirection * m_Gravity);
+        if (m_Planet)
+        {
+            // Add Gravity
+            Player.AddForce(-gravityDirection * m_Gravity);
+        }
     }
 }
