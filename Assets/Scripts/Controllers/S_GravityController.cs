@@ -33,6 +33,7 @@ public class S_GravityController : MonoBehaviour
     public bool HasPlanet()
     {
         return m_Planet;
+    }
 
     public Vector3 GetGravityDirection(Transform transformPass)
     {
