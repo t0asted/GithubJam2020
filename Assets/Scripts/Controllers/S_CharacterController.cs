@@ -49,13 +49,13 @@ public class S_CharacterController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!interacting)
+        if (!interacting)
         {
             if (GC.HasPlanet())
             {
                 CalculateGroundMovement();
                 CalculateGroundRotation();
-                Animation();
+                Animation(true);
             }
             else
             {
@@ -63,11 +63,15 @@ public class S_CharacterController : MonoBehaviour
                 CalculateSpaceRotation();
             }
         }
+        else
+        {
+            Animation(false);
+        }
     }
 
     void FixedUpdate()
     {
-        if(!interacting)
+        if (!interacting)
         {
             //MovePlayer();
             if (GC.HasPlanet())
@@ -101,7 +105,7 @@ public class S_CharacterController : MonoBehaviour
         // Check if S is pressed
         // If so reverse a and d directions
         Vector3 targetMove;
- 
+
         if (Input.GetAxis("Vertical") < 0)
         {
             targetMove = new Vector3(-Input.GetAxisRaw("Horizontal"), 0, Mathf.Abs(Input.GetAxisRaw("Vertical"))).normalized;
@@ -184,7 +188,7 @@ public class S_CharacterController : MonoBehaviour
             }
 
             if (Input.GetAxis("SpaceRotate") != 0 && m_ThrustersUnlocked)
-            { 
+            {
                 transform.Rotate(Input.GetAxis("SpaceRotate") * m_PlayerThrusterSpeed, 0, 0);
                 m_Target.rotation = Quaternion.FromToRotation(m_Target.up, transform.up) * m_Target.rotation;
             }
@@ -215,7 +219,7 @@ public class S_CharacterController : MonoBehaviour
             /*if (rb.velocity.magnitude < m_MaxJetpackVelocity)
             {
             */
-                rb.velocity += transform.up * m_JetpackForce;
+            rb.velocity += transform.up * m_JetpackForce;
             /*
             }
             */
@@ -267,11 +271,18 @@ public class S_CharacterController : MonoBehaviour
     }
 
     // Runs animation after certain keypresses
-    private void Animation()
+    private void Animation(bool Animating)
     {
-        if (GroundAnimate && (Mathf.Abs(Input.GetAxis("Vertical")) + Mathf.Abs(Input.GetAxis("Horizontal")) != 0))
+        if (Animating)
         {
-            Animate.SetInteger("AnimationPar", 1);
+            if (GroundAnimate && (Mathf.Abs(Input.GetAxis("Vertical")) + Mathf.Abs(Input.GetAxis("Horizontal")) != 0))
+            {
+                Animate.SetInteger("AnimationPar", 1);
+            }
+            else
+            {
+                Animate.SetInteger("AnimationPar", 0);
+            }
         }
         else
         {
