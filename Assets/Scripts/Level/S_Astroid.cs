@@ -6,16 +6,26 @@ using UnityEngine;
 public class S_Astroid : MonoBehaviour
 {
     SO_Planet LevelData;
+
+    [SerializeField]
+    MeshRenderer meshRend;
     public void SetSizeOfAstroid(SO_Planet LevelDataPass)
     {
         LevelData = LevelDataPass;
         this.transform.localScale = new Vector3(LevelData.size, LevelData.size, LevelData.size);
+        meshRend.material = LevelData.material;
+        
     }
 
-    public bool CheckLocationToSpawn(Vector3 spawn)
+    public Material spawnMaterial()
     {
-        
-        
-        return false;
+        Material thisOne = LevelData.material;
+        return thisOne;
+    }
+
+    public int numberOfSpawns()
+    {
+        int spawns = LevelData.numberOfFeatures;
+        return spawns;
     }
 }

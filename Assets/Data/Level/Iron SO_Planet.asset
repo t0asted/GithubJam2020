@@ -24,4 +24,5 @@ MonoBehaviour:
   - ResourceName: 2
     Quantity: 1
     Rarity: 4
-  numberOfFeatures: 15
+  numberOfFeatures: 20
+  material: {fileID: 0}

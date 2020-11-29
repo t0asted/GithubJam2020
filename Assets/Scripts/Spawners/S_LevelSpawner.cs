@@ -32,10 +32,12 @@ public class S_LevelSpawner : MonoBehaviour
                 GameObject astroidGO = Instantiate(m_astroid, this.transform);
                 astroidGO.GetComponent<S_Astroid>().SetSizeOfAstroid(Astroid);
                 astroidGO.transform.SetParent(this.transform);
+                
             }
         }
 
         return true;
     }
 
+   
 }
