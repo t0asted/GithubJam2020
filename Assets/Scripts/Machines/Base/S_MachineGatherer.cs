@@ -5,6 +5,7 @@ using TMPro;
 
 public class S_MachineGatherer : S_MachineBase
 {
+
     [SerializeField]
     public List<SO_ListRaw> ItemsCanProcess = new List<SO_ListRaw>();
     private void ToggleMachineOnOff()

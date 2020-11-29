@@ -10,7 +10,6 @@ public class SO_ListRaw : ScriptableObject
 [System.Serializable]
 public class RawList
 {
-    public int Rarity;
     public int Quantity;
     public SO_Raw ItemData;
 }
