@@ -10,13 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b475f6faa59f8d4449c09bbb48142be0, type: 3}
-  m_Name: Miner 2  SO_Item List
+  m_Name: New SO_List Item
   m_EditorClassIdentifier: 
-  RawList:
-  - Quantity: 1
-    ItemData: {fileID: 11400000, guid: 64c03acdd5ea4774d9ecce14a84301db, type: 2}
-  - Quantity: 1
-    ItemData: {fileID: 11400000, guid: 0984e142ef0d8d54cbb700b441cffe99, type: 2}
   ItemList: []
-  PartList: []
-  MachineList: []

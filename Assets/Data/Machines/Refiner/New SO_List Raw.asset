@@ -9,12 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b475f6faa59f8d4449c09bbb48142be0, type: 3}
-  m_Name: Miner 1  SO_Item List
+  m_Script: {fileID: 11500000, guid: 479870af2f26e354c9998aeaa8d14a43, type: 3}
+  m_Name: New SO_List Raw
   m_EditorClassIdentifier: 
-  RawList:
-  - Quantity: 1
-    ItemData: {fileID: 11400000, guid: 64c03acdd5ea4774d9ecce14a84301db, type: 2}
-  ItemList: []
-  PartList: []
-  MachineList: []
+  RawList: []
