@@ -7,5 +7,5 @@ public class CL_Level : ScriptableObject
 {
     public int size = 10;
     public int gravity = 1;
-    public SO_ItemList Resources;
+    public SO_ListRaw Resources;
 }
