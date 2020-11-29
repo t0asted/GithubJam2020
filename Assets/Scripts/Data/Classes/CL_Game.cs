@@ -6,6 +6,7 @@ public class CL_Game
 {
     public GameModes GameMode = GameModes.Normal;
     public bool Paused = false;
+    public int NumberOfPlanets = 8;
 
     public CL_Storage Storage = new CL_Storage();
 
