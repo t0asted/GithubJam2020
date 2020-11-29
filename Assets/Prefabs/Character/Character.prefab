@@ -928,12 +928,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80116dc4d29739c4388cf5099f51aa28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_PlayerWalkSpeed: 5
-  m_PlayerSprintSpeed: 10
-  m_PlayerRotateSpeed: 4
+  m_PlayerWalkSpeed: 0.5
+  m_PlayerSprintSpeed: 0.7
+  m_PlayerRotateSpeed: 3
   m_PlayerThrusterSpeed: 1
   m_MaxJetpackVelocity: 20
-  m_JetpackForce: 2
+  m_JetpackForce: 1.5
   m_GroundMask:
     serializedVersion: 2
     m_Bits: 256
