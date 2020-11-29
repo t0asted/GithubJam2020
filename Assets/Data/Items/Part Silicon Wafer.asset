@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bdf887c4b62c9d34eb7e22e584415e40, type: 3}
-  m_Name: Upgrade Pack 1 SO_Item 1
+  m_Name: Part Silicon Wafer
   m_EditorClassIdentifier: 
-  ResourceName: 3000
+  ResourceName: 203
   Quantity: 1
   TimeToBuild: 1
   CostToBuild:
-  - ResourceName: 1
-    Quantity: 40
+  - ResourceName: 6
+    Quantity: 20
