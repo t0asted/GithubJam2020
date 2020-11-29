@@ -6,18 +6,18 @@ public class S_CharacterController : MonoBehaviour
 {
 
     [SerializeField]
-    private float m_PlayerWalkSpeed = 5f;
+    private float m_PlayerWalkSpeed = 0.5f;
     [SerializeField]
-    private float m_PlayerSprintSpeed = 10f;
+    private float m_PlayerSprintSpeed = 0.7f;
     [SerializeField]
-    private float m_PlayerRotateSpeed = 4f;
+    private float m_PlayerRotateSpeed = 3f;
     [SerializeField]
     private float m_PlayerThrusterSpeed = 1f;
 
     [SerializeField]
-    private float m_MaxJetpackVelocity = 20f;
+    private bool m_ThrustersUnlocked = false;
     [SerializeField]
-    private float m_JetpackForce = 2f;
+    private float m_JetpackForce = 1.5f;
     [SerializeField]
     private LayerMask m_GroundMask;
     [SerializeField]
@@ -116,7 +116,8 @@ public class S_CharacterController : MonoBehaviour
         {
             targetMove = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Mathf.Abs(Input.GetAxisRaw("Vertical"))).normalized;
         }
-        MoveDirection = Vector3.SmoothDamp(MoveDirection, targetMove * m_PlayerThrusterSpeed, ref SmoothVelocity, m_MovementSmoothing);
+        //MoveDirection = Vector3.SmoothDamp(MoveDirection, targetMove * m_PlayerThrusterSpeed, ref SmoothVelocity, m_MovementSmoothing);
+        MoveDirection = targetMove * m_PlayerThrusterSpeed;
     }
 
 
@@ -170,7 +171,7 @@ public class S_CharacterController : MonoBehaviour
                 transform.rotation = Quaternion.FromToRotation(transform.up, m_Target.up) * transform.rotation;
             }
 
-            if (Input.GetAxis("SpaceRotate") != 0)
+            if (Input.GetAxis("SpaceRotate") != 0 && m_ThrustersUnlocked)
             { 
                 transform.Rotate(Input.GetAxis("SpaceRotate") * m_PlayerThrusterSpeed, 0, 0);
                 m_Target.rotation = Quaternion.FromToRotation(m_Target.up, transform.up) * m_Target.rotation;
@@ -185,7 +186,11 @@ public class S_CharacterController : MonoBehaviour
         // Check if player is on the ground
         if (IsGrounded())
         {
-            rb.velocity = transform.TransformDirection(MoveDirection);
+            rb.velocity += transform.TransformDirection(MoveDirection);
+            if (rb.velocity.magnitude > 0)
+            {
+                rb.velocity = rb.velocity * 0.95f;
+            }
             GroundAnimate = true;
         }
         else
@@ -195,10 +200,13 @@ public class S_CharacterController : MonoBehaviour
 
         if (Input.GetButton("Jump"))
         {
-            if (rb.velocity.magnitude < m_MaxJetpackVelocity)
+            /*if (rb.velocity.magnitude < m_MaxJetpackVelocity)
             {
+            */
                 rb.velocity += transform.up * m_JetpackForce;
+            /*
             }
+            */
         }
 
     }
@@ -215,7 +223,10 @@ public class S_CharacterController : MonoBehaviour
             rb.velocity = Vector3.zero;
         }
 
-        rb.velocity += transform.TransformDirection(MoveDirection);
+        if (m_ThrustersUnlocked)
+        {
+            rb.velocity += transform.TransformDirection(MoveDirection);
+        }
 
         if (Input.GetButton("Jump"))
         {
@@ -235,7 +246,7 @@ public class S_CharacterController : MonoBehaviour
         Ray ray = new Ray(transform.position, -transform.up);
         RaycastHit hit;
 
-        if (Physics.Raycast(transform.position, -transform.up, out hit, .3f, m_GroundMask))
+        if (Physics.Raycast(transform.position, -transform.up, out hit, 1f, m_GroundMask))
         {
             return true;
         }
@@ -246,7 +257,7 @@ public class S_CharacterController : MonoBehaviour
     // Runs animation after certain keypresses
     private void Animation()
     {
-        if (GroundAnimate && (Input.GetAxis("Vertical") + Input.GetAxis("Horizontal") != 0))
+        if (GroundAnimate && (Mathf.Abs(Input.GetAxis("Vertical")) + Mathf.Abs(Input.GetAxis("Horizontal")) != 0))
         {
             Animate.SetInteger("AnimationPar", 1);
         }
