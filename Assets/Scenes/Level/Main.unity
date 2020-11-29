@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -150,8 +150,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd1bcc180df520849b66b3d732eb139e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_astroid: {fileID: 7670072828646942919, guid: e10f068a2a6af3c45a5dde81484372be,
+  m_Astroid: {fileID: 7670072828646942919, guid: e10f068a2a6af3c45a5dde81484372be,
     type: 3}
+  m_AsteroidStarter: {fileID: 5527108166619824741, guid: 3bd1b113865ce5847b9f7d00907300ff,
+    type: 3}
+  m_MinimumPlanetColliderSeperation: 50
+  m_MaximumPlanetColliderSeperation: 250
 --- !u!4 &339079568
 Transform:
   m_ObjectHideFlags: 0

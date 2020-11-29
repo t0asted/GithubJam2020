@@ -685,7 +685,14 @@ MonoBehaviour:
         m_CallState: 2
   Planets:
   - {fileID: 11400000, guid: 719d9b7b6ed2e6c4c8f9a0fd0e7746e6, type: 2}
+  - {fileID: 11400000, guid: 63d2968a8102955448b2f6efb1ce3542, type: 2}
   - {fileID: 11400000, guid: 719d9b7b6ed2e6c4c8f9a0fd0e7746e6, type: 2}
+  - {fileID: 11400000, guid: 63d2968a8102955448b2f6efb1ce3542, type: 2}
+  - {fileID: 11400000, guid: 719d9b7b6ed2e6c4c8f9a0fd0e7746e6, type: 2}
+  - {fileID: 11400000, guid: 63d2968a8102955448b2f6efb1ce3542, type: 2}
+  - {fileID: 11400000, guid: 719d9b7b6ed2e6c4c8f9a0fd0e7746e6, type: 2}
+  - {fileID: 11400000, guid: 63d2968a8102955448b2f6efb1ce3542, type: 2}
+  - {fileID: 11400000, guid: 1710bbbe0b0c5be41b723961284d48e8, type: 2}
   - {fileID: 11400000, guid: 1710bbbe0b0c5be41b723961284d48e8, type: 2}
   CharacterData: {fileID: 11400000, guid: 05d3f7db66a710840b1189ddae27abee, type: 2}
   GameData:
