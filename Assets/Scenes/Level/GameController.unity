@@ -686,22 +686,30 @@ MonoBehaviour:
   Planets:
   - {fileID: 11400000, guid: 719d9b7b6ed2e6c4c8f9a0fd0e7746e6, type: 2}
   - {fileID: 11400000, guid: 63d2968a8102955448b2f6efb1ce3542, type: 2}
-  - {fileID: 11400000, guid: 719d9b7b6ed2e6c4c8f9a0fd0e7746e6, type: 2}
-  - {fileID: 11400000, guid: 63d2968a8102955448b2f6efb1ce3542, type: 2}
-  - {fileID: 11400000, guid: 719d9b7b6ed2e6c4c8f9a0fd0e7746e6, type: 2}
-  - {fileID: 11400000, guid: 63d2968a8102955448b2f6efb1ce3542, type: 2}
-  - {fileID: 11400000, guid: 719d9b7b6ed2e6c4c8f9a0fd0e7746e6, type: 2}
-  - {fileID: 11400000, guid: 63d2968a8102955448b2f6efb1ce3542, type: 2}
+  - {fileID: 11400000, guid: 1d27691f62e314247ae4bc101e9fbc67, type: 2}
+  - {fileID: 11400000, guid: 00f255b197f1998499ed7ae843bda1fa, type: 2}
+  - {fileID: 11400000, guid: e72f0c5a2fe914945b867174eccb5d85, type: 2}
+  - {fileID: 11400000, guid: 1d27691f62e314247ae4bc101e9fbc67, type: 2}
+  JoinPlanets:
   - {fileID: 11400000, guid: 1710bbbe0b0c5be41b723961284d48e8, type: 2}
-  - {fileID: 11400000, guid: 1710bbbe0b0c5be41b723961284d48e8, type: 2}
+  - {fileID: 11400000, guid: b48deb6065d2de7458606ce19d4b8e91, type: 2}
+  - {fileID: 11400000, guid: 7802f0509e7e740478031c152cb8663d, type: 2}
+  - {fileID: 11400000, guid: 509a5fcfa0255314fb0182b4f14d108d, type: 2}
   CharacterData: {fileID: 11400000, guid: 05d3f7db66a710840b1189ddae27abee, type: 2}
   GameData:
     GameMode: 0
     Paused: 0
     Storage:
-      ResourceList: []
-      StorageSize: 0
+      ResourceList:
+      - ResourceName: 1
+        Quantity: 25
+      - ResourceName: 2
+        Quantity: 0
+      - ResourceName: 3
+        Quantity: 0
+      StorageSize: 40
       stack: 1
+  NumberOfPlanets: 20
 --- !u!4 &1817638899
 Transform:
   m_ObjectHideFlags: 0

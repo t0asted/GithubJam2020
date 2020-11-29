@@ -25,4 +25,4 @@ MonoBehaviour:
     Quantity: 1
     Rarity: 4
   numberOfFeatures: 20
-  material: {fileID: 0}
+  material: {fileID: 2100000, guid: 7b11506a543d7b24cadd1766577f2ce9, type: 2}

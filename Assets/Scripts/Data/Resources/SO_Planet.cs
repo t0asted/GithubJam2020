@@ -10,4 +10,5 @@ public class SO_Planet : ScriptableObject
     public List<CL_PlanetData> PlanetData;
     public int numberOfFeatures;
     public Material material;
+    public bool isJoinPlanet;
 }
