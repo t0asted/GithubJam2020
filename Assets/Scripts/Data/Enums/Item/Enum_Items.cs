@@ -29,10 +29,13 @@ public enum Enum_Items
     Canister = 202,
     Silicon_Wafers = 203,
     Circuit_Board = 204,
+    Rocket_Fuel = 205,
 
     // Upgrades
     Upgrade_Pack_1 = 500,
     Upgrade_Pack_2 = 501,
+    Upgrade_Jetpack = 502,
+    Upgrade_Thrusters = 503,
 
     // Machines
     Machine_Rocket = 1000,
