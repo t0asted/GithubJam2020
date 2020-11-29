@@ -46,7 +46,7 @@ public class S_CharacterSpawner : MonoBehaviour
             //Temp
             if (m_Rocket != null)
             {
-                Vector3 SpawnLocation = GameObject.FindGameObjectsWithTag("SpawnPoint")[0].transform.position + new Vector3(5, 0, 0);
+                Vector3 SpawnLocation = GameObject.FindGameObjectsWithTag("SpawnPoint")[0].transform.position + new Vector3(5, (float)-1.5, 0);
                 GameObject rocketGO = Instantiate(m_Rocket, SpawnLocation, new Quaternion());
                 rocketGO.transform.SetParent(this.transform);
             }
