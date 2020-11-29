@@ -28,32 +28,32 @@ public class S_GameController : MonoBehaviour
     [SerializeField]
     private CL_Character CharacterData = null;
 
+    public S_CharacterController CharacterController = null;
+
     public CL_Game GameData = new CL_Game();
 
-    private GameObject ref_Character = null;
+    public GameObject ref_Character = null;
 
     private void Start()
     {
         OnStart.Invoke();
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void Update()
     {
         // Check if not loaded and has references
-        if(isLoaded == LoadingStages.NotLoaded && m_CharacterSpawner != null && m_LevelSpawner != null)
+        if (isLoaded == LoadingStages.NotLoaded && m_CharacterSpawner != null && m_LevelSpawner != null)
         {
             SetupGame();
             isLoaded = LoadingStages.Loading;
         }
 
-        if(isLoaded == LoadingStages.Loading && CharacterSpawned && LevelSpawned)
+        if (isLoaded == LoadingStages.Loading && CharacterSpawned && LevelSpawned)
         {
             isLoaded = LoadingStages.Loaded;
         }
 
-        if(isLoaded == LoadingStages.Loaded)
+        if (isLoaded == LoadingStages.Loaded)
         {
             // do shit
         }
@@ -70,11 +70,18 @@ public class S_GameController : MonoBehaviour
     private void SetupGame()
     {
         LevelSpawned = m_LevelSpawner.SpawnLevel(Planets);
-        if(LevelSpawned)
+        if (LevelSpawned)
         {
             ref_Character = m_CharacterSpawner.SpawnCharacter(CharacterData);
             if (ref_Character != null)
             {
+                foreach (Transform child in ref_Character.transform)
+                {
+                    if(child.GetComponent<S_CharacterController>())
+                    {
+                        CharacterController = child.GetComponent<S_CharacterController>();
+                    }
+                }
                 CharacterSpawned = true;
             }
         }
@@ -105,7 +112,7 @@ public enum LoadingStages
 }
 
 public enum GameModes
-{ 
+{
     Normal,
     DebugJoshua,
     DebugStefan,

@@ -1,6 +1,7 @@
 ﻿using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class S_MachineBase : MonoBehaviour
 {
@@ -14,9 +15,11 @@ public class S_MachineBase : MonoBehaviour
     [SerializeField]
     private GameObject UIToolTip;
     [SerializeField]
-    private UnityEvent OnInteract;
+    private S_OpenCloseUIScene SceneOpenCloser;
+    public bool Interactable;
+    public bool Interacting;
 
-    private bool Interactable;
+    public S_RocketUI ToSendDataTo = null;
 
     private void Start()
     {
@@ -38,7 +41,7 @@ public class S_MachineBase : MonoBehaviour
             TextToShowContent.text = MachineRunning ? "Machine running" : "Machine is off";
         }
 
-        if(UIToolTip.activeInHierarchy != Interactable)
+        if(UIToolTip.activeInHierarchy != Interactable && !Interacting)
         {
             UIToolTip.SetActive(Interactable);
         }
@@ -46,7 +49,14 @@ public class S_MachineBase : MonoBehaviour
 
     public void Interact()
     {
-        OnInteract.Invoke();
+        Interacting = true;
+        SceneOpenCloser.OpenScene();
+    }
+
+    public void UnInteract()
+    {
+        Interacting = false;
+        SceneOpenCloser.CloseScene();
     }
 
     public void ToggleRunning()

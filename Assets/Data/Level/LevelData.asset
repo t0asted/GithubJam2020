@@ -15,21 +15,6 @@ MonoBehaviour:
   size: 100
   gravity: 1
   MostCommonResource:
-    ResourceList:
-    - ResourceName: 3
-      Quantity: 0
-      Rarity: 0
-    - ResourceName: 7
-      Quantity: 0
-      Rarity: 0
-    - ResourceName: 1
-      Quantity: 0
-      Rarity: 0
-    - ResourceName: 0
-      Quantity: 0
-      Rarity: 0
-    - ResourceName: 0
-      Quantity: 0
-      Rarity: 0
+    ResourceList: []
     StorageSize: 0
     stack: 1

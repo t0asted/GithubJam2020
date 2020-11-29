@@ -22,20 +22,10 @@ MonoBehaviour:
   MachineRunning: 1
   TextToShowContent: {fileID: 6234494506964883741}
   UIToolTip: {fileID: 961019774065626036}
-  OnInteract:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5666992403404089011}
-        m_MethodName: OpenScene
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  SceneOpenCloser: {fileID: 5666992403404089011}
+  Interactable: 0
+  Interacting: 0
+  ToSendDataTo: {fileID: 0}
   ToFixRocket: {fileID: 11400000, guid: 5ba95219fbe32ff4383423f8b9f93c6a, type: 2}
 --- !u!114 &5666992403404089011
 MonoBehaviour:

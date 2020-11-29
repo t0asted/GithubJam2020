@@ -26,11 +26,14 @@ public class S_CharacterController : MonoBehaviour
     [SerializeField]
     private Transform m_Target;
 
+    public S_MachineInteraction Interactor = null;
+
 
     private Animator Animate;
     private Rigidbody rb;
     private Vector3 MoveDirection;
     private Vector3 SmoothVelocity;
+    private bool interacting;
 
     // Start is called before the first frame update
     void Start()
@@ -38,9 +41,6 @@ public class S_CharacterController : MonoBehaviour
         Animate = gameObject.GetComponentInChildren<Animator>();
         rb = gameObject.GetComponent<Rigidbody>();
         Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-
-
     }
 
     // Update is called once per frame
@@ -53,7 +53,16 @@ public class S_CharacterController : MonoBehaviour
 
     void FixedUpdate()
     {
-        MovePlayer();
+        if(!interacting)
+        {
+            MovePlayer();
+        }
+    }
+
+    public void SetInteracting(bool interactingPass)
+    {
+        interacting = interactingPass;
+        Cursor.visible = interactingPass;
     }
 
     // Calculates player movement vector for fixed update rigidbody

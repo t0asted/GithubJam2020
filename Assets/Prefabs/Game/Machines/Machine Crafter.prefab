@@ -15,15 +15,23 @@ MonoBehaviour:
   ref_GameController: {fileID: 0}
   MachineData:
     ItemsCanProcess:
-    - {fileID: 11400000, guid: 21d3b7830ad3ea44bbf73bdb4ddcbfac, type: 2}
-    - {fileID: 11400000, guid: 0f7dd35d0f61cca458324ff096193ad5, type: 2}
-    - {fileID: 11400000, guid: b933ec51301cda240a51e942b8511c7d, type: 2}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
     ProcessSpeed: 1
     AmountCanProcess: 1
     Level: 1
   MachineRunning: 0
   TextToShowContent: {fileID: 0}
-  ItemsCanGenerate: {fileID: 0}
+  UIToolTip: {fileID: 0}
+  OnInteract:
+    m_PersistentCalls:
+      m_Calls: []
+  OnUnInteract:
+    m_PersistentCalls:
+      m_Calls: []
+  Interactable: 0
+  Interacting: 0
 --- !u!1001 &5267742372916958189
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -91,6 +99,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Machine Crafter
       objectReference: {fileID: 0}
+    - target: {fileID: 8060648501732965097, guid: 88ed57d42dd02c742a5c21a4f509b5e3,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 88ed57d42dd02c742a5c21a4f509b5e3, type: 3}
 --- !u!1 &2933646319322873653 stripped

@@ -23,6 +23,26 @@ MonoBehaviour:
     Level: 1
   MachineRunning: 1
   TextToShowContent: {fileID: 8446984437116465039}
+  UIToolTip: {fileID: 3380745690045922598}
+  OnInteract: {fileID: 995548891390939608}
+  OnUnInteract: {fileID: 995548891390939608}
+  Interactable: 0
+  Interacting: 0
+  ToSendDataTo: {fileID: 0}
+--- !u!114 &995548891390939608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9062922836090830848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22cebab1041a4a849a5058f15bae037e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EditorOnlyGameObjects: []
+  sceneEnum: -1273669126
 --- !u!1001 &2047264549360004312
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -115,6 +135,12 @@ PrefabInstance:
 --- !u!1 &9062922836090830848 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7038176306342800600, guid: 88ed57d42dd02c742a5c21a4f509b5e3,
+    type: 3}
+  m_PrefabInstance: {fileID: 2047264549360004312}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3380745690045922598 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3639904698506727934, guid: 88ed57d42dd02c742a5c21a4f509b5e3,
     type: 3}
   m_PrefabInstance: {fileID: 2047264549360004312}
   m_PrefabAsset: {fileID: 0}
