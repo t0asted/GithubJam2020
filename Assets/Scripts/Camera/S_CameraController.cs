@@ -49,17 +49,17 @@ public class S_CameraController : MonoBehaviour
 
     void LateUpdate()
     {
-        if(!m_CharacterController.interacting)
+        if (!m_CharacterController.interacting)
         {
             transform.position = m_ObjectToFollow.position;
 
             transform.rotation = m_ObjectToFollow.rotation;
 
-        if (CameraArm)
-        {
-            x += Input.GetAxis("Mouse X") * xSpeed * distance;
-            y -= Input.GetAxis("Mouse Y") * ySpeed;
-            y = ClampAngle(y, yMinLimit, yMaxLimit);
+            if (CameraArm)
+            {
+                x += Input.GetAxis("Mouse X") * xSpeed * distance;
+                y -= Input.GetAxis("Mouse Y") * ySpeed;
+                y = ClampAngle(y, yMinLimit, yMaxLimit);
 
                 Quaternion rotation = Quaternion.Euler(y, x, 0);
 

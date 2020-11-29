@@ -75,14 +75,14 @@ public class S_GameController : MonoBehaviour
     private void SetupGame()
     {
         LevelSpawned = m_LevelSpawner.SpawnLevel(m_StarterPlanet, m_Planets, m_JoiningPlanets, GameData.NumberOfPlanets);
-        if(LevelSpawned)
+        if (LevelSpawned)
         {
             ref_Character = m_CharacterSpawner.SpawnCharacter(CharacterData);
             if (ref_Character != null)
             {
                 foreach (Transform child in ref_Character.transform)
                 {
-                    if(child.GetComponent<S_CharacterController>())
+                    if (child.GetComponent<S_CharacterController>())
                     {
                         CharacterController = child.GetComponent<S_CharacterController>();
                     }

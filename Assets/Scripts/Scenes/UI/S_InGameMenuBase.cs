@@ -36,7 +36,7 @@ public class S_InGameMenuBase : S_SceneUIMain
         if (MachineGenerator.BuiltMachine != null)
         {
             ref_GameController.CharacterController.m_MachinePlacer.NewMachineToPlace(MachineGenerator.BuiltMachine);
-            ref_GameController.CharacterController.SetInteracting(false);
+            ref_GameController.CharacterController.Interactor.Interact();
         }
         else
         {
