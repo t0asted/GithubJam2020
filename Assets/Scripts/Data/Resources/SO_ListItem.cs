@@ -9,7 +9,5 @@ public class SO_ListItem : ScriptableObject
 [System.Serializable]
 public class ItemList
 {
-    public int Rarity;
-    public int Quantity;
     public SO_Item ItemData;
 }
