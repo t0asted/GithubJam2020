@@ -5,18 +5,21 @@ using UnityEngine;
 public class spawn_features : MonoBehaviour
 {
    
-    public int numberOfSpawns;
+    private int numberOfSpawns;
     public List<GameObject> spawnLocations;
     public List<GameObject> featuresToSpawn;
+    private S_Astroid astroid;
 
     public void Start()
     {
-        
+        astroid = GetComponent<S_Astroid>();
+        numberOfSpawns = astroid.numberOfSpawns();
         for (int i = 0; i < numberOfSpawns; i++)
         {
             SpawnFeature();
         }
     }
+
     public void SpawnFeature()
     {
         int rndLocal = Random.Range(0, spawnLocations.Count);
@@ -28,8 +31,12 @@ public class spawn_features : MonoBehaviour
         GameObject newFeature = Instantiate(featurePrefab, selectedSpawn, Quaternion.Euler(0, 0, Random.Range(0, 360)));
         newFeature.transform.SetParent(spawnLocations[rndLocal].transform);
 
+        MeshRenderer meshRenderer = newFeature.GetComponent<MeshRenderer>();
+        meshRenderer.material = astroid.spawnMaterial();
+
         spawnLocations.RemoveAt(rndLocal);
     }
+
 
 
 }

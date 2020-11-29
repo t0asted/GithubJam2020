@@ -55,11 +55,11 @@ public class S_CameraController : MonoBehaviour
 
             transform.rotation = m_ObjectToFollow.rotation;
 
-            if (CameraArm)
-            {
-                x += Input.GetAxis("Mouse X") * xSpeed * distance * 0.02f;
-                y -= Input.GetAxis("Mouse Y") * ySpeed * 0.02f;
-                y = ClampAngle(y, yMinLimit, yMaxLimit);
+        if (CameraArm)
+        {
+            x += Input.GetAxis("Mouse X") * xSpeed * distance * Time.deltaTime;
+            y -= Input.GetAxis("Mouse Y") * ySpeed * Time.deltaTime;
+            y = ClampAngle(y, yMinLimit, yMaxLimit);
 
                 Quaternion rotation = Quaternion.Euler(y, x, 0);
 

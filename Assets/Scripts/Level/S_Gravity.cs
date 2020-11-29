@@ -11,7 +11,7 @@ public class S_Gravity : MonoBehaviour
     private SphereCollider sc;
 
     [SerializeField]
-    private float TriggerRadius = 0.7f;
+    private float TriggerRadius = 1f;
 
     void Start()
     {
