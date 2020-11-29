@@ -6,17 +6,18 @@ public class S_CharacterController : MonoBehaviour
 {
 
     [SerializeField]
-    private float m_PlayerWalkSpeed = 5f;
+    private float m_PlayerWalkSpeed = 0.5f;
     [SerializeField]
-    private float m_PlayerSprintSpeed = 10f;
+    private float m_PlayerSprintSpeed = 0.7f;
     [SerializeField]
-    private float m_PlayerRotateSpeed = 4f;
+    private float m_PlayerRotateSpeed = 3f;
     [SerializeField]
-    private bool m_UseJetpack = true;
+    private float m_PlayerThrusterSpeed = 1f;
+
     [SerializeField]
-    private float m_MaxJetpackVelocity = 20f;
+    private bool m_ThrustersUnlocked = false;
     [SerializeField]
-    private float m_JumpVelocity = 2f;
+    private float m_JetpackForce = 1.5f;
     [SerializeField]
     private LayerMask m_GroundMask;
     [SerializeField]
@@ -34,28 +35,49 @@ public class S_CharacterController : MonoBehaviour
     private Vector3 MoveDirection;
     private Vector3 SmoothVelocity;
     private bool interacting;
+    private S_GravityController GC;
+    private bool GroundAnimate = false;
 
-    // Start is called before the first frame update
     void Start()
     {
         Animate = gameObject.GetComponentInChildren<Animator>();
         rb = gameObject.GetComponent<Rigidbody>();
         Cursor.lockState = CursorLockMode.Locked;
+        GC = GetComponent<S_GravityController>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        CalculatePlayerMovement();
-        CalculateRotation();
-        Animation();
+        if(!interacting)
+        {
+            if (GC.HasPlanet())
+            {
+                CalculateGroundMovement();
+                CalculateGroundRotation();
+                Animation();
+            }
+            else
+            {
+                CalculateSpaceMovement();
+                CalculateSpaceRotation();
+            }
+        }
     }
 
     void FixedUpdate()
     {
         if(!interacting)
         {
-            MovePlayer();
+            //MovePlayer();
+            if (GC.HasPlanet())
+            {
+                MovePlayerGrounded();
+            }
+            else
+            {
+                MovePlayerSpace();
+            }
         }
     }
 
@@ -66,7 +88,7 @@ public class S_CharacterController : MonoBehaviour
     }
 
     // Calculates player movement vector for fixed update rigidbody
-    private void CalculatePlayerMovement()
+    private void CalculateGroundMovement()
     {
         float movementSpeed = m_PlayerWalkSpeed;
 
@@ -76,65 +98,156 @@ public class S_CharacterController : MonoBehaviour
             movementSpeed = m_PlayerSprintSpeed;
         }
 
-        Vector3 targetMove = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")).normalized;
+        // Check if S is pressed
+        // If so reverse a and d directions
+        Vector3 targetMove;
+ 
+        if (Input.GetAxis("Vertical") < 0)
+        {
+            targetMove = new Vector3(-Input.GetAxisRaw("Horizontal"), 0, Mathf.Abs(Input.GetAxisRaw("Vertical"))).normalized;
+        }
+        else
+        {
+            targetMove = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")).normalized;
+        }
+
+        // Setup movedirection with movement speeds and smoothing
         MoveDirection = Vector3.SmoothDamp(MoveDirection, targetMove * movementSpeed, ref SmoothVelocity, m_MovementSmoothing);
     }
 
-    private void CalculateRotation()
-    {
-        Quaternion aim = new Quaternion(0, 0, 0, 0);
-        Vector3 cameraDirection = m_CameraControllerScript.GetForwardCamera();
-        //Vector3 cameraDirection = m_Target.forward;
 
-        if (m_CameraControllerScript && m_Target) 
+    // Calculates player movement whilst in space
+    private void CalculateSpaceMovement()
+    {
+        Vector3 targetMove;
+        if (Input.GetAxis("Vertical") < 0)
         {
-            if (Input.GetKey("w"))
+            targetMove = new Vector3(-Input.GetAxisRaw("Horizontal"), 0, Mathf.Abs(Input.GetAxisRaw("Vertical"))).normalized;
+        }
+        else
+        {
+            targetMove = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Mathf.Abs(Input.GetAxisRaw("Vertical"))).normalized;
+        }
+        //MoveDirection = Vector3.SmoothDamp(MoveDirection, targetMove * m_PlayerThrusterSpeed, ref SmoothVelocity, m_MovementSmoothing);
+        MoveDirection = targetMove * m_PlayerThrusterSpeed;
+    }
+
+
+    // Calculates rotation of character from camera direction
+    private void CalculateGroundRotation()
+    {
+
+        Vector3 cameraDirection = m_CameraControllerScript.GetForwardCamera();
+
+        if (m_CameraControllerScript && m_Target)
+        {
+            if (Input.GetAxis("Vertical") > 0)
             {
                 transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.FromToRotation(transform.forward, cameraDirection) * transform.rotation, m_PlayerRotateSpeed * Time.deltaTime);
                 transform.rotation = Quaternion.FromToRotation(transform.up, m_Target.up) * transform.rotation;
-            } 
-            else if (Input.GetKey("s"))
+            }
+            else if (Input.GetAxis("Vertical") < 0)
             {
                 transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.FromToRotation(transform.forward, -cameraDirection) * transform.rotation, m_PlayerRotateSpeed * Time.deltaTime);
                 transform.rotation = Quaternion.FromToRotation(transform.up, m_Target.up) * transform.rotation;
-            } 
-            else if (Input.GetKey("a") || Input.GetKey("d")) {
+            }
+            else if (Input.GetAxis("Horizontal") != 0)
+            {
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.FromToRotation(transform.forward, cameraDirection) * transform.rotation, m_PlayerRotateSpeed * Time.deltaTime);
+                transform.rotation = Quaternion.FromToRotation(transform.up, m_Target.up) * transform.rotation;
+            }
+        }
+    }
+
+    // Calculates rotation of character from camera direction
+    private void CalculateSpaceRotation()
+    {
+
+        Vector3 cameraDirection = m_CameraControllerScript.GetForwardCamera();
+
+        if (m_CameraControllerScript && m_Target)
+        {
+            if (Input.GetAxis("Vertical") > 0)
+            {
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.FromToRotation(transform.forward, cameraDirection) * transform.rotation, m_PlayerRotateSpeed * Time.deltaTime);
+                transform.rotation = Quaternion.FromToRotation(transform.up, m_Target.up) * transform.rotation;
+            }
+            else if (Input.GetAxis("Vertical") < 0)
+            {
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.FromToRotation(transform.forward, -cameraDirection) * transform.rotation, m_PlayerRotateSpeed * Time.deltaTime);
+                transform.rotation = Quaternion.FromToRotation(transform.up, m_Target.up) * transform.rotation;
+            }
+            else if (Input.GetAxis("Horizontal") != 0)
+            {
                 transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.FromToRotation(transform.forward, cameraDirection) * transform.rotation, m_PlayerRotateSpeed * Time.deltaTime);
                 transform.rotation = Quaternion.FromToRotation(transform.up, m_Target.up) * transform.rotation;
             }
 
-
+            if (Input.GetAxis("SpaceRotate") != 0 && m_ThrustersUnlocked)
+            { 
+                transform.Rotate(Input.GetAxis("SpaceRotate") * m_PlayerThrusterSpeed, 0, 0);
+                m_Target.rotation = Quaternion.FromToRotation(m_Target.up, transform.up) * m_Target.rotation;
+            }
         }
     }
 
 
     // Moves rigidbody within fixedupdate
-    private void MovePlayer()
+    private void MovePlayerGrounded()
     {
         // Check if player is on the ground
         if (IsGrounded())
         {
-            rb.velocity = transform.TransformDirection(MoveDirection);
+            rb.velocity += transform.TransformDirection(MoveDirection);
+            if (rb.velocity.magnitude > 0)
+            {
+                rb.velocity = rb.velocity * 0.95f;
+            }
+            GroundAnimate = true;
+        }
+        else
+        {
+            GroundAnimate = false;
         }
 
         if (Input.GetButton("Jump"))
         {
-            // If using jetpack
-            if (m_UseJetpack)
+            /*if (rb.velocity.magnitude < m_MaxJetpackVelocity)
             {
-                // If velocity is below maximum 
-                if (rb.velocity.magnitude < m_MaxJetpackVelocity)
-                {
-                    rb.velocity += transform.up * m_JumpVelocity;
-                }
+            */
+                rb.velocity += transform.up * m_JetpackForce;
+            /*
             }
-            // ELSE Jumping
-            else
-            {
-                rb.AddForce(transform.up * m_JumpVelocity);
-            }
+            */
         }
 
+    }
+
+
+    private void MovePlayerSpace()
+    {
+        if (rb.velocity.magnitude > 0)
+        {
+            rb.velocity = rb.velocity * 0.95f;
+        }
+        else
+        {
+            rb.velocity = Vector3.zero;
+        }
+
+        if (m_ThrustersUnlocked)
+        {
+            rb.velocity += transform.TransformDirection(MoveDirection);
+        }
+
+        if (Input.GetButton("Jump"))
+        {
+            rb.velocity += transform.up * m_JetpackForce;
+        }
+        if (Input.GetButton("Descend"))
+        {
+            rb.velocity -= transform.up * m_JetpackForce;
+        }
     }
 
 
@@ -145,17 +258,18 @@ public class S_CharacterController : MonoBehaviour
         Ray ray = new Ray(transform.position, -transform.up);
         RaycastHit hit;
 
-        if (Physics.Raycast(transform.position, -transform.up, out hit, .3f, m_GroundMask)) {
+        if (Physics.Raycast(transform.position, -transform.up, out hit, 1f, m_GroundMask))
+        {
             return true;
         }
         return false;
 
     }
-    
+
     // Runs animation after certain keypresses
     private void Animation()
     {
-        if (Input.GetKey("w") || Input.GetKey("a") || Input.GetKey("s") || Input.GetKey("d"))
+        if (GroundAnimate && (Mathf.Abs(Input.GetAxis("Vertical")) + Mathf.Abs(Input.GetAxis("Horizontal")) != 0))
         {
             Animate.SetInteger("AnimationPar", 1);
         }
