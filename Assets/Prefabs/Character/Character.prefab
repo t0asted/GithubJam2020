@@ -219,8 +219,8 @@ MonoBehaviour:
   CameraArm: {fileID: 1284979726214294654}
   Camera: {fileID: 4087713875357921694}
   distance: 0.5
-  xSpeed: 80
-  ySpeed: 40
+  xSpeed: 1
+  ySpeed: 1.2
   yMinLimit: -80
   yMaxLimit: 80
   distanceMin: 0.5

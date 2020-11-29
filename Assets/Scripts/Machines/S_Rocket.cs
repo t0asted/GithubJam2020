@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class S_Rocket : S_MachineGenerator
 {
-    public SO_ListItem ToFixRocket;
+    public SO_ItemsToFixRocket ToFixRocket;
     private CL_Storage ItemsAddedToShip = new CL_Storage();
 
     public bool IsShipFixed()
