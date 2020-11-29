@@ -5,6 +5,8 @@ using TMPro;
 
 public class S_MachineGatherer : S_MachineBase
 {
+    [SerializeField]
+    public List<SO_ListRaw> ItemsCanProcess = new List<SO_ListRaw>();
     private void ToggleMachineOnOff()
     {
         if (MachineRunning)
@@ -45,9 +47,9 @@ public class S_MachineGatherer : S_MachineBase
 
     public void Process()
     {
-        if (MachineData.ItemsCanProcess[0].RawList.Count > 0)
+        if (ItemsCanProcess[0].RawList.Count > 0)
         {
-            foreach (var ResourceInList in MachineData.ItemsCanProcess[0].RawList)
+            foreach (var ResourceInList in ItemsCanProcess[0].RawList)
             {
                 // TODO: Get items that can be harvested off planet
                 //if (ResourceInList.ItemData.Rarity > Random.Range(1, 5)) // Rarity chance that you get this resource

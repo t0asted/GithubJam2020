@@ -43,7 +43,8 @@ public class S_PlaceMachine : MonoBehaviour
         else
         {
             RaycastHit hit;
-            if (Physics.Raycast(transform.position, Camera.GetForwardCamera() * 5, out hit))
+            Debug.DrawRay(characterDirection.position, Camera.GetForwardCamera() * 5);
+            if (Physics.Raycast(characterDirection.position, Camera.GetForwardCamera() * 5, out hit))
             {
                 if (hit.transform.gameObject.tag == "Astroid")
                 {

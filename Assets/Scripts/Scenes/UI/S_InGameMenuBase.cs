@@ -36,7 +36,7 @@ public class S_InGameMenuBase : S_SceneUIMain
         if (MachineGenerator.BuiltMachine != null)
         {
             ref_GameController.CharacterController.m_MachinePlacer.NewMachineToPlace(MachineGenerator.BuiltMachine);
-            ref_GameController.CharacterController.SetInteracting(false);
+            ref_GameController.CharacterController.Interactor.Interact();
         }
         else
         {
@@ -46,7 +46,7 @@ public class S_InGameMenuBase : S_SceneUIMain
 
     public void SpawnInventoryItems()
     {
-        foreach (var invItem in MachineGenerator.MachineData.ResourcesCollected.ResourceList)
+        foreach (var invItem in ref_GameController.GameData.Storage.ResourceList)
         {
             GameObject invItemSpawn = Instantiate(inventoryItemToSpawn, inventoryContent.transform);
             invItemSpawn.GetComponent<S_InventoryItem>().SetItem(invItem);
@@ -60,21 +60,11 @@ public class S_InGameMenuBase : S_SceneUIMain
 
     public void SpawnConstructable()
     {
-        if (MachineGenerator.MachineData.ItemsCanProcess.Count > 0)
+        if (MachineGenerator.ItemsCanProcess.Count > 0)
         {
             for (int i = 0; i < MachineGenerator.MachineData.Level; i++)
             {
-                foreach (var ConstItem in MachineGenerator.MachineData.ItemsCanProcess[i].ItemList)
-                {
-                    GameObject invItemSpawn = Instantiate(ConstructableItemToSpawn, ConstructableContent.transform);
-                    invItemSpawn.GetComponent<S_ConstructableItem>().SetupContructableItem((CL_ItemConstructable)ConstItem.ItemData, this);
-                }
-                foreach (var ConstItem in MachineGenerator.MachineData.ItemsCanProcess[i].MachineList)
-                {
-                    GameObject invItemSpawn = Instantiate(ConstructableItemToSpawn, ConstructableContent.transform);
-                    invItemSpawn.GetComponent<S_ConstructableItem>().SetupContructableItem((CL_ItemConstructable)ConstItem.ItemData, this);
-                }
-                foreach (var ConstItem in MachineGenerator.MachineData.ItemsCanProcess[i].PartList)
+                foreach (var ConstItem in MachineGenerator.ItemsCanProcess[i].ItemList)
                 {
                     GameObject invItemSpawn = Instantiate(ConstructableItemToSpawn, ConstructableContent.transform);
                     invItemSpawn.GetComponent<S_ConstructableItem>().SetupContructableItem((CL_ItemConstructable)ConstItem.ItemData, this);

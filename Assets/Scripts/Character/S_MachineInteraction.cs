@@ -20,19 +20,24 @@ public class S_MachineInteraction : MonoBehaviour
             MachineFound.Interactable = true;
             if (Input.GetKeyDown("e"))
             {
-                if (Interacting)
-                {
-                    m_CharacterController.SetInteracting(false);
-                    MachineFound.UnInteract();
-                    Interacting = false;
-                }
-                else
-                {
-                    m_CharacterController.SetInteracting(true);
-                    MachineFound.Interact();
-                    Interacting = true;
-                }
+                Interact();
             }
+        }
+    }
+
+    public void Interact()
+    {
+        if (Interacting)
+        {
+            m_CharacterController.SetInteracting(false);
+            MachineFound.UnInteract();
+            Interacting = false;
+        }
+        else
+        {
+            m_CharacterController.SetInteracting(true);
+            MachineFound.Interact();
+            Interacting = true;
         }
     }
 

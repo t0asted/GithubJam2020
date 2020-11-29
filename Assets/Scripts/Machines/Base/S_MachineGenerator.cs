@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class S_MachineGenerator : S_MachineBase
 {
+    [SerializeField]
+    public List<SO_ListItem> ItemsCanProcess = new List<SO_ListItem>();
+
+    [SerializeField]
+    private CL_Level Constructing;
+
     private List<CL_ItemConstructable> BuildQueue = null;
 
     public GameObject BuiltMachine = null;
@@ -33,9 +39,16 @@ public class S_MachineGenerator : S_MachineBase
         //ref_GameController.GameData.Storage.TakeResources(MachineData.ItemsCanProcess);
     }
 
-    public void SetBuilding()
+    private void SetNewItemBuilding()
     {
+        if(BuildQueue.Count > 0)
+        {
 
+        }
+        else
+        {
+
+        }
     }
 
     public void AddToQueue(CL_ItemConstructable ItemToAdd)
