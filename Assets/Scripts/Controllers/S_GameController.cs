@@ -24,9 +24,14 @@ public class S_GameController : MonoBehaviour
     [SerializeField]
     private UnityEvent OnStartDebugJames;
     [SerializeField]
-    private List<SO_Planet> Planets;
-    [SerializeField]
     private CL_Character CharacterData = null;
+    [SerializeField]
+    private SO_Planet m_StarterPlanet;
+    [SerializeField]
+    private List<SO_Planet> m_Planets;
+    [SerializeField]
+    private List<SO_Planet> m_JoiningPlanets;
+
 
     public CL_Game GameData = new CL_Game();
 
@@ -69,7 +74,7 @@ public class S_GameController : MonoBehaviour
 
     private void SetupGame()
     {
-        LevelSpawned = m_LevelSpawner.SpawnLevel(Planets);
+        LevelSpawned = m_LevelSpawner.SpawnLevel(m_StarterPlanet, m_Planets, m_JoiningPlanets, GameData.NumberOfPlanets);
         if(LevelSpawned)
         {
             ref_Character = m_CharacterSpawner.SpawnCharacter(CharacterData);

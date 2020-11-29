@@ -6,20 +6,20 @@ public class S_LevelSpawner : MonoBehaviour
 {
     [SerializeField]
     private GameObject m_Astroid;
-
     [SerializeField]
     private GameObject m_AsteroidStarter;
-
     [SerializeField]
-    private int m_MinimumPlanetColliderSeperation = 50;
-
+    private int m_MinimumPlanetColliderSeperation = 25;
     [SerializeField]
-    private int m_MaximumPlanetColliderSeperation = 250;
+    private int m_MaximumPlanetColliderSeperation = 100;
+    [SerializeField]
+    private int m_JoiningPlanetSeperation = 10;
 
-
+    // Spawned Planets Storage
+    private List<SpawnedPlanet> SpawnedPlanets;
+    private List<SpawnedPlanet> SpawnedJoiningPlanets;
 
     private S_GameController ref_GameController;
-    private List<SO_Planet> LevelData;
 
     private void Start()
     {
@@ -32,77 +32,136 @@ public class S_LevelSpawner : MonoBehaviour
             Debug.Log("Level spawner : Did not find gamecontroller");
     }
 
-    public bool SpawnLevel(List<SO_Planet> LevelToLoad)
+    public bool SpawnLevel(SO_Planet starterPlanet, List<SO_Planet> planets, List<SO_Planet> joiningPlanets, int numberOfPlanets)
     {
-        LevelData = LevelToLoad;
+        SpawnedPlanets = new List<SpawnedPlanet>();
+        SpawnedJoiningPlanets = new List<SpawnedPlanet>();
 
-        // Sort planet data by planet size
-        List<SO_Planet> sortedList = new List<SO_Planet>(LevelToLoad);
-        sortedList.Sort((SO_Planet p1, SO_Planet p2) => p2.size.CompareTo(p1.size));
-
-        // Calculate planet seperation boundaries
-        int minPlanetSeperation = (3 * sortedList[0].size) + m_MinimumPlanetColliderSeperation;
-        Debug.Log(minPlanetSeperation);
-        int maxPlanetSeperation = minPlanetSeperation + m_MaximumPlanetColliderSeperation - m_MinimumPlanetColliderSeperation;
-
-        // Create spawned planet list and add first planet (STARTER)
-        List<Vector3> spawnedPlanets = new List<Vector3>();
-        spawnedPlanets.Add(new Vector3(0, 0, 0));
-
-        // Add planet to world and remove from list ready for for loop
-        InstantiatePlanet(m_AsteroidStarter, LevelData[0], new Vector3(100, 0, 0));
-        LevelData.Remove(LevelData[0]);
+        // Instantiate Starter Planet
+        SpawnStarterPlanet(starterPlanet);
 
 
-        foreach (var Planet in LevelData)
+        for (int i = 0; i < numberOfPlanets; i++)
         {
-            bool spawnable = false;
-            Vector3 randomPosition = Vector3.zero;
-            while (!spawnable)
+            bool spawned = false;
+            while (!spawned)
             {
-                // Randomly choose planet to spawn from
-                int closestPlanet = Random.Range(0, spawnedPlanets.Count);
-                int largestVector = Random.Range(0, 3);
+                // Select Random planets
+                int rSpawnPlanet = Random.Range(0, SpawnedPlanets.Count);
+                int rJoiningPlanet = Random.Range(0, joiningPlanets.Count);
+                int rPlanet = Random.Range(0, planets.Count);
+                rPlanet = i < planets.Count ? i : rPlanet;
 
-                int[] randomValues = new int[] {
-                    Random.Range(0, minPlanetSeperation),
-                    Random.Range(0, minPlanetSeperation),
-                    Random.Range(0, minPlanetSeperation)
-                };
+                // Get Planet Data
+                SO_Planet joiningData = joiningPlanets[rJoiningPlanet];
+                SO_Planet planetData = planets[rPlanet];
 
-                randomValues[largestVector] = Random.Range(minPlanetSeperation + 1, maxPlanetSeperation);
+                Debug.Log("THIS -----> " + SpawnedPlanets[rSpawnPlanet].Size);
 
-                randomPosition = spawnedPlanets[closestPlanet] + new Vector3(randomValues[0], randomValues[1], randomValues[2]);
-
-                // Check position against positions of spawned planets
-                foreach (Vector3 spawnedVector in spawnedPlanets)
+                // Create random vector for joining planet
+                Vector3 joiningOrigin = RandomSpawnPoint(SpawnedPlanets[rSpawnPlanet], joiningData.size, true);
+                
+                // Check if it is a spawnable vector
+                if (IsSpawnable(joiningOrigin, joiningData.size))
                 {
-                    if (Vector3.Distance(randomPosition, spawnedVector) > minPlanetSeperation)
+                    SpawnedPlanet joiningPlanet = new SpawnedPlanet(joiningOrigin, joiningData.size);
+                    
+                    // Repeat for the spawning planet
+                    Vector3 planetOrigin = RandomSpawnPoint(joiningPlanet, planetData.size, false);
+
+                    if (IsSpawnable(planetOrigin, planetData.size))
                     {
-                        spawnable = true;
-                    } 
-                    else
-                    {
-                        spawnable = false;
-                        break;
+                        SpawnedPlanet planet = new SpawnedPlanet(planetOrigin, planetData.size);
+
+                        // Spawn Planets
+                        SpawnPlanet(m_Astroid, joiningData, joiningOrigin);
+                        SpawnPlanet(m_Astroid, planetData, planetOrigin);
+                        SpawnedJoiningPlanets.Add(joiningPlanet);
+                        SpawnedPlanets.Add(planet);
+
+                        // End Loop
+                        spawned = true;
                     }
                 }
             }
-            InstantiatePlanet(m_Astroid, Planet, randomPosition);
-            spawnedPlanets.Add(randomPosition);
         }
-
         return true;
     }
 
     // Function to add planet to game world
-    private void InstantiatePlanet(GameObject asteroid, SO_Planet data, Vector3 position)
+    private void SpawnPlanet(GameObject asteroid, SO_Planet data, Vector3 position)
     {
         // Check gameobject is not null
         if (asteroid)
         {
             GameObject toSpawn = Instantiate(asteroid, position, new Quaternion(), this.transform);
             toSpawn.GetComponent<S_Astroid>().SetSizeOfAstroid(data);
+            Debug.Log("Size of Asteroid - " + data.size);
         }
     }
+
+
+    // Method that builds starter planet
+    private void SpawnStarterPlanet(SO_Planet starterPlanet)
+    {
+        SpawnPlanet(m_AsteroidStarter, starterPlanet, new Vector3(0, 0, 0));
+        SpawnedPlanets.Add(new SpawnedPlanet(new Vector3(0, 0, 0), starterPlanet.size));
+    }
+
+
+    // Method that checks a possible spawn against all existing spawned planets
+    private bool IsSpawnable(Vector3 spawnPosition, int planetSize)
+    {
+        // Combine spawned list
+        List<SpawnedPlanet> combined = new List<SpawnedPlanet>(SpawnedPlanets);
+        combined.AddRange(SpawnedJoiningPlanets);
+
+        foreach (SpawnedPlanet sp in combined)
+        {
+            int minSep = sp.Size + planetSize + m_JoiningPlanetSeperation;
+
+            if (Vector3.Distance(sp.Origin, spawnPosition) < minSep)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private Vector3 RandomSpawnPoint(SpawnedPlanet spawnPlanet, int size, bool isJoining)
+    {
+        Debug.Log("Random Spawn Point");
+
+        int minSep = spawnPlanet.Size + size;
+        int maxSep = minSep + m_MaximumPlanetColliderSeperation;
+
+        Debug.Log("Min Sep - " + minSep);
+        Debug.Log("Max Sep - " + maxSep);
+
+        int rAxis = Random.Range(0, 3);
+        int[] rVals = new int[] {
+            Random.Range(-minSep, minSep), Random.Range(-minSep, minSep), Random.Range(-minSep, minSep)
+        };
+
+        if (isJoining) rVals[rAxis] = ((Random.Range(0, 2) * 2) - 1) * (minSep + m_JoiningPlanetSeperation);
+        else rVals[rAxis] = ((Random.Range(0, 2) * 2) - 1) * Random.Range(minSep + m_MinimumPlanetColliderSeperation, maxSep);
+
+        Debug.Log("Value moved - " + rVals[rAxis]);
+        return spawnPlanet.Origin + new Vector3(rVals[0], rVals[1], rVals[2]);
+    }
+}
+
+
+// Helper class for storing spawned planets
+public class SpawnedPlanet {
+
+    public Vector3 Origin { get; }
+    public int Size { get; }
+
+    public SpawnedPlanet(Vector3 planetOrigin, int planetSize)
+    {
+        Origin = planetOrigin;
+        Size = planetSize;
+    }
+
 }

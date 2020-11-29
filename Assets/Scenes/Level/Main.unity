@@ -154,8 +154,8 @@ MonoBehaviour:
     type: 3}
   m_AsteroidStarter: {fileID: 5527108166619824741, guid: 3bd1b113865ce5847b9f7d00907300ff,
     type: 3}
-  m_MinimumPlanetColliderSeperation: 50
-  m_MaximumPlanetColliderSeperation: 250
+  m_MinimumPlanetColliderSeperation: 25
+  m_MaximumPlanetColliderSeperation: 100
 --- !u!4 &339079568
 Transform:
   m_ObjectHideFlags: 0
