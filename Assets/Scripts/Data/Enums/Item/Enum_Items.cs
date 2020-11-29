@@ -6,6 +6,8 @@ public enum Enum_Items
     Iron = 2,
     Titanium = 3,
 
+    Junk = 50,
+
     Electricity = 100,
 
     Upgrade_Pack_1 = 3000,

@@ -5,7 +5,6 @@ using TMPro;
 
 public class S_MachineGatherer : S_MachineBase
 {
-
     private void ToggleMachineOnOff()
     {
         if (MachineRunning)
@@ -51,11 +50,12 @@ public class S_MachineGatherer : S_MachineBase
             foreach (var ResourceInList in MachineData.ItemsCanProcess[0].itemList.RawList)
             {
                 // TODO: Get items that can be harvested off planet
-                if (ResourceInList.ItemData.Rarity > Random.Range(1, 5)) // Rarity chance that you get this resource
-                {
-                    CL_Resource ResourceToAdd = new CL_Resource(ResourceInList.ItemData.ResourceName, MachineData.AmountCanProcess);
-                    ref_GameController.GameData.AddResource(ResourceToAdd);
-                }
+                //if (ResourceInList.ItemData.Rarity > Random.Range(1, 5)) // Rarity chance that you get this resource
+                //{
+                //    
+                //}
+                CL_Resource ResourceToAdd = new CL_Resource(ResourceInList.ItemData.ResourceName, MachineData.AmountCanProcess);
+                ref_GameController.GameData.AddResource(ResourceToAdd);
             }
         }
         else

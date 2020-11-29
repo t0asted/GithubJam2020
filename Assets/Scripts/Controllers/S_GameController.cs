@@ -24,7 +24,7 @@ public class S_GameController : MonoBehaviour
     [SerializeField]
     private UnityEvent OnStartDebugJames;
     [SerializeField]
-    private List<CL_Level> Planets;
+    private List<SO_Planet> Planets;
     [SerializeField]
     private CL_Character CharacterData = null;
 
