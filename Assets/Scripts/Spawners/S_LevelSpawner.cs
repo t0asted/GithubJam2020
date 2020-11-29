@@ -95,8 +95,7 @@ public class S_LevelSpawner : MonoBehaviour
         if (asteroid)
         {
             GameObject toSpawn = Instantiate(asteroid, position, new Quaternion(), this.transform);
-            toSpawn.GetComponent<S_Astroid>().SetSizeOfAstroid(data);
-            Debug.Log("Size of Asteroid - " + data.size);
+            toSpawn.GetComponent<S_Astroid>().SendData(data);
         }
     }
 
