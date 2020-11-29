@@ -36,7 +36,6 @@ public class S_MachineInteraction : MonoBehaviour
         }
     }
 
-
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log(other.gameObject.name);
@@ -46,5 +45,17 @@ public class S_MachineInteraction : MonoBehaviour
         }
     }
 
+    private void OnTriggerExit(Collider other)
+    {
+        if(MachineFound != null)
+        {
+            Debug.Log(other.gameObject.name);
+            if (other.gameObject.GetComponent<S_MachineBase>() == MachineFound)
+            {
+                MachineFound.Interactable = false;
+                MachineFound = null;
+            }
+        }
+    }
 
 }

@@ -15,4 +15,8 @@ MonoBehaviour:
   RawList: []
   ItemList: []
   PartList: []
-  MachineList: []
+  MachineList:
+  - Quantity: 1
+    ItemData: {fileID: 11400000, guid: c7ad1038b9e40d340849ca1fa492ced9, type: 2}
+  - Quantity: 1
+    ItemData: {fileID: 11400000, guid: 2150cef80d157bd4ab4e88946ee58fde, type: 2}

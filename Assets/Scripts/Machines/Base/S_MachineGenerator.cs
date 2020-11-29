@@ -4,47 +4,71 @@ using UnityEngine;
 
 public class S_MachineGenerator : S_MachineBase
 {
-    private SO_Part PartToBuild;
-    private SO_Item ItemToBuild;
+    private List<CL_ItemConstructable> BuildQueue = null;
+
+    public GameObject BuiltMachine = null;
+
+    private bool building = false;
 
     public void Process()
     {
         // Get resources on planet
         // if not on planet look in storage
 
-        if(MachineRunning)
+        if (MachineRunning && enum_ItemBuilding() != Enum_Items.None)
         {
-            if (ref_GameController.GameData.Storage.HasResource(ItemBuilding()))
+            if(BuiltMachine == null)
             {
-
+                if (ref_GameController.GameData.Storage.HasResource(ItemBuilding()))
+                {
+                    building = true;
+                }
+            }
+            else
+            {
+                Debug.Log("You need to take your new machine out first!");
             }
         }
 
         //ref_GameController.GameData.Storage.TakeResources(MachineData.ItemsCanProcess);
     }
 
+    public void SetBuilding()
+    {
+
+    }
+
+    public void AddToQueue(CL_ItemConstructable ItemToAdd)
+    {
+        if (BuildQueue.Count > 0)
+        {
+            CL_ItemConstructable ItemFound = BuildQueue.Find(f => f.ResourceName == ItemToAdd.ResourceName);
+
+            if(ItemFound != null)
+            {
+                ItemFound.Quantity += ItemToAdd.Quantity;
+            }
+            else
+            {
+                BuildQueue.Add(ItemToAdd);
+            }
+        }
+    }
+
     private List<CL_Resource> ItemBuilding()
     {
-        if (PartToBuild != null)
+        if (BuildQueue.Count > 0)
         {
-            return PartToBuild.CostToBuild;
-        }
-        if (ItemToBuild != null)
-        {
-            return ItemToBuild.CostToBuild;
+            return BuildQueue[0].CostToBuild;
         }
         return null;
     }
 
     private Enum_Items enum_ItemBuilding()
     {
-        if (PartToBuild != null)
+        if (BuildQueue.Count > 0)
         {
-            return PartToBuild.ResourceName;
-        }
-        if (ItemToBuild != null)
-        {
-            return ItemToBuild.ResourceName;
+            return BuildQueue[0].ResourceName;
         }
         return Enum_Items.None;
     }

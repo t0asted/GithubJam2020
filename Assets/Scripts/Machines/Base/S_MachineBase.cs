@@ -15,11 +15,11 @@ public class S_MachineBase : MonoBehaviour
     [SerializeField]
     private GameObject UIToolTip;
     [SerializeField]
-    private S_OpenCloseUIScene SceneOpenCloser;
+    private UnityEvent OnInteract;
+    [SerializeField]
+    private UnityEvent OnUnInteract;
     public bool Interactable;
     public bool Interacting;
-
-    public S_RocketUI ToSendDataTo = null;
 
     private void Start()
     {
@@ -50,13 +50,13 @@ public class S_MachineBase : MonoBehaviour
     public void Interact()
     {
         Interacting = true;
-        SceneOpenCloser.OpenScene();
+        OnInteract.Invoke();
     }
 
     public void UnInteract()
     {
         Interacting = false;
-        SceneOpenCloser.CloseScene();
+        OnUnInteract.Invoke();
     }
 
     public void ToggleRunning()
@@ -80,12 +80,15 @@ public class S_MachineBase : MonoBehaviour
 
     public bool CanLevelUp()
     {
-        if (MachineData.Level == 1)
-            return ref_GameController.GameData.Storage.HasResource(new CL_Resource(Enum_Items.Upgrade_Pack_1, 1));
-        else if (MachineData.Level == 2)
-            return ref_GameController.GameData.Storage.HasResource(new CL_Resource(Enum_Items.Upgrade_Pack_2, 1));
-
-        return MachineData.Level >= 3;
+        if(MachineData.CanLevelUp)
+        {
+            if (MachineData.Level == 1)
+                return ref_GameController.GameData.Storage.HasResource(new CL_Resource(Enum_Items.Upgrade_Pack_1, 1));
+            else if (MachineData.Level == 2)
+                return ref_GameController.GameData.Storage.HasResource(new CL_Resource(Enum_Items.Upgrade_Pack_2, 1));
+            return MachineData.Level >= 3;
+        }
+        return false;
     }
 
 }

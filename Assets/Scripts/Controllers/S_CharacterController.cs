@@ -27,6 +27,7 @@ public class S_CharacterController : MonoBehaviour
     [SerializeField]
     private Transform m_Target;
 
+    public S_PlaceMachine m_MachinePlacer;
     public S_MachineInteraction Interactor = null;
 
 
@@ -34,7 +35,7 @@ public class S_CharacterController : MonoBehaviour
     private Rigidbody rb;
     private Vector3 MoveDirection;
     private Vector3 SmoothVelocity;
-    private bool interacting;
+    public bool interacting;
     private S_GravityController GC;
     private bool GroundAnimate = false;
 
@@ -42,13 +43,16 @@ public class S_CharacterController : MonoBehaviour
     {
         Animate = gameObject.GetComponentInChildren<Animator>();
         rb = gameObject.GetComponent<Rigidbody>();
-        Cursor.lockState = CursorLockMode.Locked;
         GC = GetComponent<S_GravityController>();
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+
         if (!interacting)
         {
             if (GC.HasPlanet())
@@ -73,7 +77,6 @@ public class S_CharacterController : MonoBehaviour
     {
         if (!interacting)
         {
-            //MovePlayer();
             if (GC.HasPlanet())
             {
                 MovePlayerGrounded();
@@ -87,6 +90,7 @@ public class S_CharacterController : MonoBehaviour
 
     public void SetInteracting(bool interactingPass)
     {
+        Cursor.lockState = interactingPass ? CursorLockMode.Confined : CursorLockMode.Locked;
         interacting = interactingPass;
         Cursor.visible = interactingPass;
     }

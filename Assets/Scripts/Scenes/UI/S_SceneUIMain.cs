@@ -4,5 +4,4 @@ using UnityEngine;
 
 public class S_SceneUIMain : S_OpenCloseUIScene
 {
-
 }

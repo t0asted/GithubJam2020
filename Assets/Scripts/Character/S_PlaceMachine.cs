@@ -11,13 +11,13 @@ public class S_PlaceMachine : MonoBehaviour
     [SerializeField]
     private Transform characterDirection;
 
-    private GameObject MachineToSpawn;
+    private GameObject MachineToSpawn = null;
     private GameObject NewMachine = null;
     public bool HasItemToPlace = false;
 
     public void NewMachineToPlace(GameObject NewMachinePass)
     {
-        NewMachine = NewMachinePass;
+        MachineToSpawn = NewMachinePass;
     }
 
     private void Update()

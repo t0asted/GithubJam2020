@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class CL_Machine 
+public class CL_Machine
 {
     [SerializeField]
     public List<SO_ItemList> ItemsCanProcess = new List<SO_ItemList>();
@@ -14,8 +14,9 @@ public class CL_Machine
     public int AmountCanProcess = 1;
 
     public int Level = 1;
+    public bool CanLevelUp = true;
 
-    private CL_Storage ResourcesCollected;
+    public CL_Storage ResourcesCollected;
 
     public CL_Machine()
     {
@@ -23,11 +24,11 @@ public class CL_Machine
         ProcessSpeed = 1;
         AmountCanProcess = 1;
     }
-    
+
     public string ResourceContent()
     {
         string text = "";
-        if(ResourcesCollected != null)
+        if (ResourcesCollected != null)
             foreach (var item in ResourcesCollected.ResourceList)
                 text = text + item.ResourceName + " : " + item.Quantity + "\n";
         return text;
@@ -35,7 +36,8 @@ public class CL_Machine
 
     public void LevelUp()
     {
-        Level += 1;
+        if (CanLevelUp)
+            Level += 1;
     }
 
 }
