@@ -14,9 +14,9 @@ public class S_CameraController : MonoBehaviour
     [SerializeField]
     private float distance = 5.0f;
     [SerializeField]
-    private float xSpeed = 80.0f;
+    private float xSpeed = 1f;
     [SerializeField]
-    private float ySpeed = 80.0f;
+    private float ySpeed = 1f;
 
     [SerializeField]
     private float yMinLimit = -30f;
@@ -52,8 +52,8 @@ public class S_CameraController : MonoBehaviour
 
         if (CameraArm)
         {
-            x += Input.GetAxis("Mouse X") * xSpeed * distance * Time.deltaTime;
-            y -= Input.GetAxis("Mouse Y") * ySpeed * Time.deltaTime;
+            x += Input.GetAxis("Mouse X") * xSpeed * distance;
+            y -= Input.GetAxis("Mouse Y") * ySpeed;
             y = ClampAngle(y, yMinLimit, yMaxLimit);
 
             Quaternion rotation = Quaternion.Euler(y, x, 0);
