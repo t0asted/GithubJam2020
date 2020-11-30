@@ -9,16 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bdf887c4b62c9d34eb7e22e584415e40, type: 3}
-  m_Name: Upgrade Jetpack
+  m_Script: {fileID: 11500000, guid: 93a68cef3f98bf5458d97f54b2e9a097, type: 3}
+  m_Name: Machine Extractor
   m_EditorClassIdentifier: 
-  ResourceName: 502
+  ResourceName: 1003
   Quantity: 1
-  TimeToBuild: 1
+  TimeToBuild: 60
   CostToBuild:
-  - ResourceName: 500
-    Quantity: 1
-  - ResourceName: 9
+  - ResourceName: 2
     Quantity: 50
-  - ResourceName: 202
-    Quantity: 4
+  - ResourceName: 3
+    Quantity: 50
+  PrefabForMachine: {fileID: 6822175174762165712, guid: 48d67926cd7c6514ba40bacb822504d4,
+    type: 3}

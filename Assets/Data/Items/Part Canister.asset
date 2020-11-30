@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Part Canister
   m_EditorClassIdentifier: 
   ResourceName: 202
-  Quantity: 0
+  Quantity: 1
   TimeToBuild: 1
   CostToBuild:
   - ResourceName: 2

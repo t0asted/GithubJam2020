@@ -50,6 +50,13 @@ public enum Enum_Items
     Machine_Synthesiser = 1009,
     Machine_Storage = 1010,
 
+    // Ship Repair
+    Ship_Damage = 2001,
+    Ship_Heat_Shield = 2002,
+    Ship_Life_Support = 2003,
+    Ship_Fuel_Tanks = 2004,
+    Ship_Fuel = 2005
+
     //Junk = 50,
 
     //Electricity = 100,

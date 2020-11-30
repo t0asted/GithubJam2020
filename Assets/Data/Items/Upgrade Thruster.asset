@@ -12,7 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdf887c4b62c9d34eb7e22e584415e40, type: 3}
   m_Name: Upgrade Thruster
   m_EditorClassIdentifier: 
-  ResourceName: 0
-  Quantity: 0
+  ResourceName: 503
+  Quantity: 1
   TimeToBuild: 1
-  CostToBuild: []
+  CostToBuild:
+  - ResourceName: 501
+    Quantity: 1
+  - ResourceName: 1
+    Quantity: 50
+  - ResourceName: 202
+    Quantity: 2

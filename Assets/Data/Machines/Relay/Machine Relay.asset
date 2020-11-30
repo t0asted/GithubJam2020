@@ -9,16 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bdf887c4b62c9d34eb7e22e584415e40, type: 3}
-  m_Name: Upgrade Jetpack
+  m_Script: {fileID: 11500000, guid: 93a68cef3f98bf5458d97f54b2e9a097, type: 3}
+  m_Name: Machine Relay
   m_EditorClassIdentifier: 
-  ResourceName: 502
+  ResourceName: 1008
   Quantity: 1
-  TimeToBuild: 1
+  TimeToBuild: 90
   CostToBuild:
   - ResourceName: 500
     Quantity: 1
-  - ResourceName: 9
-    Quantity: 50
-  - ResourceName: 202
-    Quantity: 4
+  - ResourceName: 50
+    Quantity: 10
+  PrefabForMachine: {fileID: 3892862337426636529, guid: 54f08d8a2d6c9a543abb53c7f256d6d1,
+    type: 3}
