@@ -302,20 +302,17 @@ MonoBehaviour:
   MachineRunning: 1
   TextToShowContent: {fileID: 0}
   UIToolTip: {fileID: 0}
-  OnInteract:
-    m_PersistentCalls:
-      m_Calls: []
-  OnUnInteract:
-    m_PersistentCalls:
-      m_Calls: []
+  UIMachine: {fileID: 4620190239933410520}
+  UILighting: {fileID: 95858689887387831}
   Interactable: 0
   Interacting: 0
+  Placed: 0
   ItemsCanGenerate: []
   MachinesCanGenerate:
   - {fileID: 11400000, guid: 5559ff812f28b444bb4b97273f47fb0e, type: 2}
   - {fileID: 11400000, guid: 7632645963038f048bdef911a49191a3, type: 2}
   - {fileID: 11400000, guid: 74454c4dd40df804194023ec1652feaa, type: 2}
-  Constructing: {fileID: 0}
+  BuildQueue: []
   BuiltMachine: {fileID: 0}
 --- !u!1 &8865732139018275768
 GameObject:
@@ -522,3 +519,27 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 5267742372916958189}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4620190239933410520 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 649909555304087349, guid: 88ed57d42dd02c742a5c21a4f509b5e3,
+    type: 3}
+  m_PrefabInstance: {fileID: 5267742372916958189}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22cebab1041a4a849a5058f15bae037e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &95858689887387831 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5210182354896835418, guid: 88ed57d42dd02c742a5c21a4f509b5e3,
+    type: 3}
+  m_PrefabInstance: {fileID: 5267742372916958189}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22cebab1041a4a849a5058f15bae037e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

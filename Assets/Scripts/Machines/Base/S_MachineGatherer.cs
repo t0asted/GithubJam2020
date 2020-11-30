@@ -23,20 +23,6 @@ public class S_MachineGatherer : S_MachineBase
         }
     }
 
-    private void ToggleMachineOnOff()
-    {
-        if (MachineRunning)
-        {
-            InvokeRepeating("RunMachine", 1f, 1f);
-            MachineRunning = !MachineRunning;
-        }
-        else
-        {
-            CancelInvoke("RunMachine");
-            MachineRunning = !MachineRunning;
-        }
-    }
-
     private void ToggleMachineOnOff(bool TurnOnOff)
     {
         if (TurnOnOff)
@@ -63,26 +49,16 @@ public class S_MachineGatherer : S_MachineBase
 
     public void Process()
     {
-        Debug.Log("Process?");
-
         if (PlanetResourcesGatherable.Count > 0)
         {
-            Debug.Log("YES?");
             foreach (var PlanetResourceToGather in PlanetResourcesGatherable)
             {
-                Debug.Log("FOREACH");
-
                 if (PlanetResourceToGather.Rarity > Random.Range(1, 5)) // Rarity chance that you get this resource
                 {
-                    Debug.Log("Processing");
                     CL_Resource ResourceToAdd = new CL_Resource(PlanetResourceToGather.ResourceName, MachineData.AmountCanProcess);
                     ref_GameController.GameData.AddResource(ResourceToAdd);
                 }
             }
-        }
-        else
-        {
-            Debug.Log("Resources Can Collect Are Empty!");
         }
     }
 
@@ -94,18 +70,13 @@ public class S_MachineGatherer : S_MachineBase
         {
             foreach (var ResourceThatMachineCanCollect in ItemsCanProcess[i].RawList)
             {
-                Debug.Log(AstroidData.PlanetData);
-                Debug.Log(ItemsCanProcess[i].RawList);
                 CL_PlanetData ResourceFound = AstroidData.PlanetData.Find(f => f.ResourceName == ResourceThatMachineCanCollect.ItemData.ResourceName);
-
                 if (ResourceFound != null)
                 {
                     resourcesCanBeGathered.Add(ResourceFound);
                 }
-                // TODO: Get items that can be harvested off planet
             }
         }
-
         return resourcesCanBeGathered;
     }
 

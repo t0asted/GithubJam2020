@@ -283,6 +283,38 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!114 &359456405044304567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6807490328256853650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf8a31d1af17ddd4684e08192199a422, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ref_GameController: {fileID: 0}
+  MachineData:
+    ProcessSpeed: 1
+    AmountCanProcess: 1
+    Level: 1
+    CanLevelUp: 1
+  MachineRunning: 1
+  TextToShowContent: {fileID: 6234494506964883741}
+  UIToolTip: {fileID: 961019774065626036}
+  UIMachine: {fileID: 3950009959537845631}
+  UILighting: {fileID: 8618756444552448272}
+  Interactable: 0
+  Interacting: 0
+  Placed: 1
+  ItemsCanGenerate: []
+  MachinesCanGenerate:
+  - {fileID: 11400000, guid: 5ba95219fbe32ff4383423f8b9f93c6a, type: 2}
+  BuildQueue: []
+  BuiltMachine: {fileID: 0}
+  ToFixRocket: {fileID: 11400000, guid: 097aa024385902a45a33b564deb3b2d3, type: 2}
 --- !u!1 &4660454043371588893
 GameObject:
   m_ObjectHideFlags: 0
@@ -316,86 +348,6 @@ Transform:
   m_Father: {fileID: 7498877078012273213}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &359456405044304567
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6807490328256853650}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf8a31d1af17ddd4684e08192199a422, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ref_GameController: {fileID: 0}
-  MachineData:
-    ProcessSpeed: 1
-    AmountCanProcess: 1
-    Level: 1
-    CanLevelUp: 1
-  MachineRunning: 1
-  TextToShowContent: {fileID: 6234494506964883741}
-  UIToolTip: {fileID: 961019774065626036}
-  OnInteract:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3950009959537845631}
-        m_MethodName: OpenScene
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 8618756444552448272}
-        m_MethodName: OpenScene
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnUnInteract:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3950009959537845631}
-        m_MethodName: CloseScene
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 8618756444552448272}
-        m_MethodName: CloseScene
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  Interactable: 0
-  Interacting: 0
-  Placed: 1
-  ItemsCanGenerate: []
-  MachinesCanGenerate:
-  - {fileID: 11400000, guid: 5ba95219fbe32ff4383423f8b9f93c6a, type: 2}
-  Constructing: {fileID: 0}
-  BuiltMachine: {fileID: 0}
-  ToFixRocket: {fileID: 11400000, guid: 097aa024385902a45a33b564deb3b2d3, type: 2}
 --- !u!1 &8215000673692102383
 GameObject:
   m_ObjectHideFlags: 0

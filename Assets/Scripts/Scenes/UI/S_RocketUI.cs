@@ -7,54 +7,26 @@ public class S_RocketUI : S_InGameMenuBase
 {
     private S_Rocket Rocket = null;
 
-    private void Start()
+    new void Start()
     {
-        if (GameObject.Find("_GameController") != null)
+        base.Start();
+        if (MachineGenerator is S_Rocket)
         {
-            ref_GameController = GameObject.Find("_GameController").GetComponent<S_GameController>();
+            Rocket = (S_Rocket)MachineGenerator;
         }
-        else
-        {
-            Debug.Log("No Game controller!");
-        }
-
-        if (ref_GameController.CharacterController.Interactor.MachineFound != null)
-        {
-            //MachineData = ref_GameController.CharacterController.Interactor.MachineFound;
-            MachineGenerator = (S_MachineGenerator)ref_GameController.CharacterController.Interactor.MachineFound;
-            if (MachineGenerator is S_Rocket)
-            {
-                Rocket = (S_Rocket)MachineGenerator;
-            }
-            SetupData();
-        }
-    }
-
-    public void DebugAddMachine(GameObject MachineTest)
-    {
-        Rocket.BuiltMachine = MachineTest;
-    }
-
-    private void Update()
-    {
-        if (Rocket != null)
-        {
-            SetTexts();
-        }
-    }
-
-    private void SetTexts()
-    {
-        if (MachineOnOff != null)
-        {
-            MachineOnOff.SetText(Rocket.MachineRunning ? "Rocket is running" : "Rocket is off");
-        }
+        SetupData();
     }
 
     private void SetupData()
     {
         SpawnConstructable();
         SpawnInventoryItems();
+        SpawnBuildQueue();
+    }
+
+    public void DebugAddMachine(GameObject MachineTest)
+    {
+        Rocket.BuiltMachine = MachineTest;
     }
 
     public void Btn_AddAvailbleItemsToFix()

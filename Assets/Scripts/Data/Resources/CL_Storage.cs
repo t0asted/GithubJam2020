@@ -145,7 +145,7 @@ public class CL_Storage
 
                 if (ResourceFound != null)
                 {
-                    if (ResourceFound.Quantity > itemToTake.Quantity)
+                    if (ResourceFound.Quantity >= itemToTake.Quantity)
                     {
                         continue;
                     }

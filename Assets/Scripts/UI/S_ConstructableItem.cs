@@ -26,7 +26,7 @@ public class S_ConstructableItem : MonoBehaviour
         }
         if(m_TextConstructableItem != null)
         {
-            m_TextConstructableItem.SetText(Data.ResourceName.ToString());
+            m_TextConstructableItem.SetText(Data.ResourceName.ToString() + " " + Data.Quantity);
         }
     }
 
