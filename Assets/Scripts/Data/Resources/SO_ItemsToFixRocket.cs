@@ -4,7 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Data/Item/Items To Repair")]
 public class SO_ItemsToFixRocket : ScriptableObject
 {
-    public List<ItemList> ItemList = new List<ItemList>();
+    public List<CL_ItemToFixRocket> ItemList = new List<CL_ItemToFixRocket>();
 }
 
 [System.Serializable]
