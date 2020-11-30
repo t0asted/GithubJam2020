@@ -356,12 +356,12 @@ MonoBehaviour:
         m_CallState: 2
   Interactable: 0
   Interacting: 0
+  Placed: 1
   ItemsCanGenerate: []
-  MachinesCanGenerate:
-  - {fileID: 11400000, guid: 5ba95219fbe32ff4383423f8b9f93c6a, type: 2}
+  MachinesCanGenerate: []
   Constructing: {fileID: 0}
   BuiltMachine: {fileID: 0}
-  ToFixRocket: {fileID: 11400000, guid: 097aa024385902a45a33b564deb3b2d3, type: 2}
+  ToFixRocket: {fileID: 0}
 --- !u!1 &4660454043371588893
 GameObject:
   m_ObjectHideFlags: 0

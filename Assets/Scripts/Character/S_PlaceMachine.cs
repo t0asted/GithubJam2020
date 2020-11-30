@@ -28,6 +28,10 @@ public class S_PlaceMachine : MonoBehaviour
             PlaceMachine();
             if (Input.GetKey("j") && MachineToSpawn != null)
             {
+                if(NewMachine.GetComponent<S_MachineBase>())
+                {
+                    NewMachine.GetComponent<S_MachineBase>().Place();
+                }
                 if (NewMachine.GetComponent<S_MachineGatherer>() != null)
                 {
                     NewMachine.GetComponent<S_MachineGatherer>().AstroidData = AstroidOn.GetComponent<S_Astroid>().LevelData;
