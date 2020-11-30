@@ -1,5 +1,39 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &280133460092074180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6822175174762165712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d89f94032756a23458acfb3aec20e154, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ref_GameController: {fileID: 0}
+  MachineData:
+    ProcessSpeed: 1
+    AmountCanProcess: 1
+    Level: 1
+    CanLevelUp: 1
+  MachineRunning: 1
+  TextToShowContent: {fileID: 0}
+  UIToolTip: {fileID: 0}
+  OnInteract:
+    m_PersistentCalls:
+      m_Calls: []
+  OnUnInteract:
+    m_PersistentCalls:
+      m_Calls: []
+  Interactable: 0
+  Interacting: 0
+  AstroidData: {fileID: 0}
+  ItemsCanProcess:
+  - {fileID: 11400000, guid: 1fc3d1d4b1b708c4785a7422cdb4d941, type: 2}
+  - {fileID: 11400000, guid: fbe7f875a6ca63d459fe744dcb9b8333, type: 2}
+  - {fileID: 11400000, guid: 7c96eac3eec1fc742b8a03d751ab841d, type: 2}
 --- !u!1001 &4540081571374160136
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -65,7 +99,13 @@ PrefabInstance:
     - target: {fileID: 7038176306342800600, guid: 88ed57d42dd02c742a5c21a4f509b5e3,
         type: 3}
       propertyPath: m_Name
-      value: _Base Machine
+      value: Machine Extractor
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 88ed57d42dd02c742a5c21a4f509b5e3, type: 3}
+--- !u!1 &6822175174762165712 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7038176306342800600, guid: 88ed57d42dd02c742a5c21a4f509b5e3,
+    type: 3}
+  m_PrefabInstance: {fileID: 4540081571374160136}
+  m_PrefabAsset: {fileID: 0}

@@ -281,7 +281,7 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
---- !u!114 &5555180220654835957
+--- !u!114 &361955649327631969
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -290,7 +290,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2933646319322873653}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e0e0029d705bfa43acb1ce7622ad676, type: 3}
+  m_Script: {fileID: 11500000, guid: a689beabd1073b846a370db5716e0ced, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ref_GameController: {fileID: 0}
@@ -299,7 +299,7 @@ MonoBehaviour:
     AmountCanProcess: 1
     Level: 1
     CanLevelUp: 1
-  MachineRunning: 0
+  MachineRunning: 1
   TextToShowContent: {fileID: 0}
   UIToolTip: {fileID: 0}
   OnInteract:
@@ -310,11 +310,11 @@ MonoBehaviour:
       m_Calls: []
   Interactable: 0
   Interacting: 0
-  ItemsCanProcess:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  ItemsCanGenerate: []
+  MachinesCanGenerate:
+  - {fileID: 11400000, guid: 5559ff812f28b444bb4b97273f47fb0e, type: 2}
+  - {fileID: 11400000, guid: 7632645963038f048bdef911a49191a3, type: 2}
+  - {fileID: 11400000, guid: 74454c4dd40df804194023ec1652feaa, type: 2}
   Constructing: {fileID: 0}
   BuiltMachine: {fileID: 0}
 --- !u!1 &8865732139018275768

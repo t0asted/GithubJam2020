@@ -10,6 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b475f6faa59f8d4449c09bbb48142be0, type: 3}
-  m_Name: Machine Upgrade Fabricator Upgrade
+  m_Name: Machine Upgrade Fabricator Upgrade 1
   m_EditorClassIdentifier: 
-  ItemList: []
+  ItemList:
+  - ItemData: {fileID: 11400000, guid: 5c498511f4eb3db44a698779864986de, type: 2}
+  - ItemData: {fileID: 11400000, guid: 0576e6a893cf5654dbd6501f7fccea93, type: 2}

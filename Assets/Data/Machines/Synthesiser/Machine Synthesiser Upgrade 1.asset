@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b475f6faa59f8d4449c09bbb48142be0, type: 3}
   m_Name: Machine Synthesiser Upgrade 1
   m_EditorClassIdentifier: 
-  ItemList: []
+  ItemList:
+  - ItemData: {fileID: 11400000, guid: 157aec344e6355440b5b1164b66f4b5d, type: 2}

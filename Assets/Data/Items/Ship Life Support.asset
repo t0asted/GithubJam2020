@@ -12,7 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdf887c4b62c9d34eb7e22e584415e40, type: 3}
   m_Name: Ship Life Support
   m_EditorClassIdentifier: 
-  ResourceName: 0
-  Quantity: 0
-  TimeToBuild: 1
-  CostToBuild: []
+  ResourceName: 2003
+  Quantity: 1
+  TimeToBuild: 120
+  CostToBuild:
+  - ResourceName: 204
+    Quantity: 2
+  - ResourceName: 50
+    Quantity: 50
+  - ResourceName: 7
+    Quantity: 100
+  - ResourceName: 202
+    Quantity: 10

@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Machine Miner Default
   m_EditorClassIdentifier: 
   RawList:
-  - Quantity: 1
+  - Quantity: 5
     ItemData: {fileID: 11400000, guid: 64c03acdd5ea4774d9ecce14a84301db, type: 2}
-  - Quantity: 1
+  - Quantity: 5
     ItemData: {fileID: 11400000, guid: 0984e142ef0d8d54cbb700b441cffe99, type: 2}
-  - Quantity: 1
+  - Quantity: 5
     ItemData: {fileID: 11400000, guid: 61d58bae7d7dd964bb6ad1b36118a8d9, type: 2}

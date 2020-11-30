@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdf887c4b62c9d34eb7e22e584415e40, type: 3}
   m_Name: Ship Heat Shield
   m_EditorClassIdentifier: 
-  ResourceName: 0
-  Quantity: 0
-  TimeToBuild: 1
-  CostToBuild: []
+  ResourceName: 2002
+  Quantity: 1
+  TimeToBuild: 120
+  CostToBuild:
+  - ResourceName: 201
+    Quantity: 5
+  - ResourceName: 102
+    Quantity: 10

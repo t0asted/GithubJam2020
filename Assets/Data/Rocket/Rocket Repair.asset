@@ -12,4 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b475f6faa59f8d4449c09bbb48142be0, type: 3}
   m_Name: Rocket Repair
   m_EditorClassIdentifier: 
-  ItemList: []
+  ItemList:
+  - ItemData: {fileID: 11400000, guid: 388b0782d0a598e449cbc76891e622a3, type: 2}
+  - ItemData: {fileID: 11400000, guid: 4fbc78a0f1550ee419ac195f9c5368b3, type: 2}
+  - ItemData: {fileID: 11400000, guid: 5f315b3a221dd304e92f13fdfa1830e6, type: 2}
+  - ItemData: {fileID: 11400000, guid: 4a9c547082277fa459c1e53db0f3db2e, type: 2}
+  - ItemData: {fileID: 11400000, guid: c56a004c6cbe41e4296fcd48ac134060, type: 2}

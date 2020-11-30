@@ -12,8 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93a68cef3f98bf5458d97f54b2e9a097, type: 3}
   m_Name: Machine Upgrade Fabricator
   m_EditorClassIdentifier: 
-  ResourceName: 0
-  Quantity: 0
-  TimeToBuild: 1
-  CostToBuild: []
-  PrefabForMachine: {fileID: 0}
+  ResourceName: 1006
+  Quantity: 1
+  TimeToBuild: 60
+  CostToBuild:
+  - ResourceName: 1
+    Quantity: 75
+  - ResourceName: 3
+    Quantity: 25
+  PrefabForMachine: {fileID: 8515921229337256392, guid: 5f2a6ed0be2313b40a48d942beb8c077,
+    type: 3}

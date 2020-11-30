@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &4625578670890153843
+--- !u!114 &7023264176492433456
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -14,17 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ref_GameController: {fileID: 0}
   MachineData:
-    ItemsCanProcess:
-    - {fileID: 0}
-    - {fileID: 0}
     ProcessSpeed: 1
     AmountCanProcess: 1
     Level: 1
     CanLevelUp: 1
-    ResourcesCollected:
-      ResourceList: []
-      StorageSize: 0
-      stack: 1
   MachineRunning: 1
   TextToShowContent: {fileID: 0}
   UIToolTip: {fileID: 0}
@@ -36,6 +29,11 @@ MonoBehaviour:
       m_Calls: []
   Interactable: 0
   Interacting: 0
+  ItemsCanGenerate:
+  - {fileID: 11400000, guid: 0749e71259346c8458eb65ef29610f58, type: 2}
+  - {fileID: 11400000, guid: fa96eb0116d7756458993ae20cb08832, type: 2}
+  MachinesCanGenerate: []
+  Constructing: {fileID: 0}
   BuiltMachine: {fileID: 0}
 --- !u!1001 &6262613836434359150
 PrefabInstance:

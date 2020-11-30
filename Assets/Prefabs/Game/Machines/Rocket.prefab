@@ -297,16 +297,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ref_GameController: {fileID: 0}
   MachineData:
-    ItemsCanProcess:
-    - {fileID: 11400000, guid: b49972ee5e7768749bfa9326b77cc1ab, type: 2}
     ProcessSpeed: 1
     AmountCanProcess: 1
     Level: 1
     CanLevelUp: 1
-    ResourcesCollected:
-      ResourceList: []
-      StorageSize: 0
-      stack: 1
   MachineRunning: 1
   TextToShowContent: {fileID: 6234494506964883741}
   UIToolTip: {fileID: 961019774065626036}
@@ -362,8 +356,12 @@ MonoBehaviour:
         m_CallState: 2
   Interactable: 0
   Interacting: 0
+  ItemsCanGenerate: []
+  MachinesCanGenerate:
+  - {fileID: 11400000, guid: 5ba95219fbe32ff4383423f8b9f93c6a, type: 2}
+  Constructing: {fileID: 0}
   BuiltMachine: {fileID: 0}
-  ToFixRocket: {fileID: 11400000, guid: 5ba95219fbe32ff4383423f8b9f93c6a, type: 2}
+  ToFixRocket: {fileID: 11400000, guid: 097aa024385902a45a33b564deb3b2d3, type: 2}
 --- !u!1 &4660454043371588893
 GameObject:
   m_ObjectHideFlags: 0

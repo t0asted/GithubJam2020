@@ -18,7 +18,7 @@ MonoBehaviour:
   CostToBuild:
   - ResourceName: 1
     Quantity: 75
-  - ResourceName: 3
-    Quantity: 50
+  - ResourceName: 50
+    Quantity: 15
   PrefabForMachine: {fileID: 5923042023189533869, guid: efc83135a03915b4493298d869c4a0b8,
     type: 3}

@@ -12,13 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93a68cef3f98bf5458d97f54b2e9a097, type: 3}
   m_Name: Machine Synthesiser
   m_EditorClassIdentifier: 
-  ResourceName: 1004
+  ResourceName: 1009
   Quantity: 1
-  TimeToBuild: 60
+  TimeToBuild: 120
   CostToBuild:
-  - ResourceName: 2
-    Quantity: 50
-  - ResourceName: 3
-    Quantity: 25
+  - ResourceName: 500
+    Quantity: 1
+  - ResourceName: 50
+    Quantity: 15
+  - ResourceName: 1
+    Quantity: 75
   PrefabForMachine: {fileID: 6512352360826454007, guid: 642558594ef31ec44acbff11485fbd5c,
     type: 3}

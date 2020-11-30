@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Machine Fabricator Default
   m_EditorClassIdentifier: 
   ItemList:
-  - ItemData: {fileID: 0}
-  - ItemData: {fileID: 0}
-  - ItemData: {fileID: 0}
-  - ItemData: {fileID: 0}
+  - ItemData: {fileID: 11400000, guid: c6fd94060c200744d9650d1c7260cf60, type: 2}
+  - ItemData: {fileID: 11400000, guid: e0e88f089af60be418c270308f5c8032, type: 2}
+  - ItemData: {fileID: 11400000, guid: 66ca12f459919da459e973a032a538bf, type: 2}
+  - ItemData: {fileID: 11400000, guid: 9def5b3c5bfbc844a8762075b34654ef, type: 2}
+  - ItemData: {fileID: 11400000, guid: 2150cef80d157bd4ab4e88946ee58fde, type: 2}

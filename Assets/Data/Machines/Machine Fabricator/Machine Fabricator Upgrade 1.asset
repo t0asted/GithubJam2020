@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19bf466e1482e92428aa4a5d4416b58a, type: 3}
   m_Name: Machine Fabricator Upgrade 1
   m_EditorClassIdentifier: 
-  ItemList: []
+  ItemList:
+  - ItemData: {fileID: 11400000, guid: 3798c810558253a4f9ba539cbc726203, type: 2}
