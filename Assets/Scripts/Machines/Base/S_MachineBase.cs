@@ -9,7 +9,7 @@ public class S_MachineBase : MonoBehaviour
     [SerializeField]
     public CL_Machine MachineData = new CL_Machine();
     [SerializeField]
-    public bool MachineRunning = true;
+    public bool MachineRunning = false;
     [SerializeField]
     public TextMeshProUGUI TextToShowContent;
     [SerializeField]
@@ -18,8 +18,9 @@ public class S_MachineBase : MonoBehaviour
     private UnityEvent OnInteract;
     [SerializeField]
     private UnityEvent OnUnInteract;
-    public bool Interactable;
-    public bool Interacting;
+    public bool Interactable = false;
+    public bool Interacting = false;
+    public bool Placed = false;
 
     private void Start()
     {
@@ -35,16 +36,25 @@ public class S_MachineBase : MonoBehaviour
 
     private void Update()
     {
-        //Temp
-        if (TextToShowContent != null)
+        if (Placed)
         {
-            TextToShowContent.text = MachineRunning ? "Machine running" : "Machine is off";
+            //Temp
+            if (TextToShowContent != null)
+            {
+                TextToShowContent.text = MachineRunning ? "Machine running" : "Machine is off";
+            }
+
+            if (UIToolTip.activeInHierarchy != Interactable && !Interacting)
+            {
+                UIToolTip.SetActive(Interactable);
+            }
         }
 
-        if(UIToolTip.activeInHierarchy != Interactable && !Interacting)
-        {
-            UIToolTip.SetActive(Interactable);
-        }
+    }
+
+    public void Place()
+    {
+        Placed = true;
     }
 
     public void Interact()
@@ -80,7 +90,7 @@ public class S_MachineBase : MonoBehaviour
 
     public bool CanLevelUp()
     {
-        if(MachineData.CanLevelUp)
+        if (MachineData.CanLevelUp)
         {
             if (MachineData.Level == 1)
                 return ref_GameController.GameData.Storage.HasResource(new CL_Resource(Enum_Items.Upgrade_Pack_1, 1));

@@ -309,17 +309,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ref_GameController: {fileID: 0}
   MachineData:
-    ItemsCanProcess:
-    - {fileID: 11400000, guid: efd1b192f0fb9934d9ed6b2aa0c34111, type: 2}
-    - {fileID: 11400000, guid: efd1b192f0fb9934d9ed6b2aa0c34111, type: 2}
     ProcessSpeed: 1
     AmountCanProcess: 1
     Level: 1
     CanLevelUp: 1
-    ResourcesCollected:
-      ResourceList: []
-      StorageSize: 0
-      stack: 1
   MachineRunning: 1
   TextToShowContent: {fileID: 8446984437116465039}
   UIToolTip: {fileID: 3380745690045922598}
@@ -331,6 +324,9 @@ MonoBehaviour:
       m_Calls: []
   Interactable: 0
   Interacting: 0
+  Placed: 0
+  AstroidData: {fileID: 0}
+  ItemsCanProcess: []
 --- !u!1001 &2047264549360004312
 PrefabInstance:
   m_ObjectHideFlags: 0
