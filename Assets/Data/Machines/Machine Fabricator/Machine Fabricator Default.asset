@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19bf466e1482e92428aa4a5d4416b58a, type: 3}
+  m_Name: Machine Fabricator Default
+  m_EditorClassIdentifier: 
+  ItemList:
+  - ItemData: {fileID: 11400000, guid: c6fd94060c200744d9650d1c7260cf60, type: 2}
+  - ItemData: {fileID: 11400000, guid: e0e88f089af60be418c270308f5c8032, type: 2}
+  - ItemData: {fileID: 11400000, guid: 66ca12f459919da459e973a032a538bf, type: 2}
+  - ItemData: {fileID: 11400000, guid: 9def5b3c5bfbc844a8762075b34654ef, type: 2}
+  - ItemData: {fileID: 11400000, guid: 2150cef80d157bd4ab4e88946ee58fde, type: 2}

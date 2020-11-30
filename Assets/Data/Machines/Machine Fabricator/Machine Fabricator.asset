@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93a68cef3f98bf5458d97f54b2e9a097, type: 3}
+  m_Name: Machine Fabricator
+  m_EditorClassIdentifier: 
+  ResourceName: 1002
+  Quantity: 1
+  TimeToBuild: 30
+  CostToBuild:
+  - ResourceName: 2
+    Quantity: 50
+  - ResourceName: 1
+    Quantity: 50
+  PrefabForMachine: {fileID: 2933646319322873653, guid: b92931864b79bfe4c91abd952642fbe6,
+    type: 3}
