@@ -8,13 +8,21 @@ public class S_MachineGenerator : S_MachineBase
     public List<SO_ListItem> ItemsCanGenerate;
     [SerializeField]
     public List<SO_ListMachine> MachinesCanGenerate;
+    
 
     public List<CL_BuildQueue> BuildQueue = new List<CL_BuildQueue>();
     public GameObject BuiltMachine = null;
     private bool building = false;
 
+    public string Message;
+
     private void LateUpdate()
     {
+        if (TextToShowContent != null)
+        {
+            TextToShowContent.text = MachineRunning ?  "Machine running" : "Machine is off";
+        }
+
         if (!building && MachineRunning)
         {
             if (BuiltMachine == null)
@@ -23,17 +31,18 @@ public class S_MachineGenerator : S_MachineBase
                 {
                     if (ref_GameController.GameData.Storage.HasResource(BuildQueue[0].DataObject.CostToBuild))
                     {
+                        Message = "Building";
                         ref_GameController.GameData.Storage.TakeResources(BuildQueue[0].DataObject.CostToBuild);
                         StartCoroutine(ConstructAfterTime(BuildQueue[0]));
                     }
                     else
-                        Debug.Log("Not enough resources");
+                        Message = "Not enough resources";
                 }
                 else
-                    Debug.Log("Nothing in build queue");
+                    Message = "Nothing in build queue";
             }
             else
-                Debug.Log("You need to take your new machine out first");
+                Message = "You need to take your new machine out first";
         }
     }
 
@@ -46,10 +55,9 @@ public class S_MachineGenerator : S_MachineBase
 
         yield return new WaitForSeconds((int)ItemToConstruct.DataObject.TimeToBuild);
 
-        SO_Machine MachineFound = (SO_Machine)ItemToConstruct.DataObject;
-        if (MachineFound != null)
+        if (ItemToConstruct.DataObject is SO_Machine)
         {
-            BuiltMachine = MachineFound.PrefabForMachine;
+            BuiltMachine = ((SO_Machine)ItemToConstruct.DataObject).PrefabForMachine;
         }
         else
         {
@@ -67,7 +75,6 @@ public class S_MachineGenerator : S_MachineBase
 
     public void AddToQueue(CL_ItemConstructable ItemToAdd)
     {
-        Debug.Log("Adding to Queue");
         if (BuildQueue != null)
         {
             CL_BuildQueue ItemFound = BuildQueue.Find(f => f.DataObject.ResourceName == ItemToAdd.ResourceName);

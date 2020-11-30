@@ -15,11 +15,15 @@ MonoBehaviour:
   size: 200
   gravity: 1
   PlanetData:
-  - ResourceName: 50
-    Quantity: 1
-    Rarity: 3
   - ResourceName: 1
     Quantity: 1
-    Rarity: 2
+    Rarity: 3
+  - ResourceName: 2
+    Quantity: 1
+    Rarity: 5
+  - ResourceName: 3
+    Quantity: 1
+    Rarity: 1
   numberOfFeatures: 18
   material: {fileID: 2100000, guid: 1a60e1903e2ef9a4481b5519cc75658f, type: 2}
+  isJoinPlanet: 0

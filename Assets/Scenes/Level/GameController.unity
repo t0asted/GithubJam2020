@@ -683,7 +683,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  CharacterData: {fileID: 11400000, guid: 05d3f7db66a710840b1189ddae27abee, type: 2}
   m_StarterPlanet: {fileID: 11400000, guid: 719d9b7b6ed2e6c4c8f9a0fd0e7746e6, type: 2}
   m_Planets:
   - {fileID: 11400000, guid: 00f255b197f1998499ed7ae843bda1fa, type: 2}
@@ -703,7 +702,9 @@ MonoBehaviour:
     Storage:
       ResourceList:
       - ResourceName: 2
-        Quantity: 75
+        Quantity: 100
+      - ResourceName: 1
+        Quantity: 40
       StorageSize: 40
       stack: 1
   ref_Character: {fileID: 0}

@@ -9,6 +9,8 @@ public class S_ConstructableItem : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI m_TextConstructableItem = null;
     [SerializeField]
+    private TextMeshProUGUI Text_ItemsToContruct = null;
+    [SerializeField]
     private Button m_ButtonConstructableItem;
 
     private S_InGameMenuBase ToPassBackTo;
@@ -26,13 +28,29 @@ public class S_ConstructableItem : MonoBehaviour
         }
         if(m_TextConstructableItem != null)
         {
-            m_TextConstructableItem.SetText(Data.ResourceName.ToString());
+            m_TextConstructableItem.SetText(Data.ResourceName.ToString() + " " + Data.Quantity);
+        }
+        if(Text_ItemsToContruct != null)
+        {
+            Text_ItemsToContruct.SetText(ItemsToCreate());
         }
     }
 
     public void AddToRenderQueue()
     {
         ToPassBackTo.AddToBuildQueue(Data);
+    }
+
+    private string ItemsToCreate()
+    {
+        string itemsToCreate = "";
+
+        foreach (var item in Data.CostToBuild)
+        {
+            itemsToCreate = itemsToCreate + item.ResourceName.ToString() + " : " + item.Quantity + "\n";
+        }
+
+        return itemsToCreate;
     }
 
 }

@@ -107,6 +107,7 @@ public class CL_Storage
 
                     if (ResourceFound != null)
                     {
+                        Debug.Log(ResourceFound.ResourceName);
                         ResourceFound.TakeResource(itemToTake);
                         if(ResourceFound.Quantity <= 0)
                         {
@@ -145,7 +146,7 @@ public class CL_Storage
 
                 if (ResourceFound != null)
                 {
-                    if (ResourceFound.Quantity > itemToTake.Quantity)
+                    if (ResourceFound.Quantity >= itemToTake.Quantity)
                     {
                         continue;
                     }

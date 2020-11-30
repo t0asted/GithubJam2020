@@ -22,7 +22,6 @@ public class S_CharacterUpgrade : MonoBehaviour
 
     public bool HasJetpackUpgrade()
     {
-        Debug.Log("Jetpack called");
         if (m_JetpackUpgrade) return true;
         if (GC.GameData.Storage.HasResource(new CL_Resource(Enum_Items.Upgrade_Jetpack, 1))) m_JetpackUpgrade = true;
         return m_JetpackUpgrade;

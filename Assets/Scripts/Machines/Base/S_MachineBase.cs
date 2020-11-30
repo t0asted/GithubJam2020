@@ -10,13 +10,13 @@ public class S_MachineBase : MonoBehaviour
     [SerializeField]
     public bool MachineRunning = false;
     [SerializeField]
-    public TextMeshProUGUI TextToShowContent;
-    [SerializeField]
     private GameObject UIToolTip;
     [SerializeField]
-    private UnityEvent OnInteract;
+    public TextMeshProUGUI TextToShowContent;
     [SerializeField]
-    private UnityEvent OnUnInteract;
+    private S_OpenCloseUIScene UIMachine;
+    [SerializeField]
+    private S_OpenCloseUIScene UILighting;
     public bool Interactable = false;
     public bool Interacting = false;
     public bool Placed = false;
@@ -37,18 +37,14 @@ public class S_MachineBase : MonoBehaviour
     {
         if (Placed)
         {
-            //Temp
-            if (TextToShowContent != null)
+            if (UIToolTip != null)
             {
-                TextToShowContent.text = MachineRunning ? "Machine running" : "Machine is off";
-            }
-
-            if (UIToolTip.activeInHierarchy != Interactable && !Interacting)
-            {
-                UIToolTip.SetActive(Interactable);
+                if (UIToolTip.activeInHierarchy != Interactable && !Interacting)
+                {
+                    UIToolTip.SetActive(Interactable);
+                }
             }
         }
-
     }
 
     public void Place()
@@ -59,13 +55,15 @@ public class S_MachineBase : MonoBehaviour
     public void Interact()
     {
         Interacting = true;
-        OnInteract.Invoke();
+        UIMachine.OpenScene();
+        UILighting.OpenScene();
     }
 
     public void UnInteract()
     {
         Interacting = false;
-        OnUnInteract.Invoke();
+        UIMachine.CloseScene();
+        UILighting.CloseScene();
     }
 
     public void ToggleRunning()
