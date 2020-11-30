@@ -60,11 +60,11 @@ public class S_InGameMenuBase : S_SceneUIMain
 
     public void SpawnConstructable()
     {
-        if (MachineGenerator.ItemsCanProcess.Count > 0)
+        if (MachineGenerator.ItemsCanGenerate.Count > 0)
         {
             for (int i = 0; i < MachineGenerator.MachineData.Level; i++)
             {
-                foreach (var ConstItem in MachineGenerator.ItemsCanProcess[i].ItemList)
+                foreach (var ConstItem in MachineGenerator.ItemsCanGenerate[i].ItemList)
                 {
                     GameObject invItemSpawn = Instantiate(ConstructableItemToSpawn, ConstructableContent.transform);
                     invItemSpawn.GetComponent<S_ConstructableItem>().SetupContructableItem((CL_ItemConstructable)ConstItem.ItemData, this);
