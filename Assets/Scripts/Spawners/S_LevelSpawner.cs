@@ -56,8 +56,6 @@ public class S_LevelSpawner : MonoBehaviour
                 SO_Planet joiningData = joiningPlanets[rJoiningPlanet];
                 SO_Planet planetData = planets[rPlanet];
 
-                Debug.Log("THIS -----> " + SpawnedPlanets[rSpawnPlanet].Size);
-
                 // Create random vector for joining planet
                 Vector3 joiningOrigin = RandomSpawnPoint(SpawnedPlanets[rSpawnPlanet], joiningData.size, true);
                 
@@ -129,13 +127,8 @@ public class S_LevelSpawner : MonoBehaviour
 
     private Vector3 RandomSpawnPoint(SpawnedPlanet spawnPlanet, int size, bool isJoining)
     {
-        Debug.Log("Random Spawn Point");
-
         int minSep = spawnPlanet.Size + size;
         int maxSep = minSep + m_MaximumPlanetColliderSeperation;
-
-        Debug.Log("Min Sep - " + minSep);
-        Debug.Log("Max Sep - " + maxSep);
 
         int rAxis = Random.Range(0, 3);
         int[] rVals = new int[] {
@@ -145,7 +138,6 @@ public class S_LevelSpawner : MonoBehaviour
         if (isJoining) rVals[rAxis] = ((Random.Range(0, 2) * 2) - 1) * (minSep + m_JoiningPlanetSeperation);
         else rVals[rAxis] = ((Random.Range(0, 2) * 2) - 1) * Random.Range(minSep + m_MinimumPlanetColliderSeperation, maxSep);
 
-        Debug.Log("Value moved - " + rVals[rAxis]);
         return spawnPlanet.Origin + new Vector3(rVals[0], rVals[1], rVals[2]);
     }
 }

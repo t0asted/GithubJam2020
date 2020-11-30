@@ -14,7 +14,6 @@ public class S_MachineInteraction : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("Interact?" + MachineFound);
         if (MachineFound != null)
         {
             MachineFound.Interactable = true;
