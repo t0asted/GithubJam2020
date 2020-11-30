@@ -8,6 +8,7 @@ public class S_MachineGenerator : S_MachineBase
     public List<SO_ListItem> ItemsCanGenerate;
     [SerializeField]
     public List<SO_ListMachine> MachinesCanGenerate;
+    
 
     public List<CL_BuildQueue> BuildQueue = new List<CL_BuildQueue>();
     public GameObject BuiltMachine = null;
@@ -17,7 +18,11 @@ public class S_MachineGenerator : S_MachineBase
 
     private void LateUpdate()
     {
-        Debug.Log(building + " / " + MachineRunning + " / " + BuiltMachine);
+        if (TextToShowContent != null)
+        {
+            TextToShowContent.text = MachineRunning ?  "Machine running" : "Machine is off";
+        }
+
         if (!building && MachineRunning)
         {
             if (BuiltMachine == null)
@@ -50,10 +55,9 @@ public class S_MachineGenerator : S_MachineBase
 
         yield return new WaitForSeconds((int)ItemToConstruct.DataObject.TimeToBuild);
 
-        SO_Machine MachineFound = (SO_Machine)ItemToConstruct.DataObject;
-        if (MachineFound != null)
+        if (ItemToConstruct.DataObject is SO_Machine)
         {
-            BuiltMachine = MachineFound.PrefabForMachine;
+            BuiltMachine = ((SO_Machine)ItemToConstruct.DataObject).PrefabForMachine;
         }
         else
         {

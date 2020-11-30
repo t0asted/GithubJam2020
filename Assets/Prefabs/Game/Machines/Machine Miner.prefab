@@ -217,11 +217,12 @@ MonoBehaviour:
   MachineData:
     ProcessSpeed: 1
     AmountCanProcess: 1
+    TypeOfMachine: 1001
     Level: 1
     CanLevelUp: 1
   MachineRunning: 1
-  TextToShowContent: {fileID: 8446984437116465039}
   UIToolTip: {fileID: 3380745690045922598}
+  TextToShowContent: {fileID: 8446984437116465039}
   UIMachine: {fileID: 1544076128439915501}
   UILighting: {fileID: 6063834656132317058}
   Interactable: 0
@@ -332,6 +333,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 649909555304087349, guid: 88ed57d42dd02c742a5c21a4f509b5e3,
+        type: 3}
+      propertyPath: sceneEnum
+      value: -829705629
+      objectReference: {fileID: 0}
     - target: {fileID: 3387412764338555759, guid: 88ed57d42dd02c742a5c21a4f509b5e3,
         type: 3}
       propertyPath: m_LocalPosition.z
