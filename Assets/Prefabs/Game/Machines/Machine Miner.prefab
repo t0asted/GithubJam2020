@@ -187,6 +187,54 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &995548891390939608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9062922836090830848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22cebab1041a4a849a5058f15bae037e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EditorOnlyGameObjects: []
+  sceneEnum: -1273669126
+--- !u!114 &2529737819517694187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9062922836090830848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ca724d5a6c38754da16b426fdcb9325, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ref_GameController: {fileID: 0}
+  MachineData:
+    ProcessSpeed: 1
+    AmountCanProcess: 1
+    Level: 1
+    CanLevelUp: 1
+  MachineRunning: 1
+  TextToShowContent: {fileID: 8446984437116465039}
+  UIToolTip: {fileID: 3380745690045922598}
+  OnInteract:
+    m_PersistentCalls:
+      m_Calls: []
+  OnUnInteract:
+    m_PersistentCalls:
+      m_Calls: []
+  Interactable: 0
+  Interacting: 0
+  Placed: 0
+  AstroidData: {fileID: 0}
+  ItemsCanProcess:
+  - {fileID: 11400000, guid: dce0c10b073ec244080aa1b754245954, type: 2}
+  - {fileID: 11400000, guid: 40efe46de6f8549409e829f21a536d76, type: 2}
 --- !u!1 &3986280089170635196
 GameObject:
   m_ObjectHideFlags: 0
@@ -281,52 +329,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &995548891390939608
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9062922836090830848}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22cebab1041a4a849a5058f15bae037e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  EditorOnlyGameObjects: []
-  sceneEnum: -1273669126
---- !u!114 &2529737819517694187
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9062922836090830848}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ca724d5a6c38754da16b426fdcb9325, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ref_GameController: {fileID: 0}
-  MachineData:
-    ProcessSpeed: 1
-    AmountCanProcess: 1
-    Level: 1
-    CanLevelUp: 1
-  MachineRunning: 1
-  TextToShowContent: {fileID: 8446984437116465039}
-  UIToolTip: {fileID: 3380745690045922598}
-  OnInteract:
-    m_PersistentCalls:
-      m_Calls: []
-  OnUnInteract:
-    m_PersistentCalls:
-      m_Calls: []
-  Interactable: 0
-  Interacting: 0
-  Placed: 0
-  AstroidData: {fileID: 0}
-  ItemsCanProcess: []
 --- !u!1001 &2047264549360004312
 PrefabInstance:
   m_ObjectHideFlags: 0
