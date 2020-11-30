@@ -299,11 +299,12 @@ MonoBehaviour:
   MachineData:
     ProcessSpeed: 1
     AmountCanProcess: 1
+    TypeOfMachine: 1000
     Level: 1
     CanLevelUp: 1
   MachineRunning: 1
-  TextToShowContent: {fileID: 6234494506964883741}
   UIToolTip: {fileID: 961019774065626036}
+  TextToShowContent: {fileID: 6234494506964883741}
   UIMachine: {fileID: 3950009959537845631}
   UILighting: {fileID: 8618756444552448272}
   Interactable: 0
@@ -314,6 +315,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5ba95219fbe32ff4383423f8b9f93c6a, type: 2}
   BuildQueue: []
   BuiltMachine: {fileID: 0}
+  Message: 
   ToFixRocket: {fileID: 11400000, guid: 097aa024385902a45a33b564deb3b2d3, type: 2}
 --- !u!1 &4660454043371588893
 GameObject:

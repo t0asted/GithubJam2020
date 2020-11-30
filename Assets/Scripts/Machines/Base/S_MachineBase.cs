@@ -10,9 +10,9 @@ public class S_MachineBase : MonoBehaviour
     [SerializeField]
     public bool MachineRunning = false;
     [SerializeField]
-    public TextMeshProUGUI TextToShowContent;
-    [SerializeField]
     private GameObject UIToolTip;
+    [SerializeField]
+    public TextMeshProUGUI TextToShowContent;
     [SerializeField]
     private S_OpenCloseUIScene UIMachine;
     [SerializeField]
@@ -37,12 +37,6 @@ public class S_MachineBase : MonoBehaviour
     {
         if (Placed)
         {
-            //Temp
-            if (TextToShowContent != null)
-            {
-                TextToShowContent.text = MachineRunning ? "Machine running" : "Machine is off";
-            }
-
             if (UIToolTip != null)
             {
                 if (UIToolTip.activeInHierarchy != Interactable && !Interacting)
