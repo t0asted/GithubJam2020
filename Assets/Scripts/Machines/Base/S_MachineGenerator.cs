@@ -5,7 +5,9 @@ using UnityEngine;
 public class S_MachineGenerator : S_MachineBase
 {
     [SerializeField]
-    public List<SO_ListItem> ItemsCanProcess = new List<SO_ListItem>();
+    public List<SO_ListItem> ItemsCanGenerate;
+    [SerializeField]
+    public List<SO_ListMachine> MachinesCanGenerate;
 
     [SerializeField]
     private CL_Level Constructing;
