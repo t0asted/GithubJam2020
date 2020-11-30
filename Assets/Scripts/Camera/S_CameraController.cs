@@ -5,6 +5,9 @@ using UnityEngine;
 public class S_CameraController : MonoBehaviour
 {
     [SerializeField]
+    private S_CharacterController m_CharacterController;
+
+    [SerializeField]
     private Transform m_ObjectToFollow;
 
     [SerializeField]
@@ -46,32 +49,35 @@ public class S_CameraController : MonoBehaviour
 
     void LateUpdate()
     {
-        transform.position = m_ObjectToFollow.position;
-
-        transform.rotation = m_ObjectToFollow.rotation;
-
-        if (CameraArm)
+        if (!m_CharacterController.interacting)
         {
-            x += Input.GetAxis("Mouse X") * xSpeed * distance;
-            y -= Input.GetAxis("Mouse Y") * ySpeed;
-            y = ClampAngle(y, yMinLimit, yMaxLimit);
+            transform.position = m_ObjectToFollow.position;
 
-            Quaternion rotation = Quaternion.Euler(y, x, 0);
-            
-            distance = Mathf.Clamp(distance - Input.GetAxis("Mouse ScrollWheel") * 5, distanceMin, distanceMax);
-            
-            RaycastHit hit;
-            if (Physics.Linecast(CameraArm.position, transform.position, out hit))
+            transform.rotation = m_ObjectToFollow.rotation;
+
+            if (CameraArm)
             {
-                distance -= hit.distance;
+                x += Input.GetAxis("Mouse X") * xSpeed * distance;
+                y -= Input.GetAxis("Mouse Y") * ySpeed;
+                y = ClampAngle(y, yMinLimit, yMaxLimit);
+
+                Quaternion rotation = Quaternion.Euler(y, x, 0);
+
+                distance = Mathf.Clamp(distance - Input.GetAxis("Mouse ScrollWheel") * 5, distanceMin, distanceMax);
+
+                RaycastHit hit;
+                if (Physics.Linecast(CameraArm.position, transform.position, out hit))
+                {
+                    distance -= hit.distance;
+                }
+
+                //Vector3 negDistance = new Vector3(0.0f, 0.0f, -distance);
+                //Vector3 position = rotation * negDistance + Camera.position;
+                //
+                //Camera.position = position;
+
+                CameraArm.localRotation = rotation;
             }
-
-            //Vector3 negDistance = new Vector3(0.0f, 0.0f, -distance);
-            //Vector3 position = rotation * negDistance + Camera.position;
-            //
-            //Camera.position = position;
-
-            CameraArm.localRotation = rotation;
         }
     }
 

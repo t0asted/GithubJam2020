@@ -1,16 +1,26 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.SceneManagement;
+
 public class S_MachineBase : MonoBehaviour
 {
     public S_GameController ref_GameController = null;
     [SerializeField]
     public CL_Machine MachineData = new CL_Machine();
     [SerializeField]
-    public bool MachineRunning = true;
+    public bool MachineRunning = false;
     [SerializeField]
     public TextMeshProUGUI TextToShowContent;
+    [SerializeField]
+    private GameObject UIToolTip;
+    [SerializeField]
+    private UnityEvent OnInteract;
+    [SerializeField]
+    private UnityEvent OnUnInteract;
+    public bool Interactable = false;
+    public bool Interacting = false;
+    public bool Placed = false;
 
     private void Start()
     {
@@ -26,16 +36,41 @@ public class S_MachineBase : MonoBehaviour
 
     private void Update()
     {
-        //Temp
-        if (TextToShowContent != null)
+        if (Placed)
         {
-            TextToShowContent.text = MachineRunning ? "Machine running" : "Machine is off";
+            //Temp
+            if (TextToShowContent != null)
+            {
+                TextToShowContent.text = MachineRunning ? "Machine running" : "Machine is off";
+            }
+
+            if (UIToolTip.activeInHierarchy != Interactable && !Interacting)
+            {
+                UIToolTip.SetActive(Interactable);
+            }
         }
+
+    }
+
+    public void Place()
+    {
+        Placed = true;
     }
 
     public void Interact()
     {
-        // Open interface
+        Interacting = true;
+        OnInteract.Invoke();
+    }
+
+    public void UnInteract()
+    {
+        Interacting = false;
+        OnUnInteract.Invoke();
+    }
+
+    public void ToggleRunning()
+    {
         MachineRunning = !MachineRunning;
     }
 
@@ -55,12 +90,15 @@ public class S_MachineBase : MonoBehaviour
 
     public bool CanLevelUp()
     {
-        if (MachineData.Level == 1)
-            return ref_GameController.GameData.Storage.HasResource(new CL_Resource(Enum_Items.Upgrade_Pack_1, 1));
-        else if (MachineData.Level == 2)
-            return ref_GameController.GameData.Storage.HasResource(new CL_Resource(Enum_Items.Upgrade_Pack_2, 1));
-
-        return MachineData.Level >= 3;
+        if (MachineData.CanLevelUp)
+        {
+            if (MachineData.Level == 1)
+                return ref_GameController.GameData.Storage.HasResource(new CL_Resource(Enum_Items.Upgrade_Pack_1, 1));
+            else if (MachineData.Level == 2)
+                return ref_GameController.GameData.Storage.HasResource(new CL_Resource(Enum_Items.Upgrade_Pack_2, 1));
+            return MachineData.Level >= 3;
+        }
+        return false;
     }
 
 }

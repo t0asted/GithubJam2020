@@ -20,4 +20,6 @@ public class S_OpenCloseUIScene : S_UISceneManager
         sceneEnum = scene;
     }
 
+
+
 }

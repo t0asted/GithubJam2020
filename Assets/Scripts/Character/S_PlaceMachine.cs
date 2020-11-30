@@ -11,13 +11,14 @@ public class S_PlaceMachine : MonoBehaviour
     [SerializeField]
     private Transform characterDirection;
 
-    private GameObject MachineToSpawn;
+    private GameObject MachineToSpawn = null;
     private GameObject NewMachine = null;
     public bool HasItemToPlace = false;
+    private GameObject AstroidOn;
 
     public void NewMachineToPlace(GameObject NewMachinePass)
     {
-        NewMachine = NewMachinePass;
+        MachineToSpawn = NewMachinePass;
     }
 
     private void Update()
@@ -27,6 +28,14 @@ public class S_PlaceMachine : MonoBehaviour
             PlaceMachine();
             if (Input.GetKey("j") && MachineToSpawn != null)
             {
+                if(NewMachine.GetComponent<S_MachineBase>())
+                {
+                    NewMachine.GetComponent<S_MachineBase>().Place();
+                }
+                if (NewMachine.GetComponent<S_MachineGatherer>() != null)
+                {
+                    NewMachine.GetComponent<S_MachineGatherer>().AstroidData = AstroidOn.GetComponent<S_Astroid>().LevelData;
+                }
                 MachineToSpawn = null;
                 NewMachine = null;
             }
@@ -43,10 +52,12 @@ public class S_PlaceMachine : MonoBehaviour
         else
         {
             RaycastHit hit;
-            if (Physics.Raycast(transform.position, Camera.GetForwardCamera() * 5, out hit))
+            //Debug.DrawRay(characterDirection.position, Camera.GetForwardCamera() * 5);
+            if (Physics.Raycast(characterDirection.position, Camera.GetForwardCamera() * 5, out hit))
             {
                 if (hit.transform.gameObject.tag == "Astroid")
                 {
+                    AstroidOn = hit.transform.gameObject;
                     NewMachine.transform.position = hit.point;
                     NewMachine.transform.up = m_GravityController.GetGravityDirection(NewMachine.transform);
                     NewMachine.transform.rotation = characterDirection.rotation;

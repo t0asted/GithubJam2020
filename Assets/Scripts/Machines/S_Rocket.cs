@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class S_Rocket : S_MachineGenerator
 {
-
-    public SO_ItemList ToFixRocket = new SO_ItemList();
+    public SO_ItemsToFixRocket ToFixRocket;
     private CL_Storage ItemsAddedToShip = new CL_Storage();
 
     public bool IsShipFixed()
@@ -18,22 +17,22 @@ public class S_Rocket : S_MachineGenerator
                 return false;
             }
         }
-        foreach (var item in ToFixRocket.PartList)
-        {
-            CL_Resource ResourceFound = ItemsAddedToShip.ResourceList.Find(f => f.ResourceName == item.ItemData.ResourceName);
-            if (ResourceFound == null)
-            {
-                return false;
-            }
-        }
-        foreach (var item in ToFixRocket.RawList)
-        {
-            CL_Resource ResourceFound = ItemsAddedToShip.ResourceList.Find(f => f.ResourceName == item.ItemData.ResourceName);
-            if (ResourceFound == null)
-            {
-                return false;
-            }
-        }
+        //foreach (var item in ToFixRocket.PartList)
+        //{
+        //    CL_Resource ResourceFound = ItemsAddedToShip.ResourceList.Find(f => f.ResourceName == item.ItemData.ResourceName);
+        //    if (ResourceFound == null)
+        //    {
+        //        return false;
+        //    }
+        //}
+        //foreach (var item in ToFixRocket.RawList)
+        //{
+        //    CL_Resource ResourceFound = ItemsAddedToShip.ResourceList.Find(f => f.ResourceName == item.ItemData.ResourceName);
+        //    if (ResourceFound == null)
+        //    {
+        //        return false;
+        //    }
+        //}
         return true;
     }
 

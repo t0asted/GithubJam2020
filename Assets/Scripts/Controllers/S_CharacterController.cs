@@ -27,52 +27,72 @@ public class S_CharacterController : MonoBehaviour
     [SerializeField]
     private Transform m_Target;
 
+    public S_PlaceMachine m_MachinePlacer;
+    public S_MachineInteraction Interactor = null;
+
 
     private Animator Animate;
     private Rigidbody rb;
     private Vector3 MoveDirection;
     private Vector3 SmoothVelocity;
+    public bool interacting;
     private S_GravityController GC;
     private bool GroundAnimate = false;
 
-    // Start is called before the first frame update
     void Start()
     {
         Animate = gameObject.GetComponentInChildren<Animator>();
         rb = gameObject.GetComponent<Rigidbody>();
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
         GC = GetComponent<S_GravityController>();
 
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (GC.HasPlanet())
+
+        if (!interacting)
         {
-            CalculateGroundMovement();
-            CalculateGroundRotation();
-            Animation();
+            if (GC.HasPlanet())
+            {
+                CalculateGroundMovement();
+                CalculateGroundRotation();
+                Animation(true);
+            }
+            else
+            {
+                CalculateSpaceMovement();
+                CalculateSpaceRotation();
+            }
         }
         else
         {
-            CalculateSpaceMovement();
-            CalculateSpaceRotation();
+            Animation(false);
         }
     }
 
     void FixedUpdate()
     {
-        if (GC.HasPlanet())
+        if (!interacting)
         {
-            MovePlayerGrounded();
+            if (GC.HasPlanet())
+            {
+                MovePlayerGrounded();
+            }
+            else
+            {
+                MovePlayerSpace();
+            }
         }
-        else
-        {
-            MovePlayerSpace();
-        }
+    }
 
+    public void SetInteracting(bool interactingPass)
+    {
+        Cursor.lockState = interactingPass ? CursorLockMode.Confined : CursorLockMode.Locked;
+        interacting = interactingPass;
+        Cursor.visible = interactingPass;
     }
 
     // Calculates player movement vector for fixed update rigidbody
@@ -89,7 +109,7 @@ public class S_CharacterController : MonoBehaviour
         // Check if S is pressed
         // If so reverse a and d directions
         Vector3 targetMove;
- 
+
         if (Input.GetAxis("Vertical") < 0)
         {
             targetMove = new Vector3(-Input.GetAxisRaw("Horizontal"), 0, Mathf.Abs(Input.GetAxisRaw("Vertical"))).normalized;
@@ -172,7 +192,7 @@ public class S_CharacterController : MonoBehaviour
             }
 
             if (Input.GetAxis("SpaceRotate") != 0 && m_ThrustersUnlocked)
-            { 
+            {
                 transform.Rotate(Input.GetAxis("SpaceRotate") * m_PlayerThrusterSpeed, 0, 0);
                 m_Target.rotation = Quaternion.FromToRotation(m_Target.up, transform.up) * m_Target.rotation;
             }
@@ -203,7 +223,7 @@ public class S_CharacterController : MonoBehaviour
             /*if (rb.velocity.magnitude < m_MaxJetpackVelocity)
             {
             */
-                rb.velocity += transform.up * m_JetpackForce;
+            rb.velocity += transform.up * m_JetpackForce;
             /*
             }
             */
@@ -255,11 +275,18 @@ public class S_CharacterController : MonoBehaviour
     }
 
     // Runs animation after certain keypresses
-    private void Animation()
+    private void Animation(bool Animating)
     {
-        if (GroundAnimate && (Mathf.Abs(Input.GetAxis("Vertical")) + Mathf.Abs(Input.GetAxis("Horizontal")) != 0))
+        if (Animating)
         {
-            Animate.SetInteger("AnimationPar", 1);
+            if (GroundAnimate && (Mathf.Abs(Input.GetAxis("Vertical")) + Mathf.Abs(Input.GetAxis("Horizontal")) != 0))
+            {
+                Animate.SetInteger("AnimationPar", 1);
+            }
+            else
+            {
+                Animate.SetInteger("AnimationPar", 0);
+            }
         }
         else
         {
