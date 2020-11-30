@@ -16,7 +16,7 @@ public class S_CharacterController : MonoBehaviour
     [SerializeField]
     private float m_JetpackForce = 1.3f;
     [SerializeField]
-    private float m_DefaultJetpackTime = 4f;
+    private float m_DefaultJetpackTime = 3f;
     [SerializeField]
     private LayerMask m_GroundMask;
     [SerializeField]
@@ -28,15 +28,48 @@ public class S_CharacterController : MonoBehaviour
 
     public S_PlaceMachine m_MachinePlacer = null;
     public S_MachineInteraction Interactor = null;
+    public bool interacting;
+
+    [Space]
+    // Thrusters
+    [Header("Thrusters")]
+    [SerializeField]
+    private GameObject m_JetpackLeft = null;
+    [SerializeField]
+    private GameObject m_JetpackRight = null;
+    [SerializeField]
+    private GameObject m_ThrusterDownLeft = null;
+    [SerializeField]
+    private GameObject m_ThrusterDownRight = null;
+    [SerializeField]
+    private GameObject m_ThrusterLeftTop = null;
+    [SerializeField]
+    private GameObject m_ThrusterLeftBottom = null;
+    [SerializeField]
+    private GameObject m_ThrusterRightTop = null;
+    [SerializeField]
+    private GameObject m_ThrusterRightBottom = null;
+    [SerializeField]
+    private GameObject m_ThrusterForwardLeft = null;
+    [SerializeField]
+    private GameObject m_ThrusterForwardRight = null;
+    [SerializeField]
+    private GameObject m_ThrusterBackwardLeft = null;
+    [SerializeField]
+    private GameObject m_ThrusterBackwardRight = null;
+    [SerializeField]
+    private GameObject m_ThrusterReverseLeft = null;
+    [SerializeField]
+    private GameObject m_ThrusterReverseRight = null;
+
+
     private S_CharacterUpgrade CharacterUpgrade = null;
     private S_GravityController GC = null;
-
     private Animator Animate;
     private Rigidbody rb;
     private Vector3 MoveDirection;
     private Vector3 SmoothVelocity;
-    private float RemainingJetpack;
-    public bool interacting;
+    public float RemainingJetpack;
     private bool GroundAnimate = false;
 
     void Start()
@@ -48,6 +81,16 @@ public class S_CharacterController : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+
+        GameObject[] thrusters = new GameObject[]{
+            m_JetpackLeft, m_JetpackRight, m_ThrusterLeftTop, m_ThrusterLeftBottom,
+            m_ThrusterRightTop, m_ThrusterRightBottom, m_ThrusterForwardLeft,
+            m_ThrusterForwardRight, m_ThrusterBackwardLeft, m_ThrusterBackwardRight,
+            m_ThrusterReverseLeft, m_ThrusterReverseRight, m_ThrusterDownLeft, m_ThrusterDownRight
+        };
+
+        foreach (GameObject toSet in thrusters) toSet.SetActive(false);
     }
 
     // Update is called once per frame
@@ -196,6 +239,16 @@ public class S_CharacterController : MonoBehaviour
             {
                 transform.Rotate(Input.GetAxis("SpaceRotate") * m_PlayerThrusterSpeed, 0, 0);
                 m_Target.rotation = Quaternion.FromToRotation(m_Target.up, transform.up) * m_Target.rotation;
+                if (Input.GetAxis("SpaceRotate") > 0)
+                {
+                    ToggleThrust(Thrusters.SpinForward, true);
+                }
+                else ToggleThrust(Thrusters.SpinBackward, true);
+            }
+            else if (transform.InverseTransformDirection(rb.velocity).z < 5)
+            {
+                ToggleThrust(Thrusters.SpinForward, false);
+                ToggleThrust(Thrusters.SpinBackward, false);
             }
         }
     }
@@ -204,6 +257,8 @@ public class S_CharacterController : MonoBehaviour
     // Moves rigidbody within fixedupdate
     private void MovePlayerGrounded()
     {
+        if (CharacterUpgrade.HasThrusterUpgrade()) ClearThrust();
+
         // Check if player is on the ground
         if (IsGrounded())
         {
@@ -224,17 +279,22 @@ public class S_CharacterController : MonoBehaviour
             if (CharacterUpgrade.HasJetpackUpgrade())
             {
                 rb.velocity += transform.up * m_JetpackForce;
+                ToggleThrust(Thrusters.Jetpack, true);
             }
-            else if (RemainingJetpack > 0)
+            else if (RemainingJetpack > .2f)
             {
                 rb.velocity += transform.up * m_JetpackForce;
                 RemainingJetpack -= Time.deltaTime;
+                ToggleThrust(Thrusters.Jetpack, true);
             }
+            else ToggleThrust(Thrusters.Jetpack, false);
         }
         else if (RemainingJetpack < m_DefaultJetpackTime)
         {
-            RemainingJetpack += Time.deltaTime * .3f;
+            RemainingJetpack += Time.deltaTime * .2f;
+            ToggleThrust(Thrusters.Jetpack, false);
         }
+        else ToggleThrust(Thrusters.Jetpack, false);
 
 
     }
@@ -254,16 +314,38 @@ public class S_CharacterController : MonoBehaviour
         if (CharacterUpgrade.HasThrusterUpgrade())
         {
             rb.velocity += transform.TransformDirection(MoveDirection);
+            Vector3 direction = ExpoVelocity();
+
+            // Right 
+            if (direction.x > 3f) ToggleThrust(Thrusters.Right, true);
+            else ToggleThrust(Thrusters.Right, false);
+
+            // Left
+            if (direction.x < -3f) ToggleThrust(Thrusters.Left, true);
+            else ToggleThrust(Thrusters.Left, false);
+
+            // Forward
+            if (direction.z > 3f) ToggleThrust(Thrusters.Forward, true);
+            else ToggleThrust(Thrusters.Forward, false);
+
+            // Backward
+            if (direction.z < -3f) ToggleThrust(Thrusters.Backwards, true);
+            else ToggleThrust(Thrusters.Backwards, false);
         }
 
         if (Input.GetButton("Jump") && CharacterUpgrade.HasJetpackUpgrade())
         {
             rb.velocity += transform.up * m_PlayerThrusterSpeed;
+            ToggleThrust(Thrusters.Jetpack, true);
         }
+        else ToggleThrust(Thrusters.Jetpack, false);
+
         if (Input.GetButton("Descend"))
         {
             rb.velocity -= transform.up * m_PlayerThrusterSpeed;
+            ToggleThrust(Thrusters.Down, true);
         }
+        else ToggleThrust(Thrusters.Down, false);
     }
 
 
@@ -302,4 +384,80 @@ public class S_CharacterController : MonoBehaviour
         }
     }
 
+    // Toggle Thrusters
+
+    private void ToggleThrust(Thrusters thrusters, bool power)
+    {
+        switch (thrusters)
+        {
+            case Thrusters.Jetpack:
+                m_JetpackLeft.SetActive(power);
+                m_JetpackRight.SetActive(power);
+                break;
+            case Thrusters.Down:
+                m_ThrusterDownLeft.SetActive(power);
+                m_ThrusterDownRight.SetActive(power);
+                break;
+            case Thrusters.Forward: 
+                m_ThrusterForwardLeft.SetActive(power);
+                m_ThrusterForwardRight.SetActive(power);
+                m_ThrusterBackwardLeft.SetActive(power);
+                m_ThrusterBackwardRight.SetActive(power);
+                break;
+            case Thrusters.Right:
+                m_ThrusterLeftTop.SetActive(power);
+                m_ThrusterLeftBottom.SetActive(power);
+                break;
+            case Thrusters.Left:
+                m_ThrusterRightTop.SetActive(power);
+                m_ThrusterRightBottom.SetActive(power);
+                break;
+            case Thrusters.SpinForward:
+                m_ThrusterForwardLeft.SetActive(power);
+                m_ThrusterForwardRight.SetActive(power);
+                break;
+            case Thrusters.SpinBackward:
+                m_ThrusterBackwardLeft.SetActive(power);
+                m_ThrusterBackwardRight.SetActive(power);
+                break;
+            case Thrusters.Backwards:
+                m_ThrusterReverseLeft.SetActive(power);
+                m_ThrusterReverseRight.SetActive(power);
+                break;
+        }
+    }
+
+    private void ClearThrust()
+    {
+        ToggleThrust(Thrusters.Down, false);
+        ToggleThrust(Thrusters.Left, false);
+        ToggleThrust(Thrusters.Right, false);
+        ToggleThrust(Thrusters.Forward, false);
+        ToggleThrust(Thrusters.Backwards, false);
+    }
+
+    private Vector3 ExpoVelocity()
+    {
+        Vector3 temp = transform.InverseTransformDirection(rb.velocity);
+        temp = new Vector3(Exponential(temp.x), Exponential(temp.y), Exponential(temp.z));
+        Debug.Log(temp);
+        return temp;
+    }
+
+    private float Exponential(float val)
+    {
+        return Mathf.Clamp((val / Mathf.Abs(val)) * Mathf.Pow(1.1f, Mathf.Abs(val)), -1000, 1000);
+    }
+}
+
+public enum Thrusters
+{
+    Jetpack = 1,
+    Down = 2, 
+    Forward = 3, 
+    Right = 4, 
+    Left = 5, 
+    SpinForward = 6, 
+    SpinBackward = 7, 
+    Backwards = 8
 }

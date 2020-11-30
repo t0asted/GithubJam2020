@@ -42,7 +42,6 @@ public class S_MachineInteraction : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.gameObject.name);
         if (other.gameObject.GetComponent<S_MachineBase>() != null)
         {
             MachineFound = other.gameObject.GetComponent<S_MachineBase>();
