@@ -9,83 +9,90 @@ public class S_MachineGenerator : S_MachineBase
     [SerializeField]
     public List<SO_ListMachine> MachinesCanGenerate;
 
-    [SerializeField]
-    private CL_Level Constructing;
-
-    private List<CL_ItemConstructable> BuildQueue = null;
-
+    public List<CL_BuildQueue> BuildQueue = new List<CL_BuildQueue>();
     public GameObject BuiltMachine = null;
-
     private bool building = false;
 
-    public void Process()
+    private void LateUpdate()
     {
-        // Get resources on planet
-        // if not on planet look in storage
-
-        if (MachineRunning && enum_ItemBuilding() != Enum_Items.None)
+        if (!building && MachineRunning)
         {
-            if(BuiltMachine == null)
+            if (BuiltMachine == null)
             {
-                if (ref_GameController.GameData.Storage.HasResource(ItemBuilding()))
+                if (BuildQueue.Count > 0)
                 {
-                    building = true;
+                    if (ref_GameController.GameData.Storage.HasResource(BuildQueue[0].DataObject.CostToBuild))
+                    {
+                        ref_GameController.GameData.Storage.TakeResources(BuildQueue[0].DataObject.CostToBuild);
+                        StartCoroutine(ConstructAfterTime(BuildQueue[0]));
+                    }
+                    else
+                        Debug.Log("Not enough resources");
                 }
+                else
+                    Debug.Log("Nothing in build queue");
             }
             else
-            {
-                Debug.Log("You need to take your new machine out first!");
-            }
+                Debug.Log("You need to take your new machine out first");
         }
-
-        //ref_GameController.GameData.Storage.TakeResources(MachineData.ItemsCanProcess);
     }
 
-    private void SetNewItemBuilding()
+    IEnumerator ConstructAfterTime(CL_BuildQueue ItemToConstruct)
     {
-        if(BuildQueue.Count > 0)
-        {
+        if (building)
+            yield break;
 
+        building = true;
+
+        yield return new WaitForSeconds((int)ItemToConstruct.DataObject.TimeToBuild);
+
+        SO_Machine MachineFound = (SO_Machine)ItemToConstruct.DataObject;
+        if (MachineFound != null)
+        {
+            BuiltMachine = MachineFound.PrefabForMachine;
         }
         else
         {
-
+            ref_GameController.GameData.Storage.AddResources(new CL_Resource(BuildQueue[0].DataObject.ResourceName, BuildQueue[0].Quantity));
         }
+
+        BuildQueue[0].Quantity -= 1;
+        if (BuildQueue[0].Quantity <= 0)
+        {
+            BuildQueue.RemoveAt(0);
+        }
+
+        building = false;
     }
 
     public void AddToQueue(CL_ItemConstructable ItemToAdd)
     {
-        if (BuildQueue.Count > 0)
+        Debug.Log("Adding to Queue");
+        if (BuildQueue != null)
         {
-            CL_ItemConstructable ItemFound = BuildQueue.Find(f => f.ResourceName == ItemToAdd.ResourceName);
+            CL_BuildQueue ItemFound = BuildQueue.Find(f => f.DataObject.ResourceName == ItemToAdd.ResourceName);
 
-            if(ItemFound != null)
+            if (ItemFound != null)
             {
-                ItemFound.Quantity += ItemToAdd.Quantity;
+                ItemFound.Quantity += 1;
             }
             else
             {
-                BuildQueue.Add(ItemToAdd);
+                BuildQueue.Add(new CL_BuildQueue(ItemToAdd, 1));
             }
         }
     }
+}
 
-    private List<CL_Resource> ItemBuilding()
+[System.Serializable]
+public class CL_BuildQueue
+{
+    public CL_ItemConstructable DataObject;
+    public int Quantity;
+
+    public CL_BuildQueue(CL_ItemConstructable DataObjectPass, int QuantityPass)
     {
-        if (BuildQueue.Count > 0)
-        {
-            return BuildQueue[0].CostToBuild;
-        }
-        return null;
+        DataObject = DataObjectPass;
+        Quantity = QuantityPass;
     }
-
-    private Enum_Items enum_ItemBuilding()
-    {
-        if (BuildQueue.Count > 0)
-        {
-            return BuildQueue[0].ResourceName;
-        }
-        return Enum_Items.None;
-    }
-
 }
