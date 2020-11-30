@@ -217,7 +217,6 @@ MonoBehaviour:
   m_CharacterController: {fileID: 5275732925087272386}
   m_ObjectToFollow: {fileID: 8110434497249194704}
   CameraArm: {fileID: 1284979726214294654}
-  Camera: {fileID: 4087713875357921694}
   distance: 0.5
   xSpeed: 1
   ySpeed: 1.2
@@ -964,6 +963,7 @@ GameObject:
   - component: {fileID: 6869192324636006574}
   - component: {fileID: 5275732925087272386}
   - component: {fileID: 2980376257890017760}
+  - component: {fileID: 5293310677696759000}
   - component: {fileID: 3986070637888158818}
   - component: {fileID: 3708817718745805730}
   m_Layer: 0
@@ -1023,11 +1023,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_PlayerWalkSpeed: 0.5
-  m_PlayerSprintSpeed: 0.7
+  m_PlayerSprintSpeed: 0.8
   m_PlayerRotateSpeed: 3
-  m_PlayerThrusterSpeed: 1
-  m_ThrustersUnlocked: 0
-  m_JetpackForce: 1.5
+  m_PlayerThrusterSpeed: 1.5
+  m_JetpackForce: 1.2
+  m_DefaultJetpackTime: 4
   m_GroundMask:
     serializedVersion: 2
     m_Bits: 256
@@ -1036,6 +1036,7 @@ MonoBehaviour:
   m_Target: {fileID: 8110434497249194704}
   m_MachinePlacer: {fileID: 5172684274453196794}
   Interactor: {fileID: 1177261428499684639}
+  RemainingJetpack: 0
   interacting: 0
 --- !u!114 &2980376257890017760
 MonoBehaviour:
@@ -1052,8 +1053,22 @@ MonoBehaviour:
   m_Planet: {fileID: 0}
   m_Target: {fileID: 8110434497249194704}
   m_TargetOffset: 2
-  m_RotateSpeed: 5
+  m_RotateSpeed: 3
   m_Gravity: 15
+--- !u!114 &5293310677696759000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6774225545201096538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 560b518bf1ae6a349a5209daf88e90ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_JetpackUpgrade: 0
+  m_ThrusterUpgrade: 0
 --- !u!136 &3986070637888158818
 CapsuleCollider:
   m_ObjectHideFlags: 0

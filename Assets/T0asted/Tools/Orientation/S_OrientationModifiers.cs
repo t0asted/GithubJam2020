@@ -4,9 +4,9 @@ using UnityEngine.Events;
 public class S_OrientationModifiers : MonoBehaviour
 {
     [SerializeField]
-    private UnityEvent m_Landscape;
+    private UnityEvent m_Landscape = null;
     [SerializeField]
-    private UnityEvent m_Portrait;
+    private UnityEvent m_Portrait = null;
     [SerializeField]
     private Transform transformToModify;
 

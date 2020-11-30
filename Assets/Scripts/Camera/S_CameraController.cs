@@ -5,15 +5,13 @@ using UnityEngine;
 public class S_CameraController : MonoBehaviour
 {
     [SerializeField]
-    private S_CharacterController m_CharacterController;
+    private S_CharacterController m_CharacterController = null;
 
     [SerializeField]
-    private Transform m_ObjectToFollow;
+    private Transform m_ObjectToFollow = null;
 
     [SerializeField]
-    private Transform CameraArm;
-    [SerializeField]
-    private Transform Camera;
+    private Transform CameraArm = null;
     [SerializeField]
     private float distance = 5.0f;
     [SerializeField]

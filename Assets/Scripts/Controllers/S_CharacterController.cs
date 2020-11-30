@@ -12,31 +12,31 @@ public class S_CharacterController : MonoBehaviour
     [SerializeField]
     private float m_PlayerRotateSpeed = 3f;
     [SerializeField]
-    private float m_PlayerThrusterSpeed = 1f;
-
+    private float m_PlayerThrusterSpeed = 1.5f;
     [SerializeField]
-    private bool m_ThrustersUnlocked = false;
+    private float m_JetpackForce = 1.3f;
     [SerializeField]
-    private float m_JetpackForce = 1.5f;
+    private float m_DefaultJetpackTime = 4f;
     [SerializeField]
     private LayerMask m_GroundMask;
     [SerializeField]
     private float m_MovementSmoothing = .15f;
     [SerializeField]
-    private S_CameraController m_CameraControllerScript;
+    private S_CameraController m_CameraControllerScript = null;
     [SerializeField]
-    private Transform m_Target;
+    private Transform m_Target = null;
 
-    public S_PlaceMachine m_MachinePlacer;
+    public S_PlaceMachine m_MachinePlacer = null;
     public S_MachineInteraction Interactor = null;
-
+    private S_CharacterUpgrade CharacterUpgrade = null;
+    private S_GravityController GC = null;
 
     private Animator Animate;
     private Rigidbody rb;
     private Vector3 MoveDirection;
     private Vector3 SmoothVelocity;
+    private float RemainingJetpack;
     public bool interacting;
-    private S_GravityController GC;
     private bool GroundAnimate = false;
 
     void Start()
@@ -44,6 +44,7 @@ public class S_CharacterController : MonoBehaviour
         Animate = gameObject.GetComponentInChildren<Animator>();
         rb = gameObject.GetComponent<Rigidbody>();
         GC = GetComponent<S_GravityController>();
+        CharacterUpgrade = GetComponent<S_CharacterUpgrade>();
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -191,7 +192,7 @@ public class S_CharacterController : MonoBehaviour
                 transform.rotation = Quaternion.FromToRotation(transform.up, m_Target.up) * transform.rotation;
             }
 
-            if (Input.GetAxis("SpaceRotate") != 0 && m_ThrustersUnlocked)
+            if (Input.GetAxis("SpaceRotate") != 0 && CharacterUpgrade.HasThrusterUpgrade())
             {
                 transform.Rotate(Input.GetAxis("SpaceRotate") * m_PlayerThrusterSpeed, 0, 0);
                 m_Target.rotation = Quaternion.FromToRotation(m_Target.up, transform.up) * m_Target.rotation;
@@ -220,14 +221,21 @@ public class S_CharacterController : MonoBehaviour
 
         if (Input.GetButton("Jump"))
         {
-            /*if (rb.velocity.magnitude < m_MaxJetpackVelocity)
+            if (CharacterUpgrade.HasJetpackUpgrade())
             {
-            */
-            rb.velocity += transform.up * m_JetpackForce;
-            /*
+                rb.velocity += transform.up * m_JetpackForce;
             }
-            */
+            else if (RemainingJetpack > 0)
+            {
+                rb.velocity += transform.up * m_JetpackForce;
+                RemainingJetpack -= Time.deltaTime;
+            }
         }
+        else if (RemainingJetpack < m_DefaultJetpackTime)
+        {
+            RemainingJetpack += Time.deltaTime * .3f;
+        }
+
 
     }
 
@@ -243,18 +251,18 @@ public class S_CharacterController : MonoBehaviour
             rb.velocity = Vector3.zero;
         }
 
-        if (m_ThrustersUnlocked)
+        if (CharacterUpgrade.HasThrusterUpgrade())
         {
             rb.velocity += transform.TransformDirection(MoveDirection);
         }
 
-        if (Input.GetButton("Jump"))
+        if (Input.GetButton("Jump") && CharacterUpgrade.HasJetpackUpgrade())
         {
-            rb.velocity += transform.up * m_JetpackForce;
+            rb.velocity += transform.up * m_PlayerThrusterSpeed;
         }
         if (Input.GetButton("Descend"))
         {
-            rb.velocity -= transform.up * m_JetpackForce;
+            rb.velocity -= transform.up * m_PlayerThrusterSpeed;
         }
     }
 
@@ -266,7 +274,7 @@ public class S_CharacterController : MonoBehaviour
         Ray ray = new Ray(transform.position, -transform.up);
         RaycastHit hit;
 
-        if (Physics.Raycast(transform.position, -transform.up, out hit, 1f, m_GroundMask))
+        if (Physics.Raycast(transform.position, -transform.up, out hit, 2f, m_GroundMask))
         {
             return true;
         }

@@ -10,7 +10,6 @@ public class S_CharacterSpawner : MonoBehaviour
     [SerializeField]
     private GameObject m_Rocket = null;
 
-    private CL_Character CharacterData;
     private S_GameController ref_GameController;
 
     private void Start()
@@ -25,9 +24,8 @@ public class S_CharacterSpawner : MonoBehaviour
     }
 
 
-    public GameObject SpawnCharacter(CL_Character CharacterDataPass)
+    public GameObject SpawnCharacter()
     {
-        CharacterData = CharacterDataPass;
 
         //find spawn points
 

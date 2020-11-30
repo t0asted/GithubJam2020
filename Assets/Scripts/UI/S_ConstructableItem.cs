@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class S_ConstructableItem : MonoBehaviour
 {
     [SerializeField]
-    private TextMeshProUGUI m_TextConstructableItem;
+    private TextMeshProUGUI m_TextConstructableItem = null;
     [SerializeField]
     private Button m_ButtonConstructableItem;
 
