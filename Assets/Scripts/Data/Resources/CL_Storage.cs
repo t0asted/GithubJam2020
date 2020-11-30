@@ -108,6 +108,10 @@ public class CL_Storage
                     if (ResourceFound != null)
                     {
                         ResourceFound.TakeResource(itemToTake);
+                        if(ResourceFound.Quantity <= 0)
+                        {
+                            ResourceList.Remove(ResourceFound);
+                        }
                         continue;
                     }
                     else

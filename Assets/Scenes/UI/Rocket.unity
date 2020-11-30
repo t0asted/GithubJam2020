@@ -1308,7 +1308,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1423822507}
   m_HandleRect: {fileID: 1423822506}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -2167,7 +2167,7 @@ MonoBehaviour:
   inventoryItemToSpawn: {fileID: 8413394215156163816, guid: 0fedb5ff80b71324393e5596f8f718f0,
     type: 3}
   ConstructableContent: {fileID: 1250665064}
-  ConstructableItemToSpawn: {fileID: 6647065155317307098, guid: b778e0e98718b2748a2afa2a704f5272,
+  ConstructableItemToSpawn: {fileID: 6091649636243264935, guid: b778e0e98718b2748a2afa2a704f5272,
     type: 3}
   TestText: {fileID: 0}
   MachineOnOff: {fileID: 1878654505}
@@ -2288,7 +2288,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1697105434}
   m_HandleRect: {fileID: 1697105433}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:

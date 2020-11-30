@@ -15,7 +15,7 @@ public class S_InventoryItem : MonoBehaviour
         }
         if(m_IconInventoryItem != null)
         {
-
+            m_IconInventoryItem = null;
         }
     }
 }

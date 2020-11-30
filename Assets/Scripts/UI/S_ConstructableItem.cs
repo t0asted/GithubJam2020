@@ -21,7 +21,8 @@ public class S_ConstructableItem : MonoBehaviour
         ToPassBackTo = rocketUIPass;
         if(m_ButtonConstructableItem != null)
         {
-            m_ButtonConstructableItem.onClick.AddListener(delegate { AddToRenderQueue(); });
+            Debug.Log("Setup button!");
+            m_ButtonConstructableItem.onClick.AddListener(AddToRenderQueue);
         }
         if(m_TextConstructableItem != null)
         {

@@ -37,6 +37,7 @@ public class S_InGameMenuBase : S_SceneUIMain
         {
             ref_GameController.CharacterController.m_MachinePlacer.NewMachineToPlace(MachineGenerator.BuiltMachine);
             ref_GameController.CharacterController.Interactor.Interact();
+            ((S_MachineGenerator)ref_GameController.CharacterController.Interactor.MachineFound).BuiltMachine = null;
         }
         else
         {
@@ -67,7 +68,19 @@ public class S_InGameMenuBase : S_SceneUIMain
                 foreach (var ConstItem in MachineGenerator.ItemsCanGenerate[i].ItemList)
                 {
                     GameObject invItemSpawn = Instantiate(ConstructableItemToSpawn, ConstructableContent.transform);
-                    invItemSpawn.GetComponent<S_ConstructableItem>().SetupContructableItem((CL_ItemConstructable)ConstItem.ItemData, this);
+                    invItemSpawn.GetComponent<S_ConstructableItem>().SetupContructableItem(ConstItem.ItemData, this);
+                }
+            }
+        }
+
+        if (MachineGenerator.MachinesCanGenerate.Count > 0)
+        {
+            for (int i = 0; i < MachineGenerator.MachineData.Level; i++)
+            {
+                foreach (var ConstItem in MachineGenerator.MachinesCanGenerate[i].ItemList)
+                {
+                    GameObject invItemSpawn = Instantiate(ConstructableItemToSpawn, ConstructableContent.transform);
+                    invItemSpawn.GetComponent<S_ConstructableItem>().SetupContructableItem(ConstItem.ItemData, this);
                 }
             }
         }

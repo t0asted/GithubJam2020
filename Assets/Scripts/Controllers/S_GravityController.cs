@@ -37,7 +37,11 @@ public class S_GravityController : MonoBehaviour
 
     public Vector3 GetGravityDirection(Transform transformPass)
     {
-        return (transformPass.position - m_Planet.transform.position).normalized;
+        if(m_Planet != null)
+        {
+            return (transformPass.position - m_Planet.transform.position).normalized;
+        }
+        return new Vector3();
     }
 
     // Start is called before the first frame update
