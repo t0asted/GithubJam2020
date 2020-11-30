@@ -13,8 +13,11 @@ public class S_MachineGenerator : S_MachineBase
     public GameObject BuiltMachine = null;
     private bool building = false;
 
+    public string Message;
+
     private void LateUpdate()
     {
+        Debug.Log(building + " / " + MachineRunning + " / " + BuiltMachine);
         if (!building && MachineRunning)
         {
             if (BuiltMachine == null)
@@ -23,17 +26,18 @@ public class S_MachineGenerator : S_MachineBase
                 {
                     if (ref_GameController.GameData.Storage.HasResource(BuildQueue[0].DataObject.CostToBuild))
                     {
+                        Message = "Building";
                         ref_GameController.GameData.Storage.TakeResources(BuildQueue[0].DataObject.CostToBuild);
                         StartCoroutine(ConstructAfterTime(BuildQueue[0]));
                     }
                     else
-                        Debug.Log("Not enough resources");
+                        Message = "Not enough resources";
                 }
                 else
-                    Debug.Log("Nothing in build queue");
+                    Message = "Nothing in build queue";
             }
             else
-                Debug.Log("You need to take your new machine out first");
+                Message = "You need to take your new machine out first";
         }
     }
 
@@ -67,7 +71,6 @@ public class S_MachineGenerator : S_MachineBase
 
     public void AddToQueue(CL_ItemConstructable ItemToAdd)
     {
-        Debug.Log("Adding to Queue");
         if (BuildQueue != null)
         {
             CL_BuildQueue ItemFound = BuildQueue.Find(f => f.DataObject.ResourceName == ItemToAdd.ResourceName);

@@ -222,12 +222,8 @@ MonoBehaviour:
   MachineRunning: 1
   TextToShowContent: {fileID: 8446984437116465039}
   UIToolTip: {fileID: 3380745690045922598}
-  OnInteract:
-    m_PersistentCalls:
-      m_Calls: []
-  OnUnInteract:
-    m_PersistentCalls:
-      m_Calls: []
+  UIMachine: {fileID: 1544076128439915501}
+  UILighting: {fileID: 6063834656132317058}
   Interactable: 0
   Interacting: 0
   Placed: 0
@@ -488,3 +484,27 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2047264549360004312}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1544076128439915501 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 649909555304087349, guid: 88ed57d42dd02c742a5c21a4f509b5e3,
+    type: 3}
+  m_PrefabInstance: {fileID: 2047264549360004312}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22cebab1041a4a849a5058f15bae037e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6063834656132317058 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5210182354896835418, guid: 88ed57d42dd02c742a5c21a4f509b5e3,
+    type: 3}
+  m_PrefabInstance: {fileID: 2047264549360004312}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22cebab1041a4a849a5058f15bae037e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

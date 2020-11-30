@@ -20,15 +20,12 @@ MonoBehaviour:
     CanLevelUp: 1
   MachineRunning: 1
   TextToShowContent: {fileID: 0}
-  UIToolTip: {fileID: 0}
-  OnInteract:
-    m_PersistentCalls:
-      m_Calls: []
-  OnUnInteract:
-    m_PersistentCalls:
-      m_Calls: []
+  UIToolTip: {fileID: 6200713526071864227}
+  UIMachine: {fileID: 7893164576193496424}
+  UILighting: {fileID: 3224752359944988935}
   Interactable: 0
   Interacting: 0
+  Placed: 0
   AstroidData: {fileID: 0}
   ItemsCanProcess:
   - {fileID: 11400000, guid: dba8669770254f040943d6aa89f06a90, type: 2}
@@ -108,3 +105,33 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 7245964217541327453}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &6200713526071864227 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3639904698506727934, guid: 88ed57d42dd02c742a5c21a4f509b5e3,
+    type: 3}
+  m_PrefabInstance: {fileID: 7245964217541327453}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7893164576193496424 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 649909555304087349, guid: 88ed57d42dd02c742a5c21a4f509b5e3,
+    type: 3}
+  m_PrefabInstance: {fileID: 7245964217541327453}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22cebab1041a4a849a5058f15bae037e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3224752359944988935 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5210182354896835418, guid: 88ed57d42dd02c742a5c21a4f509b5e3,
+    type: 3}
+  m_PrefabInstance: {fileID: 7245964217541327453}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22cebab1041a4a849a5058f15bae037e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

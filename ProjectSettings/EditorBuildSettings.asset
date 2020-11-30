@@ -41,4 +41,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/UI/Rocket.unity
     guid: b661f2b49dbc2dc4b8e2d7507e0ac987
+  - enabled: 1
+    path: Assets/Scenes/UI/MachineBuilder.unity
+    guid: 2e5da7963441da34e818cbb4eb54dea5
   m_configObjects: {}

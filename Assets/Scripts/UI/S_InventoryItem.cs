@@ -11,7 +11,7 @@ public class S_InventoryItem : MonoBehaviour
     {
         if(m_NameInventoryItem != null)
         {
-            m_NameInventoryItem.SetText(resourcePass.ResourceName.ToString());
+            m_NameInventoryItem.SetText(resourcePass.ResourceName.ToString() + " " + resourcePass.Quantity);
         }
         if(m_IconInventoryItem != null)
         {
