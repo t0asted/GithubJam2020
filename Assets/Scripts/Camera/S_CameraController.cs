@@ -9,7 +9,6 @@ public class S_CameraController : MonoBehaviour
 
     [SerializeField]
     private Transform m_ObjectToFollow = null;
-
     [SerializeField]
     private Transform CameraArm = null;
     [SerializeField]
@@ -28,6 +27,15 @@ public class S_CameraController : MonoBehaviour
     private float distanceMin = .5f;
     [SerializeField]
     private float distanceMax = 15f;
+
+    [Header("Space Camera")]
+    [SerializeField]
+    private S_GravityController GC = null;
+    [SerializeField]
+    private float xMinAngle = -45f;
+    [SerializeField]
+    private float xMaxAngle = 45f;
+
 
     float x = 0.0f;
     float y = 0.0f;
@@ -57,7 +65,8 @@ public class S_CameraController : MonoBehaviour
             {
                 x += Input.GetAxis("Mouse X") * xSpeed * distance;
                 y -= Input.GetAxis("Mouse Y") * ySpeed;
-                y = ClampAngle(y, yMinLimit, yMaxLimit);
+
+                if (GC && GC.HasPlanet()) y = ClampAngle(y, yMinLimit, yMaxLimit);
 
                 Quaternion rotation = Quaternion.Euler(y, x, 0);
 
