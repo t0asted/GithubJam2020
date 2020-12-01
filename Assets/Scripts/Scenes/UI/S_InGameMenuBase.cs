@@ -97,6 +97,7 @@ public class S_InGameMenuBase : MonoBehaviour
 
     public bool ShouldRefreshInventory()
     {
+        if (InventorySpawned == null) return false; 
 
         if (InventorySpawned.Count != ref_GameController.GameData.Storage.ResourceList.Count)
         {
