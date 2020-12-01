@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -695,6 +695,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7802f0509e7e740478031c152cb8663d, type: 2}
   - {fileID: 11400000, guid: 509a5fcfa0255314fb0182b4f14d108d, type: 2}
   CharacterController: {fileID: 0}
+  m_HUDController: {fileID: 0}
   GameData:
     GameMode: 0
     Paused: 0
@@ -703,8 +704,10 @@ MonoBehaviour:
       ResourceList:
       - ResourceName: 2
         Quantity: 100
+        ResourceData: {fileID: 11400000, guid: 0984e142ef0d8d54cbb700b441cffe99, type: 2}
       - ResourceName: 1
         Quantity: 40
+        ResourceData: {fileID: 11400000, guid: 64c03acdd5ea4774d9ecce14a84301db, type: 2}
       StorageSize: 40
       stack: 1
   ref_Character: {fileID: 0}
