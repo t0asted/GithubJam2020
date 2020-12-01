@@ -8,5 +8,7 @@ public enum Scenes_UI
 	,MachineGatherer = -829705629
 	,MainMenu = 442195652
 	,Rocket = -1273669126
+	,StartMenu = -26043789
+	,StartScreen = 16953422
 	,UICamera = -2070068999
 }
