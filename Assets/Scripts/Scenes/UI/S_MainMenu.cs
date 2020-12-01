@@ -25,4 +25,9 @@ public class S_MainMenu : S_SceneUIMain
             Debug.Log("GameMode setter : Did not find gamecontroller");
         CloseScene();
     }
+
+    public void Btn_Quit()
+    {
+        Application.Quit();
+    }
 }
