@@ -33,6 +33,8 @@ public class S_GameController : MonoBehaviour
 
     public S_CharacterController CharacterController = null;
 
+    public S_HUDController m_HUDController = null;
+
     public CL_Game GameData = new CL_Game();
 
     public GameObject ref_Character = null;
@@ -102,6 +104,11 @@ public class S_GameController : MonoBehaviour
     public void SetLevelSpawner(S_LevelSpawner LevelSpawnerPass)
     {
         m_LevelSpawner = LevelSpawnerPass;
+    }
+
+    public void SetHUDScript(S_HUDController HUDController)
+    {
+        m_HUDController = HUDController;
     }
 
 }

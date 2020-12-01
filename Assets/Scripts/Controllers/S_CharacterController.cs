@@ -53,6 +53,8 @@ public class S_CharacterController : MonoBehaviour
 
     private S_CharacterUpgrade CharacterUpgrade = null;
     private S_GravityController GC = null;
+    private S_GameController ref_GameController = null;
+    private S_HUDController HUDController = null;
     private Animator Animate;
     private Rigidbody rb;
     private Vector3 MoveDirection;
@@ -69,6 +71,14 @@ public class S_CharacterController : MonoBehaviour
         GC = GetComponent<S_GravityController>();
         CharacterUpgrade = GetComponent<S_CharacterUpgrade>();
 
+        if (GameObject.Find("_GameController") != null)
+        {
+            ref_GameController = GameObject.Find("_GameController").GetComponent<S_GameController>();
+            HUDController = ref_GameController.m_HUDController;
+        }
+        else
+            Debug.Log("Level spawner : Did not find gamecontroller");
+
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
@@ -79,6 +89,7 @@ public class S_CharacterController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!HUDController) HUDController = ref_GameController.m_HUDController;
         if (!interacting)
         {
             if (GC.HasPlanet())
@@ -115,6 +126,8 @@ public class S_CharacterController : MonoBehaviour
     // Calculates player movement vector for fixed update rigidbody
     private void CalculateGroundMovement()
     {
+        if (RemainingOvercharge < m_OverchargeJetpackTime) RemainingOvercharge += Time.deltaTime * .2f;
+
         float movementSpeed = m_PlayerWalkSpeed;
         // Set Movement speed to sprint if shift is held
         if (Input.GetButton("Sprint")) movementSpeed = m_PlayerSprintSpeed;
@@ -165,7 +178,7 @@ public class S_CharacterController : MonoBehaviour
                 rb.velocity += transform.up * m_JetpackForce;
                 m_Thrust.SetThruster(Thruster.Jetpack, true);
             }
-            else if (RemainingJetpack > .1f)
+            else if (RemainingJetpack > 0)
             {
                 rb.velocity += transform.up * m_JetpackForce;
                 RemainingJetpack -= Time.deltaTime;
@@ -197,8 +210,9 @@ public class S_CharacterController : MonoBehaviour
         {
             vertical = Mathf.Min(vertical, 0);
             m_Thrust.SetJetpackSpeed(false);
+            HUDController.TriggerTooltip(Tooltips.JetpackUpgrade);
         }
-        else if (Input.GetButton("Sprint") && RemainingOvercharge > .1f)
+        else if (Input.GetButton("Sprint") && RemainingOvercharge > 0)
         {
             tempSpeed = m_JetpackOverchargeSpeed;
             m_Thrust.SetJetpackSpeed(true);
@@ -312,6 +326,13 @@ public class S_CharacterController : MonoBehaviour
             m_Thrust.SetThruster(positive, false);
             m_Thrust.SetThruster(negative, false);
         }
+    }
+
+
+    public float[] GetJetpackRemaining()
+    {
+        if (CharacterUpgrade.HasJetpackUpgrade()) return new float[] { 1, RemainingOvercharge, m_OverchargeJetpackTime };
+        return new float[] { 0, RemainingJetpack, m_DefaultJetpackTime };
     }
 
 
