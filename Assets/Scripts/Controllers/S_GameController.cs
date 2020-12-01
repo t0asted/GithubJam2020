@@ -39,6 +39,8 @@ public class S_GameController : MonoBehaviour
 
     public GameObject ref_Character = null;
 
+    private S_Timer timer = null;
+
     private void Start()
     {
         OnStart.Invoke();
@@ -55,12 +57,14 @@ public class S_GameController : MonoBehaviour
         if (isLoaded == LoadingStages.NotLoaded && m_CharacterSpawner != null && m_LevelSpawner != null)
         {
             SetupGame();
+            timer = GetComponent<S_Timer>();
             isLoaded = LoadingStages.Loading;
         }
 
         if (isLoaded == LoadingStages.Loading && CharacterSpawned && LevelSpawned)
         {
             isLoaded = LoadingStages.Loaded;
+            timer.StartTimer();
         }
 
         if (isLoaded == LoadingStages.Loaded)
@@ -116,6 +120,11 @@ public class S_GameController : MonoBehaviour
         m_HUDController = HUDController;
     }
 
+    public string GetTime()
+    {
+        if (timer) return timer.formattedTime;
+        return "11:11";
+    }
 }
 
 public enum LoadingStages

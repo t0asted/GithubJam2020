@@ -30,6 +30,11 @@ public class S_HUDController : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI m_TooltipDesc = null;
 
+
+    [Header("Timer")]
+    [SerializeField]
+    private TextMeshProUGUI TimerText = null;
+
     private List<Tooltips> TooltipsSent;
 
 
@@ -59,6 +64,7 @@ public class S_HUDController : MonoBehaviour
     {
         if (Input.GetButtonDown("Inventory")) OpenPanel();
         UpdateJetpack();
+        UpdateTimer();
     }
 
     public void OpenPanel()
@@ -77,12 +83,17 @@ public class S_HUDController : MonoBehaviour
 
     private void UpdateJetpack()
     {
-        if (ref_GameController)
+        if (CharacterController)
         {
             float[] JetpackArgs = CharacterController.GetJetpackRemaining();
             if (JetpackArgs[0] == 1) m_JetpackMeter.sprite = m_OverchargeSourceImage;
             m_JetpackMeter.fillAmount = JetpackArgs[1] / JetpackArgs[2];
         }
+    }
+
+    private void UpdateTimer()
+    {
+        if (ref_GameController) TimerText.text = ref_GameController.GetTime();
     }
 
     public void TriggerTooltip (Tooltips tt)
