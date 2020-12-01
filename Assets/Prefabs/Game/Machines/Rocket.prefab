@@ -41,7 +41,8 @@ MonoBehaviour:
   MachineRunning: 1
   Placed: 1
   Message: 
-  ItemsCanGenerate: []
+  ItemsCanGenerate:
+  - {fileID: 11400000, guid: 49a8d47497725b24e9a4b914fb08d90c, type: 2}
   MachinesCanGenerate:
   - {fileID: 11400000, guid: 5ba95219fbe32ff4383423f8b9f93c6a, type: 2}
   Button_TakeMachine: {fileID: 0}
@@ -51,6 +52,9 @@ MonoBehaviour:
   BuiltMachine: {fileID: 0}
   ProgressBuilt: 0
   ToFixRocket: {fileID: 11400000, guid: 097aa024385902a45a33b564deb3b2d3, type: 2}
+  ItemsStillToFix: []
+  ItemsFixed: []
+  TextToAddcomponent: Add all availble components!
 --- !u!1001 &4599776577793432138
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -270,7 +274,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: a3c3475f2fa1ee04ba308d1430d832d3,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 1.36
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a3c3475f2fa1ee04ba308d1430d832d3,
         type: 3}

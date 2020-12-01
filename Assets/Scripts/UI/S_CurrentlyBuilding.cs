@@ -11,7 +11,7 @@ public class S_CurrentlyBuilding : MonoBehaviour
     [SerializeField]
     private Image m_ImageCurrentBuilding;
 
-    public CL_BuildQueue Data;
+    private CL_BuildQueue Data;
 
     public void SetData(CL_BuildQueue BuildDataPass)
     {

@@ -16,6 +16,8 @@ public class S_GameController : MonoBehaviour
     [SerializeField]
     private UnityEvent OnStart;
     [SerializeField]
+    private UnityEvent OnEnd;
+    [SerializeField]
     private UnityEvent OnStartDebugJoshua;
     [SerializeField]
     private UnityEvent OnStartDebugStefan;
@@ -98,6 +100,11 @@ public class S_GameController : MonoBehaviour
                 CharacterSpawned = true;
             }
         }
+    }
+
+    public void EndGame()
+    {
+        OnEnd.Invoke();
     }
 
     public void TogglePauseGame()

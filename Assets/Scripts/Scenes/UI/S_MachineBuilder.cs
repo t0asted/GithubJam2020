@@ -150,7 +150,7 @@ public class S_MachineBuilder : S_InGameMenuBase
         }
     }
 
-    public void SpawnConstructable()
+    protected void SpawnConstructable()
     {
         if (ConstructableContent != null && ConstructableItemToSpawn != null)
         {

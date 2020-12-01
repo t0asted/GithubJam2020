@@ -23,6 +23,13 @@ public class CL_Resource : CL_ResourceBase
         ResourceData = ResourceDataPass;
     }
 
+    public CL_Resource(SO_Item dataPass)
+    {
+        ResourceName = dataPass.ResourceName;
+        Quantity = dataPass.Quantity;
+        ResourceData = dataPass;
+    }
+
     public bool AddResource(CL_Resource resourcePass)
     {
         if (resourcePass.ResourceName == ResourceName)
