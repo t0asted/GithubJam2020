@@ -35,6 +35,7 @@ public class S_ThrusterController : MonoBehaviour
     [SerializeField]
     private GameObject m_ThrusterBackwardRight = null;
 
+    private bool Overcharge = false;
 
 
     // Start is called before the first frame update
@@ -96,12 +97,19 @@ public class S_ThrusterController : MonoBehaviour
         {
             left.startColor = m_JetpackOverchargeColour;
             right.startColor = m_JetpackOverchargeColour;
+            Overcharge = true;
         }
         else
         {
             left.startColor = m_JetpackColour;
             right.startColor = m_JetpackColour;
+            Overcharge = false;
         }
+    }
+
+    public bool IsOvercharge()
+    {
+        return Overcharge;
     }
 
     public void ClearThrust()

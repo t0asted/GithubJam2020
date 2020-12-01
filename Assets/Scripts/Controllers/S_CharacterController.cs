@@ -23,6 +23,8 @@ public class S_CharacterController : MonoBehaviour
     [SerializeField]
     private float m_DefaultJetpackTime = 3f;
     [SerializeField]
+    private float m_OverchargeJetpackTime = 3f;
+    [SerializeField]
     private LayerMask m_GroundMask;
     [SerializeField]
     private float m_MovementSmoothing = .15f;
@@ -55,7 +57,8 @@ public class S_CharacterController : MonoBehaviour
     private Rigidbody rb;
     private Vector3 MoveDirection;
     private Vector3 SmoothVelocity;
-    private float RemainingJetpack = 2f;
+    private float RemainingJetpack;
+    private float RemainingOvercharge;
     private bool GroundAnimate = false;
 
 
@@ -68,6 +71,9 @@ public class S_CharacterController : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        RemainingJetpack = m_DefaultJetpackTime;
+        RemainingOvercharge = m_OverchargeJetpackTime;
     }
 
     // Update is called once per frame
@@ -141,6 +147,7 @@ public class S_CharacterController : MonoBehaviour
     private void MovePlayerGrounded()
     {
         m_Thrust.ClearThrust();
+        if (m_Thrust.IsOvercharge()) m_Thrust.SetJetpackSpeed(false);
 
         // Check if player is on the ground
         if (IsGrounded())
@@ -158,7 +165,7 @@ public class S_CharacterController : MonoBehaviour
                 rb.velocity += transform.up * m_JetpackForce;
                 m_Thrust.SetThruster(Thruster.Jetpack, true);
             }
-            else if (RemainingJetpack > .2f)
+            else if (RemainingJetpack > .1f)
             {
                 rb.velocity += transform.up * m_JetpackForce;
                 RemainingJetpack -= Time.deltaTime;
@@ -179,7 +186,7 @@ public class S_CharacterController : MonoBehaviour
     private void CalculateSpaceMovement()
     {
         // Reset ground jetpack
-        RemainingJetpack += Time.deltaTime * .2f;
+        if (RemainingJetpack < m_DefaultJetpackTime) RemainingJetpack += Time.deltaTime * .2f;
 
         float tempSpeed = m_PlayerThrusterSpeed;
         float verticalJ = Input.GetAxisRaw("Jetpack");
@@ -191,10 +198,16 @@ public class S_CharacterController : MonoBehaviour
             vertical = Mathf.Min(vertical, 0);
             m_Thrust.SetJetpackSpeed(false);
         }
-        else if (Input.GetButton("Sprint"))
+        else if (Input.GetButton("Sprint") && RemainingOvercharge > .1f)
         {
             tempSpeed = m_JetpackOverchargeSpeed;
             m_Thrust.SetJetpackSpeed(true);
+            RemainingOvercharge -= Time.deltaTime;
+        }
+        else if (RemainingOvercharge < m_OverchargeJetpackTime)
+        {
+            m_Thrust.SetJetpackSpeed(false);
+            RemainingOvercharge += Time.deltaTime * .2f;
         }
         else m_Thrust.SetJetpackSpeed(false);
 

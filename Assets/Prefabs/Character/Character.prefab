@@ -1192,14 +1192,15 @@ MonoBehaviour:
   m_PlayerThrusterSpeed: 1.5
   m_JetpackOverchargeSpeed: 5
   m_JetpackForce: 1.2
-  m_DefaultJetpackTime: 4
+  m_DefaultJetpackTime: 3
+  m_OverchargeJetpackTime: 3
   m_GroundMask:
     serializedVersion: 2
     m_Bits: 256
   m_MovementSmoothing: 0.15
   m_Thrust: {fileID: 497215278195086399}
   m_VerticalDeadzone: 0.1
-  m_HorizontalDeadzone: 0.05
+  m_HorizontalDeadzone: 0
   m_CameraControllerScript: {fileID: 453561076138291636}
   m_Target: {fileID: 8110434497249194704}
   m_CameraSpaceAngleOffset: 0.2
