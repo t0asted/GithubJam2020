@@ -5,19 +5,34 @@ using UnityEngine;
 public class S_GravityController : MonoBehaviour
 {
     [SerializeField]
-    private S_Gravity m_Planet;
-    [SerializeField]
-    private Transform m_Target;
+    private S_Gravity m_Planet = null;
     
     [SerializeField] 
     private float m_TargetOffset = 2;
     [SerializeField]
-    private float m_RotateSpeed = 5;
+    private float m_RotateToPlanetSpeed = 3;
     [SerializeField]
     private float m_Gravity = 7;
 
+    [Header("Space Camera")]
+    [SerializeField]
+    private Transform m_Camera = null;
+    [SerializeField]
+    private Transform m_Target = null;
+    [SerializeField]
+    private float m_RotateToJetpackSpeed = 2;
+    [SerializeField]
+    private float m_XCameraOffset = 0f;
+    [SerializeField]
+    private float m_YCameraOffset = 1.4f;
+
+
+
     private Rigidbody Player;
     private Vector3 gravityDirection;
+    private float CameraXOffset;
+    private float CameraYOffset;
+    private S_CharacterUpgrade CharUpgrade = null;
 
 
     public void SetPlanet(S_Gravity planet)
@@ -48,6 +63,12 @@ public class S_GravityController : MonoBehaviour
     void Start()
     {
         Player = GetComponent<Rigidbody>();
+        CharUpgrade = GetComponent<S_CharacterUpgrade>();
+        if (m_Camera)
+        {
+            CameraXOffset = m_Camera.transform.localPosition.x;
+            CameraYOffset = m_Camera.transform.localPosition.y;
+        }
     }
 
     // Fixed Update 
@@ -57,29 +78,42 @@ public class S_GravityController : MonoBehaviour
         m_Target.transform.position += m_Target.up * m_TargetOffset;
         if (m_Planet)
         {
+            if (m_Camera.localPosition != new Vector3(CameraXOffset, CameraYOffset, m_Camera.localPosition.z))
+            {
+                m_Camera.localPosition = Vector3.Lerp(m_Camera.localPosition, new Vector3(CameraXOffset, CameraYOffset, m_Camera.localPosition.z), m_RotateToPlanetSpeed * Time.deltaTime);
+            }
+
             // Calculate Vector for gravity direction
             gravityDirection = (transform.position - m_Planet.transform.position).normalized;
-            //transform.rotation = Quaternion.FromToRotation(transform.up, gravityDirection) * transform.rotation;
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.FromToRotation(transform.up, gravityDirection) * transform.rotation, m_RotateSpeed * Time.deltaTime);
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.FromToRotation(transform.up, gravityDirection) * transform.rotation, m_RotateToPlanetSpeed * Time.deltaTime);
 
 
             // Move Target with Character
-            m_Target.transform.rotation = Quaternion.Slerp(m_Target.transform.rotation, Quaternion.FromToRotation(m_Target.transform.up, gravityDirection) * m_Target.transform.rotation, m_RotateSpeed * Time.deltaTime);
-            //m_Target.transform.rotation = Quaternion.FromToRotation(m_Target.transform.up, gravityDirection) * m_Target.transform.rotation;
+            m_Target.rotation = Quaternion.Slerp(m_Target.rotation, Quaternion.FromToRotation(m_Target.up, gravityDirection) * m_Target.rotation, m_RotateToPlanetSpeed * Time.deltaTime);
+            
 
 
+            if (m_Camera.transform.localPosition != new Vector3(CameraXOffset, m_Camera.localPosition.y, m_Camera.localPosition.z))
+            {
+                m_Camera.transform.localPosition = Vector3.Lerp(m_Camera.localPosition, new Vector3(CameraXOffset, m_Camera.localPosition.y, m_Camera.localPosition.z), m_RotateToPlanetSpeed * Time.deltaTime);
+            }
+        }
+        else if (CharUpgrade && CharUpgrade.HasThrusterUpgrade())
+        {
+            //m_Target.position = Vector3.Lerp(m_Target.position, transform.position, m_RotateToJetpackSpeed * Time.deltaTime);
+            m_Target.position = transform.position;
 
-            // IDONTKNOWITWORKPLSHELPIAMGOINGINSANE
-            // Lerp to new 
-            //transform.up = Vector3.Lerp(transform.up, gravityDirection, m_RotateSpeed * Time.deltaTime);
-            //m_Target.transform.rotation = transform.rotation;
-            //transform.rotation = Quaternion.FromToRotation(transform.up, gravityDirection) * transform.rotation;
-            //m_Target.transform.up = gravityDirection;
+            m_Target.rotation = Quaternion.Slerp(m_Target.rotation, Quaternion.FromToRotation(m_Target.up, -transform.forward) * m_Target.rotation, m_RotateToJetpackSpeed * Time.deltaTime);
 
+            if (m_Camera.localPosition != new Vector3(m_XCameraOffset, m_YCameraOffset, m_Camera.localPosition.z))
+            {
+                m_Camera.localPosition = Vector3.Lerp(m_Camera.localPosition, new Vector3(m_XCameraOffset, m_YCameraOffset, m_Camera.localPosition.z), m_RotateToJetpackSpeed * Time.deltaTime);
+            }
         }
         else
         {
-            //m_Target.transform.rotation = Quaternion.Slerp(m_Target.transform.rotation, Quaternion.FromToRotation(m_Target.transform.right, transform.right) * m_Target.transform.rotation, m_RotateSpeed * Time.deltaTime);
+            
+            m_Target.rotation = Quaternion.Slerp(m_Target.rotation, Quaternion.FromToRotation(m_Target.up, transform.up) * m_Target.rotation, m_RotateToJetpackSpeed * Time.deltaTime);
         }
     }
 
