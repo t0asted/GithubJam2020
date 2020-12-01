@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -269,21 +269,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4384322b6e3b5f49a530f519536f2a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EditorOnlyGameObjects: []
-  sceneEnum: 0
-  ref_GameController: {fileID: 0}
-  MachineGenerator: {fileID: 0}
   inventoryContent: {fileID: 0}
   inventoryItemToSpawn: {fileID: 0}
-  ConstructableContent: {fileID: 0}
-  ConstructableItemToSpawn: {fileID: 0}
-  BuildQueueContent: {fileID: 0}
-  BuildQueueItemToSpawn: {fileID: 0}
-  Txt_MachineToTake: {fileID: 0}
   Txt_MachineOnOff: {fileID: 1443724776}
   Txt_MachineMessage: {fileID: 0}
   Txt_Levelup: {fileID: 1618644409}
-  Button_TakeMachine: {fileID: 0}
   Btn_Levelup: {fileID: 1618644408}
 --- !u!1001 &1443724775
 PrefabInstance:
@@ -300,7 +290,7 @@ PrefabInstance:
     - target: {fileID: 590840864328232584, guid: 6836276906edd074b8b1e67774b84dd4,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Btn_TurnOnOff
+      value: Button_Action_TurnOnOff
       objectReference: {fileID: 0}
     - target: {fileID: 590840864328232584, guid: 6836276906edd074b8b1e67774b84dd4,
         type: 3}
@@ -463,6 +453,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 790247489}
     m_Modifications:
+    - target: {fileID: 590840864328232584, guid: 6836276906edd074b8b1e67774b84dd4,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 790247490}
+    - target: {fileID: 590840864328232584, guid: 6836276906edd074b8b1e67774b84dd4,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Button_Action_LevelUp
+      objectReference: {fileID: 0}
+    - target: {fileID: 590840864328232584, guid: 6836276906edd074b8b1e67774b84dd4,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 692963623701333794, guid: 6836276906edd074b8b1e67774b84dd4,
         type: 3}
       propertyPath: m_textInfo.characterCount

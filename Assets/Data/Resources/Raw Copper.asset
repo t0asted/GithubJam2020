@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Raw Copper
   m_EditorClassIdentifier: 
   ResourceName: 3
-  Quantity: 0
+  Quantity: 1
+  Sprite: {fileID: 21300000, guid: b2bff9f4a3908094097f94b586dbc03a, type: 3}

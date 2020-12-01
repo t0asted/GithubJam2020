@@ -18,11 +18,15 @@ MonoBehaviour:
   - ResourceName: 50
     Quantity: 1
     Rarity: 1
+    Data: {fileID: 0}
   - ResourceName: 1
     Quantity: 1
     Rarity: 2
+    Data: {fileID: 11400000, guid: 64c03acdd5ea4774d9ecce14a84301db, type: 2}
   - ResourceName: 2
     Quantity: 1
     Rarity: 3
+    Data: {fileID: 11400000, guid: 0984e142ef0d8d54cbb700b441cffe99, type: 2}
   numberOfFeatures: 20
   material: {fileID: 2100000, guid: 194c8dae7d8f5f244a66e0d304192263, type: 2}
+  isJoinPlanet: 0

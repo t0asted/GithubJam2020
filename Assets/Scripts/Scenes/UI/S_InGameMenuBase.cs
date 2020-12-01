@@ -27,6 +27,8 @@ public class S_InGameMenuBase : MonoBehaviour
     [SerializeField]
     private Button Btn_Levelup;
 
+    private List<CL_Resource> InventorySpawned;
+
     public virtual void Start()
     {
         if (GameObject.Find("_GameController") != null)
@@ -64,7 +66,20 @@ public class S_InGameMenuBase : MonoBehaviour
             {
                 Txt_MachineMessage.SetText(ref_Machine.Message);
             }
+
+            if(inventoryContent != null && inventoryItemToSpawn != null)
+            {
+                if (ShouldRefreshInventory())
+                {
+                    RefreshInventory();
+                }
+            }
         }
+    }
+
+    public bool HasResourcesToMakeItem(List<CL_Resource> ResourcesPass)
+    {
+        return ref_GameController.GameData.Storage.HasResource(ResourcesPass);
     }
 
     public void Button_Action_LevelUp()
@@ -80,11 +95,41 @@ public class S_InGameMenuBase : MonoBehaviour
         }
     }
 
+    public bool ShouldRefreshInventory()
+    {
+
+        if (InventorySpawned.Count != ref_GameController.GameData.Storage.ResourceList.Count)
+        {
+            return true;
+        }
+        for (int i = 0; i < InventorySpawned.Count; i++)
+        {
+            if (InventorySpawned[i].ResourceName != ref_GameController.GetResourceList()[i].ResourceName)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void RefreshInventory()
+    {
+        if (inventoryContent != null)
+        {
+            for (int i = 0; i < inventoryContent.transform.childCount; i++)
+            {
+                Destroy(inventoryContent.transform.GetChild(i).gameObject);
+            }
+            SpawnInventoryItems();
+        }
+    }
+
     public void SpawnInventoryItems()
     {
         if (inventoryContent != null && inventoryItemToSpawn != null)
         {
-            foreach (var invItem in ref_GameController.GameData.Storage.ResourceList)
+            InventorySpawned = new List<CL_Resource>(ref_GameController.GetResourceList());
+            foreach (var invItem in InventorySpawned)
             {
                 GameObject invItemSpawn = Instantiate(inventoryItemToSpawn, inventoryContent.transform);
                 if (invItemSpawn.GetComponent<S_InventoryItem>())
@@ -94,5 +139,5 @@ public class S_InGameMenuBase : MonoBehaviour
             }
         }
     }
-    
+
 }

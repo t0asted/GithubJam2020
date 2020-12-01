@@ -11,36 +11,57 @@ public class S_ConstructableItem : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI Text_ItemsToContruct = null;
     [SerializeField]
-    private Button m_ButtonConstructableItem;
+    private TextMeshProUGUI m_TextConstructableItemQuantity = null;
+    [SerializeField]
+    private Button m_ButtonConstructableItem = null;
+    [SerializeField]
+    private Image m_Sprite = null;
 
     private S_InGameMenuBase ToPassBackTo;
-
     private CL_ItemConstructable Data;
 
-    public void SetupContructableItem(CL_ItemConstructable DataPass, S_InGameMenuBase rocketUIPass)
+    //private void Update()
+    //{
+    //    m_ButtonConstructableItem.interactable = ToPassBackTo.HasResourcesToMakeItem(Data.CostToBuild);
+    //}
+
+    public void SetupContructableItem(CL_ItemConstructable DataPass, S_InGameMenuBase ToPassBackToPass)
     {
         Data = DataPass;
-        ToPassBackTo = rocketUIPass;
+        ToPassBackTo = ToPassBackToPass;
         if(m_ButtonConstructableItem != null)
         {
-            Debug.Log("Setup button!");
             m_ButtonConstructableItem.onClick.AddListener(AddToRenderQueue);
         }
-        if(m_TextConstructableItem != null)
+        if (m_TextConstructableItem != null)
         {
-            m_TextConstructableItem.SetText(Data.ResourceName.ToString() + " " + Data.Quantity);
+            m_TextConstructableItem.SetText(Data.ResourceName.ToString());
         }
-        if(Text_ItemsToContruct != null)
+        if(m_TextConstructableItemQuantity != null)
+        {
+            m_TextConstructableItemQuantity.SetText(Data.Quantity.ToString());
+        }
+        if (Text_ItemsToContruct != null)
         {
             Text_ItemsToContruct.SetText(ItemsToCreate());
+        }
+        if (m_Sprite != null)
+        {
+            if(Data.Sprite)
+            {
+                m_Sprite.sprite = Data.Sprite;
+            }
         }
     }
 
     public void AddToRenderQueue()
     {
-        if(ToPassBackTo is S_MachineBuilder)
+        if(ToPassBackTo.HasResourcesToMakeItem(Data.CostToBuild))
         {
-            ((S_MachineBuilder)ToPassBackTo).AddToBuildQueue(Data);
+            if (ToPassBackTo is S_MachineBuilder)
+            {
+                ((S_MachineBuilder)ToPassBackTo).AddToBuildQueue(Data);
+            }
         }
     }
 

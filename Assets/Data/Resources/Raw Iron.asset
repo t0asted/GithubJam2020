@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Raw Iron
   m_EditorClassIdentifier: 
   ResourceName: 2
-  Quantity: 5
+  Quantity: 1
+  Sprite: {fileID: 21300000, guid: 8201e306275c9744f9e68568fd877cd7, type: 3}

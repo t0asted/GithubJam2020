@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Raw Aluminium
   m_EditorClassIdentifier: 
   ResourceName: 1
-  Quantity: 5
+  Quantity: 1
+  Sprite: {fileID: 21300000, guid: ac7d8f92b08684a4593327152807d018, type: 3}

@@ -55,7 +55,7 @@ public class S_MachineGatherer : S_MachineBase
             {
                 if (PlanetResourceToGather.Rarity >= Random.Range(1, 5)) // Rarity chance that you get this resource
                 {
-                    CL_Resource ResourceToAdd = new CL_Resource(PlanetResourceToGather.ResourceName, MachineData.AmountCanProcess);
+                    CL_Resource ResourceToAdd = new CL_Resource(PlanetResourceToGather.Data);
                     ref_GameController.GameData.AddResource(ResourceToAdd);
                 }
             }

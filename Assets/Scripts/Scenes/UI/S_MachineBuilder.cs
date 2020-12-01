@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -28,6 +29,15 @@ public class S_MachineBuilder : S_InGameMenuBase
     [SerializeField]
     private Image Image_ProgressBar;
 
+    [Header("Currently building")]
+    [SerializeField]
+    private S_CurrentlyBuilding CurrentlyBuilding;
+
+    private List<CL_BuildQueue> BuildQueueSpawned = new List<CL_BuildQueue>();
+    public List<SO_ListMachine> MachineList = new List<SO_ListMachine>();
+    public List<ItemList> ItemList = new List<ItemList>();
+    private int Level;
+
     public override void Start()
     {
         base.Start();
@@ -45,20 +55,61 @@ public class S_MachineBuilder : S_InGameMenuBase
     {
         base.Update();
 
-        if (Txt_MachineToTake != null)
+        if (MachineGenerator != null)
         {
-            Txt_MachineToTake.SetText(((S_MachineGenerator)MachineGenerator).BuiltMachine != null ? "Take Machine" : "No Machine to take");
+            if (Txt_MachineToTake != null)
+            {
+                Txt_MachineToTake.SetText(((S_MachineGenerator)MachineGenerator).BuiltMachine != null ? "Take Machine" : "No Machine to take");
+            }
+
+            if (Image_ProgressBar != null)
+            {
+                Image_ProgressBar.fillAmount = MachineGenerator.ProgressBuilt;
+            }
+
+            if (Btn_TakeMachine != null)
+            {
+                Btn_TakeMachine.interactable = MachineGenerator.BuiltMachine != null;
+            }
+
+            if (needToRefreshBuildQueue())
+            {
+                RefreshBuildQueue();
+            }
+
+            if (needToRefreshConstructable())
+            {
+                RefreshConstructable();
+            }
+
+            if (CurrentlyBuilding != null)
+            {
+                //CurrentlyBuilding.gameObject.SetActive(MachineGenerator.ItemBuilding != null);
+                CurrentlyBuilding.SetData(MachineGenerator.ItemBuilding);
+            }
+        }
+    }
+
+    private bool needToRefreshBuildQueue()
+    {
+        if (BuildQueueSpawned.Count != ((S_MachineGenerator)ref_GameController.CharacterController.Interactor.MachineFound).GetBuildQueue().Count)
+        {
+            return true;
+        }
+        for (int i = 0; i < BuildQueueSpawned.Count; i++)
+        {
+            if (BuildQueueSpawned[i].DataObject.ResourceName != ((S_MachineGenerator)ref_GameController.CharacterController.Interactor.MachineFound).GetBuildQueue()[i].DataObject.ResourceName)
+            {
+                return true;
+            }
         }
 
-        if(Image_ProgressBar != null)
-        {
-            Image_ProgressBar.fillAmount = MachineGenerator.ProgressBuilt;
-        }
+        return false;
+    }
 
-        if(Btn_TakeMachine != null)
-        {
-            Btn_TakeMachine.interactable = MachineGenerator.BuiltMachine != null;
-        }
+    private bool needToRefreshConstructable()
+    {
+        return Level != MachineGenerator.MachineData.Level;
     }
 
     public void Button_Action_TakeMachine()
@@ -79,15 +130,37 @@ public class S_MachineBuilder : S_InGameMenuBase
         }
     }
 
+    public void RemoveFromQueue(CL_BuildQueue itemToRemove)
+    {
+        if (MachineGenerator != null)
+        {
+            MachineGenerator.RemoveFromQueue(itemToRemove);
+        }
+    }
+
+    protected void RefreshConstructable()
+    {
+        if (ConstructableContent != null)
+        {
+            for (int i = 0; i < ConstructableContent.transform.childCount; i++)
+            {
+                Destroy(ConstructableContent.transform.GetChild(i).gameObject);
+            }
+            SpawnConstructable();
+        }
+    }
+
     public void SpawnConstructable()
     {
         if (ConstructableContent != null && ConstructableItemToSpawn != null)
         {
+            Level = MachineGenerator.MachineData.Level;
             if (MachineGenerator.ItemsCanGenerate.Count > 0)
             {
                 for (int i = 0; i < MachineGenerator.MachineData.Level; i++)
                 {
-                    foreach (var ConstItem in MachineGenerator.ItemsCanGenerate[i].ItemList)
+                    ItemList = MachineGenerator.ItemsCanGenerate[i].ItemList;
+                    foreach (var ConstItem in ItemList)
                     {
                         GameObject invItemSpawn = Instantiate(ConstructableItemToSpawn, ConstructableContent.transform);
                         if (invItemSpawn.GetComponent<S_ConstructableItem>())
@@ -101,7 +174,8 @@ public class S_MachineBuilder : S_InGameMenuBase
             {
                 for (int i = 0; i < MachineGenerator.MachineData.Level; i++)
                 {
-                    foreach (var ConstItem in MachineGenerator.MachinesCanGenerate[i].ItemList)
+                    MachineList = new List<SO_ListMachine>(MachineGenerator.MachinesCanGenerate);
+                    foreach (var ConstItem in MachineList[i].ItemList)
                     {
                         GameObject invItemSpawn = Instantiate(ConstructableItemToSpawn, ConstructableContent.transform);
                         if (invItemSpawn.GetComponent<S_ConstructableItem>())
@@ -114,16 +188,29 @@ public class S_MachineBuilder : S_InGameMenuBase
         }
     }
 
-    public void SpawnBuildQueue()
+    protected void RefreshBuildQueue()
+    {
+        if (BuildQueueContent != null)
+        {
+            for (int i = 0; i < BuildQueueContent.transform.childCount; i++)
+            {
+                Destroy(BuildQueueContent.transform.GetChild(i).gameObject);
+            }
+            SpawnBuildQueue();
+        }
+    }
+
+    protected void SpawnBuildQueue()
     {
         if (BuildQueueContent != null && BuildQueueItemToSpawn != null)
         {
-            foreach (var invItem in ((S_MachineGenerator)ref_GameController.CharacterController.Interactor.MachineFound).BuildQueue)
+            BuildQueueSpawned = new List<CL_BuildQueue>(((S_MachineGenerator)ref_GameController.CharacterController.Interactor.MachineFound).GetBuildQueue());
+            foreach (var invItem in BuildQueueSpawned)
             {
                 GameObject invItemSpawn = Instantiate(BuildQueueItemToSpawn, BuildQueueContent.transform);
                 if (invItemSpawn.GetComponent<S_BuildQueueItem>())
                 {
-                    invItemSpawn.GetComponent<S_BuildQueueItem>().SetItem(invItem);
+                    invItemSpawn.GetComponent<S_BuildQueueItem>().SetItem(invItem, this);
                 }
             }
         }

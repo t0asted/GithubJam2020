@@ -38,6 +38,12 @@ public class CL_Storage
         return GetResourcesSize() >= StorageSize;
     }
 
+    public bool AddResources(SO_ResourceBase ResourceToAdd)
+    {
+        CL_Storage NewStorage = new CL_Storage(new List<CL_Resource>() { new CL_Resource(ResourceToAdd) });
+        return AddResources(NewStorage);
+    }
+
     public bool AddResources(CL_Resource ResourceToAdd)
     {
         CL_Storage NewStorage = new CL_Storage(new List<CL_Resource>() { ResourceToAdd });
@@ -107,7 +113,6 @@ public class CL_Storage
 
                     if (ResourceFound != null)
                     {
-                        Debug.Log(ResourceFound.ResourceName);
                         ResourceFound.TakeResource(itemToTake);
                         if(ResourceFound.Quantity <= 0)
                         {
