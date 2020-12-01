@@ -3,16 +3,24 @@
 [System.Serializable]
 public class CL_Resource : CL_ResourceBase
 {
-    public CL_Resource()
+    public CL_Resource(SO_ResourceBase ResourceDataPass)
     {
-        ResourceName = Enum_Items.None;
-        Quantity = 1;
+        ResourceName = ResourceDataPass.ResourceName;
+        Quantity = ResourceDataPass.Quantity;
+        ResourceData = ResourceDataPass;
     }
 
-    public CL_Resource(Enum_Items namePass, float quantityPass)
+    public CL_Resource(Enum_Items ResourceNamePass, float QuanityPass)
+    {
+        ResourceName = ResourceNamePass;
+        Quantity = QuanityPass;
+    }
+
+    public CL_Resource(Enum_Items namePass, float quantityPass, SO_ResourceBase ResourceDataPass)
     {
         ResourceName = namePass;
         Quantity = quantityPass;
+        ResourceData = ResourceDataPass;
     }
 
     public bool AddResource(CL_Resource resourcePass)

@@ -1,9 +1,6 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 
 [CreateAssetMenu(menuName = "Data/Item/Raw Material")]
-public class SO_Raw : ScriptableObject
+public class SO_Raw : SO_ResourceBase
 {
-    public Enum_Items ResourceName;
-    public Image Sprite;
 }

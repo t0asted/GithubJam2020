@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Raw Gold
   m_EditorClassIdentifier: 
   ResourceName: 5
-  Quantity: 0
+  Quantity: 1
+  Sprite: {fileID: 21300000, guid: d4a010660b52141428b5b40473cd416e, type: 3}

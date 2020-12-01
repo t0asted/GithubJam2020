@@ -26,7 +26,7 @@ public class S_PlaceMachine : MonoBehaviour
         if (MachineToSpawn != null)
         {
             PlaceMachine();
-            if (Input.GetKey("j") && MachineToSpawn != null)
+            if (Input.GetButton("Fire") && MachineToSpawn != null)
             {
                 if(NewMachine.GetComponent<S_MachineBase>())
                 {
@@ -52,7 +52,7 @@ public class S_PlaceMachine : MonoBehaviour
         else
         {
             RaycastHit hit;
-            //Debug.DrawRay(characterDirection.position, Camera.GetForwardCamera() * 5);
+            Debug.DrawRay(characterDirection.position, Camera.GetForwardCamera() * 5);
             if (Physics.Raycast(characterDirection.position, Camera.GetForwardCamera() * 5, out hit))
             {
                 if (hit.transform.gameObject.tag == "Astroid")

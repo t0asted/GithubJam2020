@@ -33,13 +33,22 @@ public class S_GameController : MonoBehaviour
 
     public S_CharacterController CharacterController = null;
 
+    public S_HUDController m_HUDController = null;
+
     public CL_Game GameData = new CL_Game();
 
     public GameObject ref_Character = null;
 
+    private S_Timer timer = null;
+
     private void Start()
     {
         OnStart.Invoke();
+    }
+
+    public List<CL_Resource> GetResourceList()
+    {
+        return GameData.Storage.ResourceList;
     }
 
     private void Update()
@@ -48,12 +57,14 @@ public class S_GameController : MonoBehaviour
         if (isLoaded == LoadingStages.NotLoaded && m_CharacterSpawner != null && m_LevelSpawner != null)
         {
             SetupGame();
+            timer = GetComponent<S_Timer>();
             isLoaded = LoadingStages.Loading;
         }
 
         if (isLoaded == LoadingStages.Loading && CharacterSpawned && LevelSpawned)
         {
             isLoaded = LoadingStages.Loaded;
+            timer.StartTimer();
         }
 
         if (isLoaded == LoadingStages.Loaded)
@@ -104,6 +115,16 @@ public class S_GameController : MonoBehaviour
         m_LevelSpawner = LevelSpawnerPass;
     }
 
+    public void SetHUDScript(S_HUDController HUDController)
+    {
+        m_HUDController = HUDController;
+    }
+
+    public string GetTime()
+    {
+        if (timer) return timer.formattedTime;
+        return "11:11";
+    }
 }
 
 public enum LoadingStages

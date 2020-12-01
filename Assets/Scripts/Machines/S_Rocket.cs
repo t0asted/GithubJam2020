@@ -7,6 +7,15 @@ public class S_Rocket : S_MachineGenerator
     public SO_ListItem ToFixRocket;
     private CL_Storage ItemsAddedToShip = new CL_Storage();
 
+    public override void Start()
+    {
+        base.Start();
+        foreach (Collider c in GetComponents<Collider>())
+        {
+            c.enabled = true;
+        }
+    }
+
     public bool IsShipFixed()
     {
         foreach (var item in ToFixRocket.ItemList)

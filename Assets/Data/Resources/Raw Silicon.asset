@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Raw Silicon
   m_EditorClassIdentifier: 
   ResourceName: 6
-  Quantity: 0
+  Quantity: 1
+  Sprite: {fileID: 21300000, guid: 1401f0112caa7af4eaa93a4edd2f5c95, type: 3}

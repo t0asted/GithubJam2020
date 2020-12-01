@@ -14,11 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ResourceName: 1002
   Quantity: 1
+  Sprite: {fileID: 21300000, guid: 61e13c789b0adbc438d60bd98d41b7d2, type: 3}
   TimeToBuild: 90
   CostToBuild:
   - ResourceName: 1
     Quantity: 75
+    ResourceData: {fileID: 0}
   - ResourceName: 50
     Quantity: 15
+    ResourceData: {fileID: 0}
   PrefabForMachine: {fileID: 5923042023189533869, guid: efc83135a03915b4493298d869c4a0b8,
     type: 3}

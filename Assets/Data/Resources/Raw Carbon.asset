@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Raw Carbon
   m_EditorClassIdentifier: 
   ResourceName: 8
-  Quantity: 0
+  Quantity: 1
+  Sprite: {fileID: 21300000, guid: 187a5caec7a57b845a54fd51cbc11604, type: 3}

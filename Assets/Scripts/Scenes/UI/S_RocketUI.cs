@@ -3,25 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class S_RocketUI : S_InGameMenuBase
+public class S_RocketUI : S_MachineBuilder
 {
     private S_Rocket Rocket = null;
 
-    new void Start()
+    public override void Start()
     {
         base.Start();
-        if (MachineGenerator is S_Rocket)
+        if (ref_Machine is S_Rocket)
         {
-            Rocket = (S_Rocket)MachineGenerator;
+            Rocket = ref_Machine as S_Rocket;
         }
-        SetupData();
-    }
-
-    private void SetupData()
-    {
-        SpawnConstructable();
-        SpawnInventoryItems();
-        SpawnBuildQueue();
     }
 
     public void DebugAddMachine(GameObject MachineTest)
@@ -29,7 +21,7 @@ public class S_RocketUI : S_InGameMenuBase
         Rocket.BuiltMachine = MachineTest;
     }
 
-    public void Btn_AddAvailbleItemsToFix()
+    public void Button_Action_AddAvailbleItemsToFix()
     {
         //TODO
     }
