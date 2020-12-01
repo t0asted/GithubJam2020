@@ -225,8 +225,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d645254a2c9e964584abf6fc6fb14f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Default_Color: {r: 188, g: 188, b: 188, a: 255}
+  m_Default_Color: {r: 0.754717, g: 0.754717, b: 0.754717, a: 255}
   m_Hover_Color: {r: 1, g: 1, b: 1, a: 255}
+  buttonText: {fileID: 862008785}
 --- !u!1 &492376565
 GameObject:
   m_ObjectHideFlags: 0
@@ -1364,8 +1365,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d645254a2c9e964584abf6fc6fb14f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Default_Color: {r: 188, g: 188, b: 188, a: 255}
+  m_Default_Color: {r: 0.75686276, g: 0.75686276, b: 0.75686276, a: 255}
   m_Hover_Color: {r: 1, g: 1, b: 1, a: 255}
+  buttonText: {fileID: 2018056642244288550}
 --- !u!224 &6288153806417169181
 RectTransform:
   m_ObjectHideFlags: 0
