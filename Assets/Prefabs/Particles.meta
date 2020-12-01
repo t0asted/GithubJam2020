@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/EditorSculpt.meta
+guid: c3d42c7fd0731574ba7aeb00c23ca895
+=======
 guid: 58c0bf071e27dba448ff721b35ffb778
+>>>>>>> main:Assets/Prefabs/Particles.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

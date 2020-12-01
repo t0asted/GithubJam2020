@@ -1,5 +1,19 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!136 &2081683733855391068
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6807490328256853650}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 1.88
+  m_Height: 5.75
+  m_Direction: 1
+  m_Center: {x: 0, y: 2.65, z: 0}
 --- !u!114 &359456405044304567
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26,27 +40,17 @@ MonoBehaviour:
   Interacting: 0
   MachineRunning: 1
   Placed: 1
+  Message: 
   ItemsCanGenerate: []
   MachinesCanGenerate:
   - {fileID: 11400000, guid: 5ba95219fbe32ff4383423f8b9f93c6a, type: 2}
-  BuildQueue: []
+  Button_TakeMachine: {fileID: 0}
+  ItemBuilding:
+    DataObject: {fileID: 0}
+    Quantity: 0
   BuiltMachine: {fileID: 0}
-  Message: 
+  ProgressBuilt: 0
   ToFixRocket: {fileID: 11400000, guid: 097aa024385902a45a33b564deb3b2d3, type: 2}
---- !u!136 &2081683733855391068
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6807490328256853650}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 1.88
-  m_Height: 5.75
-  m_Direction: 1
-  m_Center: {x: 0, y: 2.65, z: 0}
 --- !u!1001 &4599776577793432138
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -266,7 +270,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: a3c3475f2fa1ee04ba308d1430d832d3,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.36
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a3c3475f2fa1ee04ba308d1430d832d3,
         type: 3}

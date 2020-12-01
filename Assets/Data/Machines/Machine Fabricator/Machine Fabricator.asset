@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ResourceName: 1002
   Quantity: 1
-  Sprite: {fileID: 21300000, guid: 61e13c789b0adbc438d60bd98d41b7d2, type: 3}
+  Sprite: {fileID: 21300000, guid: d7dce8d75773bb042a1222a2db7ac12e, type: 3}
   TimeToBuild: 30
   CostToBuild:
   - ResourceName: 2
