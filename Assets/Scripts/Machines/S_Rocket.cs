@@ -5,7 +5,10 @@ using UnityEngine;
 public class S_Rocket : S_MachineGenerator
 {
     public SO_ListItem ToFixRocket;
-    private CL_Storage ItemsAddedToShip = new CL_Storage();
+    public List<ItemList> ItemsStillToFix = new List<ItemList>();
+    public List<ItemList> ItemsFixed = new List<ItemList>();
+
+    public string TextToAddcomponent = "Add all availble components!";
 
     public override void Start()
     {
@@ -14,40 +17,43 @@ public class S_Rocket : S_MachineGenerator
         {
             c.enabled = true;
         }
+        ItemsStillToFix = ToFixRocket.ItemList;
     }
 
-    public bool IsShipFixed()
+    public void IsShipFixed()
     {
-        foreach (var item in ToFixRocket.ItemList)
+        if(ItemsFixed.Count >= 5)
         {
-            CL_Resource ResourceFound = ItemsAddedToShip.ResourceList.Find(f => f.ResourceName == item.ItemData.ResourceName);
-            if (ResourceFound == null)
+            ref_GameController.EndGame();
+        }
+    }
+
+    public void AddAllAvailbleParts()
+    {
+        if(HasAnyResource())
+        {
+            TextToAddcomponent = "You added a part to fix the ship";
+        }
+        else
+        {
+            TextToAddcomponent = "You didn't have any items to fix ship";
+        }
+        IsShipFixed();
+    }
+
+    public bool HasAnyResource()
+    {
+        bool DidFindSomethingToAdd = false;
+        foreach (var item in ItemsStillToFix)
+        {
+            if (ref_GameController.GameData.Storage.HasResource(new CL_Resource(item.ItemData)))
             {
-                return false;
+                ref_GameController.GameData.Storage.TakeResources(new CL_Resource(item.ItemData));
+                ItemsFixed.Add(item);
+                DidFindSomethingToAdd = true;
             }
         }
-        //foreach (var item in ToFixRocket.PartList)
-        //{
-        //    CL_Resource ResourceFound = ItemsAddedToShip.ResourceList.Find(f => f.ResourceName == item.ItemData.ResourceName);
-        //    if (ResourceFound == null)
-        //    {
-        //        return false;
-        //    }
-        //}
-        //foreach (var item in ToFixRocket.RawList)
-        //{
-        //    CL_Resource ResourceFound = ItemsAddedToShip.ResourceList.Find(f => f.ResourceName == item.ItemData.ResourceName);
-        //    if (ResourceFound == null)
-        //    {
-        //        return false;
-        //    }
-        //}
-        return true;
-    }
-
-    public void AddPartToShip(CL_Resource resourceToAdd)
-    {
-        ItemsAddedToShip.AddResources(resourceToAdd);
+        return DidFindSomethingToAdd;
     }
 
 }
