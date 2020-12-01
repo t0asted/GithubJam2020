@@ -9,7 +9,7 @@ public class CL_Machine
     public int ProcessSpeed = 1;
     [SerializeField]
     public int AmountCanProcess = 1;
-
+    
     [SerializeField]
     public Enum_Items TypeOfMachine = Enum_Items.None;
 

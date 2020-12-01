@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Raw Helium
   m_EditorClassIdentifier: 
   ResourceName: 11
-  Quantity: 0
+  Quantity: 1
+  Sprite: {fileID: 21300000, guid: 8cdf1aed7605d4f4c815a46909f87c0e, type: 3}

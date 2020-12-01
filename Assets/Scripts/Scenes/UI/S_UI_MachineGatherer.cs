@@ -1,11 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class S_UI_MachineGatherer : S_InGameMenuBase
+﻿public class S_UI_MachineGatherer : S_InGameMenuBase
 {
+    private S_MachineGatherer MachineGatherer = null;
+
     new void Start()
     {
         base.Start();
+        if (ref_Machine is S_MachineGatherer)
+        {
+            MachineGatherer = ref_Machine as S_MachineGatherer;
+        }
     }
 }

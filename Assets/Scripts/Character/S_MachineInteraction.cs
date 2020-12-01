@@ -52,7 +52,6 @@ public class S_MachineInteraction : MonoBehaviour
     {
         if(MachineFound != null)
         {
-            Debug.Log(other.gameObject.name);
             if (other.gameObject.GetComponent<S_MachineBase>() == MachineFound)
             {
                 MachineFound.Interactable = false;

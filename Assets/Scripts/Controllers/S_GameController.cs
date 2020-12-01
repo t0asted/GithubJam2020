@@ -46,6 +46,11 @@ public class S_GameController : MonoBehaviour
         OnStart.Invoke();
     }
 
+    public List<CL_Resource> GetResourceList()
+    {
+        return GameData.Storage.ResourceList;
+    }
+
     private void Update()
     {
         // Check if not loaded and has references
