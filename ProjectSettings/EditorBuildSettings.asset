@@ -47,4 +47,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/UI/MachineGatherer.unity
     guid: 77b771d13087d644ba69d1c741a6ec45
+  - enabled: 1
+    path: Assets/Scenes/UI/StartScreen.unity
+    guid: 1dba7fde782472d49ac008823512c240
   m_configObjects: {}
