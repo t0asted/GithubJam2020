@@ -15,18 +15,22 @@ MonoBehaviour:
   size: 250
   gravity: 1
   PlanetData:
-  - ResourceName: 50
-    Quantity: 1
-    Rarity: 1
-    Data: {fileID: 0}
-  - ResourceName: 1
+  - ResourceName: 52
     Quantity: 1
     Rarity: 2
-    Data: {fileID: 11400000, guid: 64c03acdd5ea4774d9ecce14a84301db, type: 2}
-  - ResourceName: 2
+    Data: {fileID: 11400000, guid: ad77a4a6cdeb3f34d92202f2f3224225, type: 2}
+  - ResourceName: 8
+    Quantity: 1
+    Rarity: 2
+    Data: {fileID: 11400000, guid: 141cef1e070de774d90900f2caa6f679, type: 2}
+  - ResourceName: 6
+    Quantity: 1
+    Rarity: 5
+    Data: {fileID: 11400000, guid: 63fa4b0e4af10074aad649f0daa019dc, type: 2}
+  - ResourceName: 5
     Quantity: 1
     Rarity: 3
-    Data: {fileID: 11400000, guid: 0984e142ef0d8d54cbb700b441cffe99, type: 2}
+    Data: {fileID: 11400000, guid: c95b516a5c87ae649b706e09b3fa9afa, type: 2}
   numberOfFeatures: 20
   material: {fileID: 2100000, guid: 194c8dae7d8f5f244a66e0d304192263, type: 2}
   isJoinPlanet: 0
