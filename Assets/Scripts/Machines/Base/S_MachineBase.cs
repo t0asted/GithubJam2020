@@ -9,7 +9,7 @@ public class S_MachineBase : MonoBehaviour
     public CL_Machine MachineData = new CL_Machine();
     [SerializeField]
     private GameObject UIToolTip;
-    
+
     [SerializeField]
     public TextMeshProUGUI TextToShowContent;
     [SerializeField]
@@ -34,10 +34,16 @@ public class S_MachineBase : MonoBehaviour
         {
             Debug.Log("No Game controller!");
         }
+
+        foreach (Collider c in GetComponentsInChildren<Collider>())
+        {
+            c.enabled = false;
+        }
     }
 
     public virtual void Update()
     {
+        transform.GetComponent<Collider>().enabled = Placed;
         if (Placed)
         {
             if (UIToolTip != null)
@@ -53,6 +59,10 @@ public class S_MachineBase : MonoBehaviour
     public void Place()
     {
         Placed = true;
+        foreach (Collider c in GetComponentsInChildren<Collider>())
+        {
+            c.enabled = true;
+        }
     }
 
     public void Interact()
