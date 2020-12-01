@@ -213,25 +213,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ca724d5a6c38754da16b426fdcb9325, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ref_GameController: {fileID: 0}
   MachineData:
     ProcessSpeed: 1
     AmountCanProcess: 1
     TypeOfMachine: 1001
     Level: 1
     CanLevelUp: 1
-  MachineRunning: 1
   UIToolTip: {fileID: 3380745690045922598}
   TextToShowContent: {fileID: 8446984437116465039}
   UIMachine: {fileID: 1544076128439915501}
   UILighting: {fileID: 6063834656132317058}
   Interactable: 0
   Interacting: 0
+  MachineRunning: 1
   Placed: 0
   AstroidData: {fileID: 0}
   ItemsCanProcess:
   - {fileID: 11400000, guid: dce0c10b073ec244080aa1b754245954, type: 2}
   - {fileID: 11400000, guid: 40efe46de6f8549409e829f21a536d76, type: 2}
+--- !u!65 &2300149332408657758
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9062922836090830848}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.01, y: 1.93, z: 3.91}
+  m_Center: {x: 0, y: 0.82, z: 0}
 --- !u!1 &3986280089170635196
 GameObject:
   m_ObjectHideFlags: 0

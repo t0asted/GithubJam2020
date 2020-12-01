@@ -38,7 +38,10 @@ public class S_ConstructableItem : MonoBehaviour
 
     public void AddToRenderQueue()
     {
-        ToPassBackTo.AddToBuildQueue(Data);
+        if(ToPassBackTo is S_MachineBuilder)
+        {
+            ((S_MachineBuilder)ToPassBackTo).AddToBuildQueue(Data);
+        }
     }
 
     private string ItemsToCreate()

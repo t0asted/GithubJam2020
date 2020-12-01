@@ -1,27 +1,30 @@
 ﻿using TMPro;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class S_MachineBase : MonoBehaviour
 {
-    public S_GameController ref_GameController = null;
+    protected S_GameController ref_GameController = null;
+
     [SerializeField]
     public CL_Machine MachineData = new CL_Machine();
     [SerializeField]
-    public bool MachineRunning = false;
-    [SerializeField]
     private GameObject UIToolTip;
+    
     [SerializeField]
     public TextMeshProUGUI TextToShowContent;
     [SerializeField]
     private S_OpenCloseUIScene UIMachine;
     [SerializeField]
     private S_OpenCloseUIScene UILighting;
+
     public bool Interactable = false;
     public bool Interacting = false;
+    public bool MachineRunning = false;
     public bool Placed = false;
 
-    private void Start()
+    public string Message = "";
+
+    public virtual void Start()
     {
         if (GameObject.Find("_GameController") != null)
         {
@@ -33,7 +36,7 @@ public class S_MachineBase : MonoBehaviour
         }
     }
 
-    private void Update()
+    public virtual void Update()
     {
         if (Placed)
         {

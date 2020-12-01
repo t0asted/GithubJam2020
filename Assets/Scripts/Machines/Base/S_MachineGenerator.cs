@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class S_MachineGenerator : S_MachineBase
 {
@@ -8,16 +10,26 @@ public class S_MachineGenerator : S_MachineBase
     public List<SO_ListItem> ItemsCanGenerate;
     [SerializeField]
     public List<SO_ListMachine> MachinesCanGenerate;
-    
+    [SerializeField]
+    private Button Button_TakeMachine;
 
     public List<CL_BuildQueue> BuildQueue = new List<CL_BuildQueue>();
     public GameObject BuiltMachine = null;
     private bool building = false;
 
-    public string Message;
+    public float ProgressBuilt = 0;
 
-    private void LateUpdate()
+    private DateTime StartedBuilding;
+    private DateTime EndBuilding;
+
+    public override void Update()
     {
+        if(building)
+        {
+            ProgressBuilt = (float)((DateTime.Now - StartedBuilding).TotalSeconds * 100 / (EndBuilding - StartedBuilding).TotalSeconds) / 100;
+            Debug.Log(ProgressBuilt);
+        }
+
         if (TextToShowContent != null)
         {
             TextToShowContent.text = MachineRunning ?  "Machine running" : "Machine is off";
@@ -48,6 +60,8 @@ public class S_MachineGenerator : S_MachineBase
 
     IEnumerator ConstructAfterTime(CL_BuildQueue ItemToConstruct)
     {
+        StartedBuilding = DateTime.Now;
+        EndBuilding = StartedBuilding.AddSeconds((int)ItemToConstruct.DataObject.TimeToBuild);
         if (building)
             yield break;
 
