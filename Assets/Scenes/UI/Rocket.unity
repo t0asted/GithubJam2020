@@ -455,6 +455,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Button - LevelUp
       objectReference: {fileID: 0}
+    - target: {fileID: 6165390936793448009, guid: 6836276906edd074b8b1e67774b84dd4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8915829307559253956, guid: 6836276906edd074b8b1e67774b84dd4,
         type: 3}
       propertyPath: m_textInfo.textComponent
@@ -616,7 +621,7 @@ PrefabInstance:
     - target: {fileID: 4816731735854083097, guid: 6836276906edd074b8b1e67774b84dd4,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -820.9999
+      value: -530.9999
       objectReference: {fileID: 0}
     - target: {fileID: 4816731735854083097, guid: 6836276906edd074b8b1e67774b84dd4,
         type: 3}
@@ -1134,7 +1139,7 @@ PrefabInstance:
     - target: {fileID: 4816731735854083097, guid: 6836276906edd074b8b1e67774b84dd4,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 279.00015
+      value: 569.0001
       objectReference: {fileID: 0}
     - target: {fileID: 4816731735854083097, guid: 6836276906edd074b8b1e67774b84dd4,
         type: 3}
@@ -2625,7 +2630,7 @@ PrefabInstance:
     - target: {fileID: 4816731735854083097, guid: 6836276906edd074b8b1e67774b84dd4,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -270.99988
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 4816731735854083097, guid: 6836276906edd074b8b1e67774b84dd4,
         type: 3}
