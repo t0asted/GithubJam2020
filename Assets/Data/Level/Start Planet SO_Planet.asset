@@ -38,11 +38,11 @@ MonoBehaviour:
   - ResourceName: 8
     Quantity: 1
     Rarity: 2
-    Data: {fileID: 11400000, guid: 66300237388c425469e97d79ea3548e3, type: 2}
+    Data: {fileID: 11400000, guid: 141cef1e070de774d90900f2caa6f679, type: 2}
   - ResourceName: 52
     Quantity: 1
     Rarity: 2
-    Data: {fileID: 11400000, guid: 66300237388c425469e97d79ea3548e3, type: 2}
+    Data: {fileID: 11400000, guid: ad77a4a6cdeb3f34d92202f2f3224225, type: 2}
   numberOfFeatures: 18
   material: {fileID: 2100000, guid: 1a60e1903e2ef9a4481b5519cc75658f, type: 2}
   isJoinPlanet: 0

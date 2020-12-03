@@ -14,10 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   size: 30
   gravity: 1
-  PlanetData:
-  - ResourceName: 50
-    Quantity: 1
-    Rarity: 5
+  PlanetData: []
   numberOfFeatures: 0
   material: {fileID: 2100000, guid: 25b6b356020faa8449a5b11bf4643c20, type: 2}
   isJoinPlanet: 1

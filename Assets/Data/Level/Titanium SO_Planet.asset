@@ -26,7 +26,7 @@ MonoBehaviour:
   - ResourceName: 4
     Quantity: 1
     Rarity: 3
-    Data: {fileID: 11400000, guid: 141cef1e070de774d90900f2caa6f679, type: 2}
+    Data: {fileID: 11400000, guid: 045cd4a8fb24a7944a1d4a3f5b6f8f09, type: 2}
   - ResourceName: 11
     Quantity: 1
     Rarity: 2

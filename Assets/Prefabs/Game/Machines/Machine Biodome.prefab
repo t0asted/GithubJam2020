@@ -39,6 +39,7 @@ MonoBehaviour:
   Interacting: 0
   MachineRunning: 1
   Placed: 0
+  Message: 
   AstroidData: {fileID: 0}
   ItemsCanProcess:
   - {fileID: 11400000, guid: dba8669770254f040943d6aa89f06a90, type: 2}
@@ -132,6 +133,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 649909555304087349, guid: 88ed57d42dd02c742a5c21a4f509b5e3,
+        type: 3}
+      propertyPath: sceneEnum
+      value: -829705629
+      objectReference: {fileID: 0}
     - target: {fileID: 3387412764338555759, guid: 88ed57d42dd02c742a5c21a4f509b5e3,
         type: 3}
       propertyPath: m_LocalPosition.z
