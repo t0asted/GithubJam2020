@@ -10,7 +10,7 @@ public class S_MachineInteraction : MonoBehaviour
     [SerializeField]
     private S_CharacterController m_CharacterController;
     public S_MachineBase MachineFound = null;
-    public bool Interacting;
+    public bool Interacting = false;
 
     private void Update()
     {
@@ -19,24 +19,26 @@ public class S_MachineInteraction : MonoBehaviour
             MachineFound.Interactable = true;
             if (Input.GetKeyDown("e"))
             {
-                Interact();
+                Interact(!Interacting);
             }
         }
     }
 
-    public void Interact()
+    public void Interact(bool interactPass)
     {
-        if (Interacting)
+        if(interactPass != Interacting)
         {
-            m_CharacterController.SetInteracting(false);
-            MachineFound.UnInteract();
-            Interacting = false;
-        }
-        else
-        {
-            m_CharacterController.SetInteracting(true);
-            MachineFound.Interact();
-            Interacting = true;
+            m_CharacterController.SetInteracting(interactPass);
+            Interacting = interactPass;
+
+            if (interactPass)
+            {
+                MachineFound.Interact();
+            }
+            else
+            {
+                MachineFound.UnInteract();
+            }
         }
     }
 
@@ -54,6 +56,7 @@ public class S_MachineInteraction : MonoBehaviour
         {
             if (other.gameObject.GetComponent<S_MachineBase>() == MachineFound)
             {
+                Interact(false);
                 MachineFound.Interactable = false;
                 MachineFound = null;
             }

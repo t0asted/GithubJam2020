@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdf887c4b62c9d34eb7e22e584415e40, type: 3}
   m_Name: Upgrade Pack 2
   m_EditorClassIdentifier: 
-  ResourceName: 0
+  ResourceName: 501
   Quantity: 1
   Sprite: {fileID: 21300000, guid: 03944200e6f397347868e2a613ce977c, type: 3}
   TimeToBuild: 1

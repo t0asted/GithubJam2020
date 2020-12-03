@@ -75,11 +75,11 @@ public class S_GameController : MonoBehaviour
         }
 
         //Debug Respawn
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            Destroy(ref_Character);
-            ref_Character = m_CharacterSpawner.SpawnCharacter();
-        }
+        //if (Input.GetKeyDown(KeyCode.K))
+        //{
+        //    Destroy(ref_Character);
+        //    ref_Character = m_CharacterSpawner.SpawnCharacter();
+        //}
     }
 
     private void SetupGame()

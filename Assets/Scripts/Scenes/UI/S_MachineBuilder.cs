@@ -92,18 +92,20 @@ public class S_MachineBuilder : S_InGameMenuBase
 
     private bool needToRefreshBuildQueue()
     {
-        if (BuildQueueSpawned.Count != ((S_MachineGenerator)ref_GameController.CharacterController.Interactor.MachineFound).GetBuildQueue().Count)
+        if((S_MachineGenerator)ref_GameController.CharacterController.Interactor.MachineFound != null)
         {
-            return true;
-        }
-        for (int i = 0; i < BuildQueueSpawned.Count; i++)
-        {
-            if (BuildQueueSpawned[i].DataObject.ResourceName != ((S_MachineGenerator)ref_GameController.CharacterController.Interactor.MachineFound).GetBuildQueue()[i].DataObject.ResourceName)
+            if (BuildQueueSpawned.Count != ((S_MachineGenerator)ref_GameController.CharacterController.Interactor.MachineFound).GetBuildQueue().Count)
             {
                 return true;
             }
+            for (int i = 0; i < BuildQueueSpawned.Count; i++)
+            {
+                if (BuildQueueSpawned[i].DataObject.ResourceName != ((S_MachineGenerator)ref_GameController.CharacterController.Interactor.MachineFound).GetBuildQueue()[i].DataObject.ResourceName)
+                {
+                    return true;
+                }
+            }
         }
-
         return false;
     }
 
@@ -117,7 +119,7 @@ public class S_MachineBuilder : S_InGameMenuBase
         if (MachineGenerator.BuiltMachine != null)
         {
             ref_GameController.CharacterController.m_MachinePlacer.NewMachineToPlace(MachineGenerator.BuiltMachine);
-            ref_GameController.CharacterController.Interactor.Interact();
+            ref_GameController.CharacterController.Interactor.Interact(false);
             ((S_MachineGenerator)ref_GameController.CharacterController.Interactor.MachineFound).BuiltMachine = null;
         }
     }
